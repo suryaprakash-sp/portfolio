@@ -1,56 +1,59 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Menu, X, Github, Linkedin, Mail, Play, Database, ArrowRight, CheckCircle2, Loader2, Sparkles, Code2, Terminal, Server, BarChart3, ExternalLink, Zap } from 'lucide-react';
+import { Menu, X, Github, Linkedin, Mail, Play, Database, ArrowRight, CheckCircle2, Loader2, Sparkles, Code2, Terminal, Server, BarChart3, ExternalLink, Zap, LineChart, ArrowUp, ChevronDown, ChevronUp } from 'lucide-react';
 import { RESUME_DATA, NAV_ITEMS, CATEGORY_ICONS, PROJECT_ICONS } from './constants';
 import SkillChart from './components/SkillChart';
 import AiAssistant from './components/AiAssistant';
 
-// Component for Modern Project Card
-const ProjectCard = ({ project }: { project: any }) => {
+// Bento Grid Project Card
+const BentoProjectCard = ({ project }: { project: any }) => {
   const Icon = project.icon ? PROJECT_ICONS[project.icon] : Terminal;
   
   return (
-    <div className="group relative bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-slate-200/50 hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col h-full">
-      {/* Visual Header with Gradient */}
-      <div className={`h-32 bg-gradient-to-br ${project.gradient} relative flex items-center justify-center overflow-hidden`}>
-        <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors"></div>
-        {/* Abstract shapes for texture */}
-        <div className="absolute -right-4 -bottom-8 w-24 h-24 bg-white/20 rounded-full blur-xl"></div>
-        <div className="absolute -left-4 -top-8 w-32 h-32 bg-white/10 rounded-full blur-xl"></div>
-        
-        <div className="relative z-10 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-           <Icon className="w-6 h-6 text-slate-800" />
-        </div>
+    <div className="group relative h-full w-full overflow-hidden rounded-3xl bg-slate-900 border border-slate-800 hover:shadow-2xl transition-all duration-500">
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <img 
+          src={project.image} 
+          alt={project.title}
+          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-40"
+        />
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/60 to-transparent opacity-90 group-hover:opacity-80 transition-opacity"></div>
       </div>
 
-      <div className="p-6 flex flex-col flex-1">
-        <div className="flex items-center justify-between mb-3">
-          <span className="text-[10px] font-bold tracking-widest uppercase text-slate-400">{project.category}</span>
-          <span className="text-xs font-mono text-slate-400">{project.year}</span>
-        </div>
-        
-        <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">
-          {project.title}
-        </h3>
-        
-        <div className="space-y-3 mb-6 flex-1">
-          {project.description.map((desc: string, i: number) => (
-             <p key={i} className="text-slate-600 text-sm leading-relaxed line-clamp-3">
-                {desc}
-             </p>
-          ))}
+      {/* Content */}
+      <div className="relative h-full flex flex-col justify-end p-6 z-10">
+        {/* Top Icon (Optional floating) */}
+        <div className="absolute top-6 right-6 w-10 h-10 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/10 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">
+          <Icon className="w-5 h-5 text-white" />
         </div>
 
-        <div className="flex flex-wrap gap-2 pt-4 border-t border-slate-50">
-          {project.tech.slice(0, 4).map((t: string) => (
-            <span key={t} className="text-[11px] font-medium px-2.5 py-1 bg-slate-50 text-slate-600 rounded-md border border-slate-100">
-              {t}
-            </span>
-          ))}
-          {project.tech.length > 4 && (
-             <span className="text-[11px] font-medium px-2.5 py-1 bg-slate-50 text-slate-400 rounded-md border border-slate-100">
-               +{project.tech.length - 4}
-             </span>
-          )}
+        <div className="transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+          <div className="flex items-center gap-2 mb-2">
+             <span className="text-[10px] font-bold tracking-widest uppercase text-blue-400">{project.category}</span>
+             <span className="w-1 h-1 bg-slate-500 rounded-full"></span>
+             <span className="text-[10px] font-mono text-slate-400">{project.year}</span>
+          </div>
+          
+          <h3 className="text-xl md:text-2xl font-bold text-white mb-2 leading-tight">
+            {project.title}
+          </h3>
+          
+          <div className="space-y-1 mb-4 opacity-0 group-hover:opacity-100 h-0 group-hover:h-auto transition-all duration-300">
+             {project.description.slice(0, 1).map((desc: string, i: number) => (
+                <p key={i} className="text-slate-300 text-sm leading-relaxed line-clamp-2">
+                   {desc}
+                </p>
+             ))}
+          </div>
+
+          <div className="flex flex-wrap gap-2">
+            {project.tech.slice(0, 3).map((t: string) => (
+              <span key={t} className="text-[10px] font-medium px-2 py-1 bg-white/10 text-slate-200 rounded-md backdrop-blur-sm border border-white/5">
+                {t}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </div>
@@ -73,21 +76,82 @@ const App: React.FC = () => {
   const [experienceVisible, setExperienceVisible] = useState(false);
   const experienceRef = useRef<HTMLElement>(null);
 
+  // Project Filter State
+  const [activeCategory, setActiveCategory] = useState('All');
+  const [viewAllProjects, setViewAllProjects] = useState(false);
+
+  // Navbar Animation Refs
+  const navRef = useRef<HTMLDivElement>(null);
+  const tabsRef = useRef<{ [key: string]: HTMLAnchorElement | null }>({});
+  const [navIndicatorStyle, setNavIndicatorStyle] = useState({ left: 0, width: 0, opacity: 0 });
+
+  // Manual Scroll Tracker to prevent Observer interference
+  const isManualScroll = useRef(false);
+
+  // Scroll To Top State
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  // Update Navbar Indicator Position on activeSection change or Resize
+  useEffect(() => {
+    const updatePosition = () => {
+      const activeTab = tabsRef.current[activeSection];
+      if (activeTab) {
+        setNavIndicatorStyle({
+          left: activeTab.offsetLeft,
+          width: activeTab.offsetWidth,
+          opacity: 1
+        });
+      }
+    };
+
+    updatePosition();
+    window.addEventListener('resize', updatePosition);
+    return () => window.removeEventListener('resize', updatePosition);
+  }, [activeSection]);
+
+  // Scroll Listener for "Back to Top" button
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 400) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   // Smooth scroll handler
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
+    const targetId = href.substring(1);
+    
+    // 1. Immediately update active section so the pill animates directly to target
+    setActiveSection(targetId);
+    setMobileMenuOpen(false);
+
+    // 2. Set manual scroll flag to block intersection observer updates
+    isManualScroll.current = true;
+
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-      setMobileMenuOpen(false);
-      setActiveSection(href.substring(1));
+      
+      // 3. Reset flag after sufficient time for scroll to complete
+      setTimeout(() => {
+        isManualScroll.current = false;
+      }, 1000);
     }
   };
 
-  const scrollToTop = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const scrollToTop = (e: React.MouseEvent) => {
     e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
     setActiveSection('about');
+    isManualScroll.current = true;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(() => { isManualScroll.current = false; }, 1000);
   };
 
   // Run Pipeline Handler
@@ -110,7 +174,8 @@ const App: React.FC = () => {
     const sectionObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
+          // Only update if not currently performing a manual scroll
+          if (entry.isIntersecting && !isManualScroll.current) {
             setActiveSection(entry.target.id);
           }
         });
@@ -157,31 +222,62 @@ const App: React.FC = () => {
     };
   }, []);
 
+  // Compute unique categories and filtered projects
+  const uniqueCategories = ['All', ...Array.from(new Set(RESUME_DATA.projects.map(p => p.category).filter(Boolean) as string[]))];
+  
+  const filteredProjects = activeCategory === 'All'
+    ? RESUME_DATA.projects
+    : RESUME_DATA.projects.filter(p => p.category === activeCategory);
+
+  // Logic for view more
+  const visibleProjectsList = viewAllProjects ? filteredProjects : filteredProjects.slice(0, 6);
+
   return (
-    <div className="min-h-screen bg-[#fafafa] text-slate-900 font-sans selection:bg-blue-100 selection:text-blue-900">
+    <div className="min-h-screen bg-[#fafafa] text-slate-900 font-sans selection:bg-blue-100 selection:text-blue-900 relative">
       
+      {/* Decorative Top-Left Circle */}
+      <div className="fixed -top-20 -left-20 w-80 h-80 bg-blue-100/60 rounded-full blur-3xl pointer-events-none -z-10"></div>
+
       {/* Navigation - Floating iOS Liquid Pill */}
       <nav className="fixed top-0 w-full z-40 pointer-events-none">
         <div className="max-w-6xl mx-auto px-6 h-24 flex items-center justify-between">
           {/* Logo */}
-          <a href="#" onClick={scrollToTop} className="pointer-events-auto relative z-50 text-xl font-bold font-mono tracking-tighter text-slate-900 flex items-center gap-1 group">
-            <span className="text-slate-300 group-hover:text-slate-600 transition-colors">{'<'}</span>
-            SP
-            <span className="text-slate-300 group-hover:text-slate-600 transition-colors">{' />'}</span>
+          <a href="#" onClick={scrollToTop} className="pointer-events-auto relative group">
+            <div className="flex items-center gap-0.5 font-bold text-xl tracking-tighter font-mono px-5 py-2">
+              <span className="text-blue-500 transition-transform duration-300 group-hover:-translate-x-1">{'<'}</span>
+              <span className="text-slate-900">SP</span>
+              <span className="text-blue-500 transition-transform duration-300 group-hover:translate-x-1">{'/>'}</span>
+            </div>
           </a>
-
-          {/* Desktop Nav - Centered Liquid Pill */}
+          
+          {/* Desktop Nav - Centered Liquid Pill with Smooth Animation */}
           <div className="pointer-events-auto hidden md:block absolute left-1/2 top-6 -translate-x-1/2">
-            <div className="flex items-center gap-1 bg-white/70 backdrop-blur-xl backdrop-saturate-150 border border-white/20 ring-1 ring-black/5 rounded-full px-2 py-1.5 shadow-lg shadow-slate-200/20">
+            <div 
+              ref={navRef}
+              className="relative flex items-center gap-1 bg-white/70 backdrop-blur-xl backdrop-saturate-150 border border-white/20 ring-1 ring-black/5 rounded-full px-2 py-1.5 shadow-lg shadow-slate-200/20"
+            >
+              {/* Sliding Background Pill */}
+              <div 
+                className="absolute bg-slate-900 rounded-full shadow-md transition-all duration-700 ease-[cubic-bezier(0.25,0.8,0.25,1)]"
+                style={{
+                  left: navIndicatorStyle.left,
+                  width: navIndicatorStyle.width,
+                  height: 'calc(100% - 12px)', // vertical padding adjustment
+                  top: '6px',
+                  opacity: navIndicatorStyle.opacity
+                }}
+              />
+
               {NAV_ITEMS.map((item) => (
                 <a
                   key={item.label}
                   href={item.href}
+                  ref={(el) => { tabsRef.current[item.href.substring(1)] = el; }}
                   onClick={(e) => scrollToSection(e, item.href)}
-                  className={`px-5 py-2 text-sm font-medium rounded-full transition-all duration-300 ${
+                  className={`relative z-10 px-5 py-2 text-sm font-medium rounded-full transition-colors duration-300 ${
                     activeSection === item.href.substring(1) 
-                      ? 'bg-slate-900 text-white shadow-md' 
-                      : 'text-slate-500 hover:text-slate-900 hover:bg-slate-50/50'
+                      ? 'text-white' 
+                      : 'text-slate-500 hover:text-slate-900'
                   }`}
                 >
                   {item.label}
@@ -192,7 +288,7 @@ const App: React.FC = () => {
 
           {/* Mobile Menu Toggle */}
           <button 
-            className="pointer-events-auto md:hidden text-slate-600 p-2 bg-white rounded-full border border-slate-100 shadow-sm"
+            className="pointer-events-auto md:hidden text-slate-600 p-2 bg-white rounded-full border border-slate-100 shadow-sm relative z-50"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -201,7 +297,7 @@ const App: React.FC = () => {
 
         {/* Mobile Nav Overlay */}
         {mobileMenuOpen && (
-          <div className="pointer-events-auto md:hidden absolute top-24 left-4 right-4 bg-white/95 backdrop-blur-xl border border-slate-200 rounded-2xl p-4 flex flex-col gap-2 shadow-2xl animate-slide-up">
+          <div className="pointer-events-auto md:hidden absolute top-24 left-4 right-4 bg-white/95 backdrop-blur-xl border border-slate-200 rounded-2xl p-4 flex flex-col gap-2 shadow-2xl animate-slide-up z-50">
             {NAV_ITEMS.map((item) => (
               <a
                 key={item.label}
@@ -219,103 +315,118 @@ const App: React.FC = () => {
       </nav>
 
       {/* Hero Section */}
-      <section id="about" className="pt-32 pb-20 px-6 max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-16 min-h-[85vh] justify-center overflow-x-hidden">
-        <div className="flex-1 space-y-10 z-10">
-          {/* Emerald Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-700 text-xs font-semibold tracking-wide uppercase shadow-sm">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-            </span>
-            Available for opportunities
+      <section id="about" className="scroll-mt-28 pt-32 pb-20 px-6 max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-20 min-h-[85vh] justify-center overflow-x-clip">
+        <div className="flex-1 flex flex-col items-start z-10 w-full md:w-auto">
+          
+          {/* Group 1: Identity */}
+          <div className="mb-6 space-y-2">
+             <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-slate-900 tracking-tighter leading-none">
+               <span className="block">Hi, I'm</span>
+               <span className="block text-blue-500 mt-2">Surya.</span>
+             </h1>
+             <h2 className="text-2xl md:text-3xl font-medium text-slate-500 tracking-tight">
+               Data Analyst & Engineer
+             </h2>
           </div>
           
-          <div className="space-y-6">
-            <h1 className="text-5xl md:text-7xl font-bold text-slate-900 leading-[1.1] tracking-tight">
-              Hi, I'm <br className="hidden md:block" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-400 to-slate-600">Surya.</span>
-            </h1>
-            <p className="text-lg md:text-xl text-slate-600 max-w-lg leading-relaxed font-light">
-              Data Analyst & Engineer building robust <span className="font-medium text-slate-900 underline decoration-blue-200 decoration-2 underline-offset-4">ETL pipelines</span> and interactive <span className="font-medium text-slate-900 underline decoration-purple-200 decoration-2 underline-offset-4">dashboards</span> to turn raw data into insights.
-            </p>
-          </div>
+          {/* Group 2: Description */}
+          <p className="text-lg text-slate-600 max-w-lg leading-relaxed font-light mb-10">
+            Building robust <span className="font-medium text-slate-900 underline decoration-blue-200/50 decoration-2 underline-offset-4">ETL pipelines</span> and interactive <span className="font-medium text-slate-900 underline decoration-purple-200/50 decoration-2 underline-offset-4">dashboards</span> to turn raw data into insights.
+          </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 pt-4">
-            <a 
-              href={`mailto:${RESUME_DATA.contact.email}`}
-              className="group w-full sm:w-auto min-w-[160px] justify-center px-8 py-4 bg-slate-900 hover:bg-black text-white rounded-xl font-medium transition-all shadow-lg shadow-slate-900/20 hover:shadow-xl hover:shadow-slate-900/30 flex items-center gap-2"
-            >
-              <Mail className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" />
-              Contact Me
-            </a>
-            <a 
-              href={`https://${RESUME_DATA.contact.linkedin}`}
-              target="_blank"
-              rel="noreferrer"
-              className="group w-full sm:w-auto min-w-[160px] justify-center px-8 py-4 bg-white hover:bg-slate-50 text-slate-900 border border-slate-200 rounded-xl font-medium transition-all flex items-center gap-2"
-            >
-              <Linkedin className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" />
-              LinkedIn
-            </a>
+          {/* Group 3: Actions */}
+          <div className="flex flex-col gap-6">
+             <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+                <a 
+                  href={`mailto:${RESUME_DATA.contact.email}`}
+                  className="group w-full sm:w-auto min-w-[160px] justify-center px-8 py-4 bg-slate-900 hover:bg-black text-white rounded-xl font-medium transition-all shadow-lg shadow-slate-900/20 hover:shadow-xl hover:shadow-slate-900/30 flex items-center gap-2"
+                >
+                  <Mail className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" />
+                  Get in Touch
+                </a>
+                <a 
+                  href={`https://${RESUME_DATA.contact.linkedin}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group w-full sm:w-auto min-w-[160px] justify-center px-8 py-4 bg-white hover:bg-slate-50 text-slate-900 border border-slate-200 rounded-xl font-medium transition-all flex items-center gap-2"
+                >
+                  <Linkedin className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" />
+                  LinkedIn
+                </a>
+             </div>
+             
+             {/* Available for Opportunities Badge - Pill Style */}
+             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-100/50 self-start">
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                <span className="text-xs font-bold text-emerald-800 tracking-wide uppercase">Available for opportunities</span>
+             </div>
           </div>
+
         </div>
         
         {/* Photo Section - Modern Geometric Layered Frame */}
-        <div className="flex-1 w-full max-w-[500px] flex justify-center items-center relative mt-16 md:mt-0">
+        <div className="flex-1 w-full max-w-[550px] md:pr-10 flex justify-center items-center relative mt-20 md:mt-0">
           
           {/* Main Dark Gradient Canvas / Background Card */}
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-900 to-slate-800 rounded-[2.5rem] rotate-3 scale-[1.15] shadow-2xl z-0 overflow-hidden opacity-90">
-             {/* Subtle Geometric Overlay Elements inside the dark card */}
-             <div className="absolute top-0 right-0 w-32 h-32 bg-slate-800 rounded-full blur-2xl opacity-50"></div>
-             <div className="absolute bottom-0 left-0 w-32 h-32 bg-blue-900/30 rounded-full blur-2xl opacity-50"></div>
-             
-             {/* Decorative Grid Lines */}
-             <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900 to-slate-800 rounded-[2.5rem] rotate-2 w-[110%] h-[120%] -left-[5%] shadow-2xl z-0 overflow-hidden opacity-90">
+             <div className="absolute top-10 right-10 w-48 h-48 bg-slate-800 rounded-full blur-3xl opacity-60"></div>
+             <div className="absolute bottom-10 left-10 w-48 h-48 bg-blue-900/40 rounded-full blur-3xl opacity-60"></div>
           </div>
 
-          {/* Floating Decorative Elements (Foreground/Midground) */}
-          <div className="absolute -top-6 -right-4 z-20 animate-float text-white/80" style={{ animationDelay: '0s' }}>
-             <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="20" cy="20" r="15" />
+          {/* Tech Stack Floating Icons */}
+          
+          {/* Python - Top Right */}
+          <div className="absolute -top-10 -right-4 z-30 animate-float drop-shadow-[0_4px_12px_rgba(0,0,0,0.2)]" style={{ animationDelay: '0s' }}>
+             <svg width="40" height="40" viewBox="0 0 32 32" fill="none">
+               <path d="M15.875 2.5C10.75 2.5 9.75 4.75 9.75 4.75V7.125H19.75V8.5H9.75C7.25 8.5 2.5 10.375 2.5 15.625C2.5 20 5.625 21.625 8.125 21.625H9.375V19.375C9.375 16.5 12.375 16.125 12.375 16.125H18.625C20.625 16.125 20.875 14.375 20.875 14.375V10.25C20.875 10.25 21.25 2.5 15.875 2.5ZM14.125 5.25C14.8125 5.25 15.375 5.8125 15.375 6.5C15.375 7.1875 14.8125 7.75 14.125 7.75C13.4375 7.75 12.875 7.1875 12.875 6.5C12.875 5.8125 13.4375 5.25 14.125 5.25ZM22.25 10.375V12.625H12.25V11.25H22.25C24.75 11.25 29.5 9.375 29.5 4.125C29.5 -0.25 26.375 -1.875 23.875 -1.875H22.625V0.375C22.625 3.25 19.625 3.625 19.625 3.625H13.375C11.375 3.625 11.125 5.375 11.125 5.375V9.5C11.125 9.5 10.75 17.25 16.125 17.25C21.25 17.25 22.25 15 22.25 15V10.375ZM17.875 14.5C17.1875 14.5 16.625 13.9375 16.625 13.25C16.625 12.5625 17.1875 12 17.875 12C18.5625 12 19.125 12.5625 19.125 13.25C19.125 13.9375 18.5625 14.5 17.875 14.5Z" fill="url(#python-gradient)" transform="scale(0.8) translate(5, 5)"/>
+               <defs>
+                 <linearGradient id="python-gradient" x1="2.5" y1="2.5" x2="29.5" y2="21.625" gradientUnits="userSpaceOnUse">
+                   <stop stopColor="#3776AB"/>
+                   <stop offset="1" stopColor="#FFD43B"/>
+                 </linearGradient>
+               </defs>
              </svg>
           </div>
-          <div className="absolute bottom-10 -left-6 z-20 animate-float text-blue-400/80" style={{ animationDelay: '1s' }}>
-             <svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
-                <line x1="15" y1="5" x2="15" y2="25" />
-                <line x1="5" y1="15" x2="25" y2="15" />
+          
+          {/* Power BI - Bottom Left */}
+          <div className="absolute bottom-6 -left-8 z-30 animate-float drop-shadow-[0_4px_12px_rgba(0,0,0,0.2)]" style={{ animationDelay: '1.5s' }}>
+             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0">
+               <path d="M6 14H10V21H6V14Z" fill="#F2C811"/>
+               <path d="M12 8H16V21H12V8Z" fill="#F2C811"/>
+               <path d="M18 3H22V21H18V3Z" fill="#F2C811"/>
              </svg>
           </div>
-          <div className="absolute top-10 -left-2 z-0 animate-float text-slate-700" style={{ animationDelay: '2s' }}>
-             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-               <polyline points="4 12 8 8 12 12 16 8 20 12" />
+          
+          {/* Google Sheets - Top Left */}
+          <div className="absolute top-2 -left-10 z-30 animate-float drop-shadow-[0_4px_12px_rgba(0,0,0,0.2)]" style={{ animationDelay: '2.5s' }}>
+             <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+               <path d="M15.5 2H5.5C4.4 2 3.5 2.9 3.5 4V20C3.5 21.1 4.4 22 5.5 22H18.5C19.6 22 20.5 21.1 20.5 20V7L15.5 2Z" fill="#0F9D58"/>
+               <path d="M16 2V7H21" fill="#E6F4EA"/>
+               <path d="M6 12H18V14H6V12ZM6 16H14V18H6V16Z" fill="white"/>
              </svg>
           </div>
+
+           {/* Generic Graph Icon - Bottom Right */}
+           <div className="absolute bottom-20 -right-8 z-30 animate-float drop-shadow-[0_4px_12px_rgba(0,0,0,0.2)]" style={{ animationDelay: '3.5s' }}>
+              <LineChart className="w-10 h-10 text-blue-500" />
+          </div>
+
 
           {/* The Photo Frame Stack */}
           <div className="relative w-72 h-72 md:w-80 md:h-80 z-10">
-            
-            {/* Layer 1: Back Overlapping Square (Wireframe/Translucent) */}
             <div className="absolute inset-0 border-2 border-white/20 rounded-[2rem] rotate-[12deg] scale-105"></div>
-            
-            {/* Layer 2: Middle Overlapping Square (Solid Accent Color) */}
             <div className="absolute inset-0 bg-blue-600/90 rounded-[2rem] rotate-[6deg] translate-x-2 translate-y-2 shadow-lg backdrop-blur-sm"></div>
-            
-            {/* Layer 3: Main Frame (The Photo) */}
-            {/* Tilted slightly (-3deg) and contained with rounded corners */}
-            <div className="absolute inset-0 bg-slate-200 rounded-[2rem] -rotate-[3deg] overflow-hidden shadow-2xl ring-4 ring-white/10">
+            <div className="absolute inset-0 bg-slate-200 rounded-[2rem] -rotate-[3deg] shadow-2xl ring-4 ring-white/10">
                <img 
-                 src="/surya.jpg" 
+                 src="./public/surya.jpg" 
                  alt="Surya Prakash"
-                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+                 className="absolute bottom-0 left-0 w-full h-[115%] object-cover object-center rounded-b-[2rem]"
                  onError={(e) => {
-                   // Fallback
                    e.currentTarget.src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop"; 
                    e.currentTarget.onerror = null;
                  }}
                />
-               
-               {/* Optional: Subtle inner shadow overlay */}
-               <div className="absolute inset-0 shadow-[inset_0_0_20px_rgba(0,0,0,0.1)] pointer-events-none"></div>
+               <div className="absolute inset-0 shadow-[inset_0_0_20px_rgba(0,0,0,0.1)] pointer-events-none rounded-[2rem]"></div>
             </div>
           </div>
           
@@ -323,8 +434,7 @@ const App: React.FC = () => {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" ref={skillsRef} className="py-24 bg-white relative overflow-hidden">
-        {/* Subtle Background Pattern */}
+      <section id="skills" ref={skillsRef} className="scroll-mt-28 py-24 bg-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
         
         <div className="max-w-6xl mx-auto px-6 relative z-10">
@@ -338,45 +448,42 @@ const App: React.FC = () => {
               </div>
               
               <div className="space-y-8">
-                {RESUME_DATA.skills.map((category, idx) => {
-                  const Icon = CATEGORY_ICONS[category.category] || Database;
-                  
-                  return (
-                    <div 
-                      key={category.category} 
-                      style={{ transitionDelay: `${idx * 100}ms` }}
-                      className={`group transition-all duration-700 transform ${
-                        skillsVisible 
-                          ? 'opacity-100 translate-y-0' 
-                          : 'opacity-0 translate-y-10'
-                      }`}
-                    >
-                      <div className="flex items-start gap-5">
-                        <div className="mt-1 p-2 rounded-lg bg-slate-50 text-slate-400 group-hover:text-blue-600 group-hover:bg-blue-50 transition-colors duration-300">
-                          <Icon className="w-5 h-5" />
+                {RESUME_DATA.skills.map((category, idx) => (
+                  <div 
+                    key={category.category} 
+                    style={{ transitionDelay: `${idx * 100}ms` }}
+                    className={`group transition-all duration-700 transform ${
+                      skillsVisible 
+                        ? 'opacity-100 translate-y-0' 
+                        : 'opacity-0 translate-y-10'
+                    }`}
+                  >
+                    <div className="flex items-start gap-5">
+                      <div className="mt-1 p-2 rounded-lg bg-slate-50 text-slate-400 group-hover:text-blue-600 group-hover:bg-blue-50 transition-colors duration-300">
+                        <div className="w-5 h-5 flex items-center justify-center">
+                            {CATEGORY_ICONS[category.category] && React.createElement(CATEGORY_ICONS[category.category], { size: 20 })}
                         </div>
-                        <div className="flex-1 border-b border-slate-100 pb-6 group-hover:border-slate-200 transition-colors">
-                          <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-4">{category.category}</h3>
-                          <div className="flex flex-wrap gap-x-3 gap-y-3">
-                            {category.skills.map((skill) => (
-                              <span key={skill} className="px-3 py-1 bg-white border border-slate-200 rounded-md text-slate-600 font-mono text-xs hover:border-slate-400 transition-colors">
-                                {skill}
-                              </span>
-                            ))}
-                          </div>
+                      </div>
+                      <div className="flex-1 border-b border-slate-100 pb-6 group-hover:border-slate-200 transition-colors">
+                        <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-4">{category.category}</h3>
+                        <div className="flex flex-wrap gap-x-3 gap-y-3">
+                          {category.skills.map((skill) => (
+                            <span key={skill} className="px-3 py-1 bg-white border border-slate-200 rounded-md text-slate-600 font-mono text-xs hover:border-slate-400 transition-colors">
+                              {skill}
+                            </span>
+                          ))}
                         </div>
                       </div>
                     </div>
-                  );
-                })}
+                  </div>
+                ))}
               </div>
             </div>
 
-            {/* Radar Chart - Improved Container Shape */}
+            {/* Radar Chart */}
             <div className={`flex-1 w-full flex justify-center items-center transition-all duration-1000 delay-300 ${
                skillsVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
             }`}>
-               {/* Changed from rounded-full to rounded-3xl for better shape */}
                <div className="relative p-8 bg-white/40 backdrop-blur-md rounded-3xl border border-slate-100 shadow-xl w-full max-w-[500px]">
                  <SkillChart />
                </div>
@@ -386,120 +493,191 @@ const App: React.FC = () => {
       </section>
 
       {/* Experience Section */}
-      <section id="experience" ref={experienceRef} className="py-24 max-w-5xl mx-auto px-6 bg-[#fafafa]">
+      <section id="experience" ref={experienceRef} className="scroll-mt-28 py-24 max-w-5xl mx-auto px-6 bg-[#fafafa]">
         <h2 className={`text-3xl font-bold text-slate-900 mb-16 text-center transition-all duration-700 ${experienceVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           Professional Experience
         </h2>
 
-        <div className={`relative space-y-12 before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-300 before:to-transparent before:transition-opacity before:duration-1000 ${experienceVisible ? 'before:opacity-100' : 'before:opacity-0'}`}>
-          {RESUME_DATA.experience.map((job, idx) => (
-            <div 
-              key={idx} 
-              style={{ transitionDelay: `${(idx + 1) * 200}ms` }}
-              className={`relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active transition-all duration-700 ease-out transform ${experienceVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
-            >
-              
-              <div className="flex items-center justify-center w-10 h-10 rounded-full border border-slate-200 bg-white group-hover:bg-slate-50 group-hover:scale-110 transition-all shadow-sm z-10 shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
-                <div className="w-3 h-3 bg-slate-400 rounded-full group-hover:bg-blue-500 transition-colors"></div>
-              </div>
-              
-              <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 bg-white border border-slate-100 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-                <div className="flex flex-col mb-4">
-                  <div className="text-slate-400 text-xs font-mono font-medium mb-1 uppercase tracking-wide">
-                    {job.period}
-                  </div>
-                  <h3 className="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors">{job.role}</h3>
-                  <div className="text-slate-500 font-medium text-sm">{job.company} — {job.location}</div>
+        {/* Experience Container */}
+        <div className="relative">
+          {/* Animated Flow Line Track (Bottom-to-Top Flow) */}
+          <div className={`absolute left-5 md:left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2 md:-translate-x-1/2 bg-slate-200 overflow-hidden rounded-full transition-opacity duration-1000 ${experienceVisible ? 'opacity-100' : 'opacity-0'}`}>
+             {/* The "Beam" moving upwards */}
+             <div className="absolute inset-x-0 h-[40%] bg-gradient-to-t from-transparent via-blue-500 to-transparent w-full animate-beam-up opacity-0">
+               {/* Arrow at the top of the gradient */}
+               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 text-blue-500 drop-shadow-[0_0_8px_rgba(59,130,246,0.8)]">
+                  <ChevronUp className="w-6 h-6" />
+               </div>
+             </div>
+          </div>
+
+          {/* Job Items Wrapper */}
+          <div className="space-y-12">
+            {RESUME_DATA.experience.map((job, idx) => (
+              <div 
+                key={idx} 
+                style={{ transitionDelay: `${(idx + 1) * 200}ms` }}
+                className={`relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active transition-all duration-700 ease-out transform ${experienceVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
+              >
+                
+                {/* Timeline Node/Circle */}
+                <div 
+                  className={`flex items-center justify-center w-10 h-10 rounded-full border border-slate-200 bg-white group-hover:bg-slate-50 group-hover:scale-110 transition-all shadow-sm z-10 shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 ${experienceVisible ? 'animate-node-pulse' : ''}`}
+                  style={{
+                    // Delay calculation: beam moves bottom (index N) to top (index 0).
+                    // The beam duration is 3s.
+                    // Bottom item needs small delay, Top item needs larger delay.
+                    animationDelay: `${((RESUME_DATA.experience.length - 1 - idx) * 1.5)}s`
+                  }}
+                >
+                  <div className="w-3 h-3 bg-slate-400 rounded-full group-hover:bg-blue-500 transition-colors"></div>
                 </div>
                 
-                <ul className="space-y-2">
-                  {job.achievements.slice(0, 3).map((achievement, i) => (
-                    <li key={i} className="text-slate-600 text-sm leading-6 font-light">
-                      • {achievement}
-                    </li>
-                  ))}
-                </ul>
+                {/* Content Card */}
+                <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 bg-white border border-slate-100 rounded-2xl shadow-sm hover:shadow-md transition-shadow relative">
+                  {/* Little Arrow pointing to the node */}
+                  <div className="hidden md:block absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-l border-b border-slate-100 rotate-45 group-odd:-right-2 group-even:-left-2 transform border-t-0 border-r-0"></div>
+                  
+                  <div className="flex flex-col mb-4">
+                    <div className="text-slate-400 text-xs font-mono font-medium mb-1 uppercase tracking-wide">
+                      {job.period}
+                    </div>
+                    <h3 className="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors">{job.role}</h3>
+                    <div className="text-slate-500 font-medium text-sm">{job.company} — {job.location}</div>
+                  </div>
+                  
+                  <ul className="space-y-2">
+                    {job.achievements.slice(0, 3).map((achievement, i) => (
+                      <li key={i} className="text-slate-600 text-sm leading-6 font-light">
+                        • {achievement}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Projects Section */}
-      <section id="projects" className="py-24 bg-white border-t border-slate-100">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex items-end justify-between mb-12">
-            <div>
-              <h2 className="text-3xl font-bold text-slate-900 mb-2">Featured Projects</h2>
-              <p className="text-slate-500 font-light">End-to-end data solutions delivered.</p>
-            </div>
-            <a href="https://github.com" target="_blank" rel="noreferrer" className="hidden sm:flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors">
-              View Github <ArrowRight className="w-4 h-4" />
-            </a>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {RESUME_DATA.projects.map((project, idx) => (
-              <ProjectCard key={idx} project={project} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* Education & Footer */}
-      <footer className="py-24 bg-slate-900 text-white relative overflow-hidden">
-        {/* Footer Glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-50 blur-sm"></div>
-
-        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-20 relative z-10">
-          
-          {/* Education */}
-          <div>
-            <h3 className="text-lg font-bold text-white mb-8 flex items-center gap-2">
-              Education
-            </h3>
-            <div className="space-y-8">
-              {RESUME_DATA.education.map((edu, idx) => (
-                <div key={idx} className="group pl-4 border-l-2 border-slate-800 hover:border-slate-600 transition-colors">
-                  <div className="text-white font-medium text-lg mb-1">{edu.school}</div>
-                  <div className="text-slate-400 font-light">{edu.degree}</div>
-                  <div className="text-slate-500 text-sm font-mono mt-2">{edu.year}</div>
-                </div>
+      {/* Projects Section - Bento Grid */}
+      <section id="projects" className="scroll-mt-28 py-24 bg-white border-t border-slate-100">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row items-end justify-between mb-12 gap-6">
+            <div>
+              <h2 className="text-4xl font-bold text-slate-900 mb-2 tracking-tight">Select Projects</h2>
+              <p className="text-slate-500 font-light text-lg">A collection of data engineering & analytics work.</p>
+            </div>
+            
+            {/* Filter Buttons */}
+            <div className="flex flex-wrap gap-2">
+              {uniqueCategories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setActiveCategory(category)}
+                  className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-300 ${
+                    activeCategory === category
+                      ? 'bg-slate-900 text-white'
+                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                  }`}
+                >
+                  {category}
+                </button>
               ))}
             </div>
           </div>
 
-          {/* Contact */}
+          {/* Dynamic Bento Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[350px]">
+            {visibleProjectsList.map((project, idx) => (
+              <div 
+                key={idx}
+                className={`${project.size === 'large' ? 'md:col-span-2' : 'md:col-span-1'} ${project.size === 'tall' ? 'md:row-span-2' : ''}`}
+              >
+                <BentoProjectCard project={project} />
+              </div>
+            ))}
+          </div>
+
+          {/* View More / View Less */}
+          {filteredProjects.length > 6 && (
+             <div className="mt-12 flex justify-center">
+                <button 
+                  onClick={() => setViewAllProjects(!viewAllProjects)}
+                  className="flex items-center gap-2 px-8 py-3 bg-slate-50 hover:bg-slate-100 text-slate-900 rounded-full font-medium transition-colors border border-slate-200"
+                >
+                  {viewAllProjects ? (
+                    <>Show Less <ChevronUp className="w-4 h-4" /></>
+                  ) : (
+                    <>View More Projects <ChevronDown className="w-4 h-4" /></>
+                  )}
+                </button>
+             </div>
+          )}
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-24 bg-slate-900 text-white relative overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-50 blur-sm"></div>
+
+        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-20 relative z-10">
+          <div>
+            <h2 className="text-4xl font-bold tracking-tighter mb-8">Let's build something <span className="text-blue-500">amazing.</span></h2>
+            <p className="text-slate-400 max-w-sm mb-10 leading-relaxed">
+              Available for full-time roles and freelance projects. Let's discuss how data can transform your business.
+            </p>
+            <div className="flex gap-4">
+              <a href={`mailto:${RESUME_DATA.contact.email}`} className="px-6 py-3 bg-white text-slate-900 rounded-lg font-medium hover:bg-blue-50 transition-colors">
+                Drop me a line
+              </a>
+            </div>
+          </div>
+          
           <div className="flex flex-col justify-between">
-            <div>
-               <h3 className="text-lg font-bold text-white mb-6">Let's Connect</h3>
-               <p className="text-slate-400 mb-8 leading-relaxed font-light max-w-sm">
-                 I'm currently looking for new opportunities as a Data Engineer or Analyst. 
-                 Have a question about my work or want to collaborate?
-               </p>
-               <a 
-                 href={`mailto:${RESUME_DATA.contact.email}`}
-                 className="text-2xl font-bold text-white hover:text-blue-400 transition-colors inline-block"
-               >
-                 {RESUME_DATA.contact.email}
-               </a>
+            <div className="grid grid-cols-2 gap-10">
+              <div>
+                <h4 className="font-bold mb-6 text-slate-200">Navigation</h4>
+                <ul className="space-y-4 text-slate-400">
+                  <li><a href="#about" className="hover:text-white transition-colors">About</a></li>
+                  <li><a href="#skills" className="hover:text-white transition-colors">Skills</a></li>
+                  <li><a href="#projects" className="hover:text-white transition-colors">Projects</a></li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-bold mb-6 text-slate-200">Connect</h4>
+                <ul className="space-y-4 text-slate-400">
+                  <li><a href={`https://${RESUME_DATA.contact.linkedin}`} className="hover:text-white transition-colors">LinkedIn</a></li>
+                  <li><a href="#" className="hover:text-white transition-colors">GitHub</a></li>
+                  <li><a href="#" className="hover:text-white transition-colors">Twitter</a></li>
+                </ul>
+              </div>
             </div>
             
-            <div className="text-slate-600 text-sm mt-16 flex justify-between items-center border-t border-slate-800 pt-8">
-              <span>© {new Date().getFullYear()} Surya Prakash.</span>
-              <div className="flex gap-6">
-                 <a href={`https://${RESUME_DATA.contact.linkedin}`} target="_blank" rel="noreferrer">
-                   <Linkedin className="w-5 h-5 cursor-pointer hover:text-white transition-colors" />
-                 </a>
-                 <Github className="w-5 h-5 cursor-pointer hover:text-white transition-colors" />
+            <div className="mt-20 pt-8 border-t border-slate-800 text-slate-500 text-sm flex justify-between items-center">
+              <p>© {new Date().getFullYear()} Surya Prakash.</p>
+              <div className="flex gap-2 text-xs font-mono">
+                <span>Designed & Built with</span>
+                <span className="text-blue-500">React + Tailwind</span>
               </div>
             </div>
           </div>
         </div>
       </footer>
 
-      {/* AI Assistant Widget */}
+      {/* Floating Utilities */}
       <AiAssistant />
+      
+      {/* Scroll To Top Button */}
+      <button
+        onClick={scrollToTop}
+        className={`fixed bottom-24 right-7 z-40 w-12 h-12 bg-white border border-slate-200 rounded-full shadow-lg flex items-center justify-center text-slate-600 hover:text-blue-600 hover:border-blue-200 transition-all duration-500 transform ${
+          showScrollTop ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0 pointer-events-none'
+        }`}
+      >
+        <ArrowUp className="w-5 h-5" />
+      </button>
+
     </div>
   );
 };

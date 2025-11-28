@@ -1,3 +1,4 @@
+
 export interface Experience {
   role: string;
   company: string;
@@ -11,9 +12,11 @@ export interface Project {
   tech: string[];
   year: string;
   description: string[];
-  category?: string;     // New: To categorize (e.g., Data Eng vs Analytics)
-  gradient?: string;     // New: For the visual placeholder background
-  icon?: string;         // New: To map to a Lucide icon name
+  category?: string;
+  gradient?: string;
+  icon?: string;
+  image?: string;         // New: Background image URL
+  size?: 'normal' | 'large' | 'tall'; // New: Grid span control
 }
 
 export interface SkillCategory {
