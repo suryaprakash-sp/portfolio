@@ -413,14 +413,14 @@ const App: React.FC = () => {
 
 
           {/* The Photo Frame Stack */}
-          <div className="relative w-72 h-72 md:w-80 md:h-80 z-10">
+          <div className="relative w-80 h-80 md:w-96 md:h-96 z-10">
             <div className="absolute inset-0 border-2 border-white/20 rounded-[2rem] rotate-[12deg] scale-105"></div>
             <div className="absolute inset-0 bg-blue-600/90 rounded-[2rem] rotate-[6deg] translate-x-2 translate-y-2 shadow-lg backdrop-blur-sm"></div>
             <div className="absolute inset-0 bg-slate-200 rounded-[2rem] -rotate-[3deg] shadow-2xl ring-4 ring-white/10">
-               <img 
-                 src="./public/surya.jpg" 
+               <img
+                 src="/surya_l.png"
                  alt="Surya Prakash"
-                 className="absolute bottom-0 left-0 w-full h-[115%] object-cover object-center rounded-b-[2rem]"
+                 className="absolute bottom-0 left-0 w-full h-[150%] object-cover object-center rounded-b-[2rem]"
                  onError={(e) => {
                    e.currentTarget.src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop"; 
                    e.currentTarget.onerror = null;
