@@ -542,8 +542,8 @@ const App: React.FC = () => {
           {/* Journey Path Container - Overflow to extend beyond section */}
           <div className="relative max-w-5xl mx-auto overflow-visible">
 
-            {/* Flowing SVG Path - Desktop - Extended beyond section */}
-            <svg className="hidden md:block absolute pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none" style={{ zIndex: 0, top: '-20%', left: 0, width: '100%', height: '140%' }}>
+            {/* Flowing SVG Path - Desktop - Centered in gap between cards */}
+            <svg className="hidden md:block absolute pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none" style={{ zIndex: 0, top: '-20%', left: '50%', transform: 'translateX(-50%)', width: '60px', height: '140%' }}>
               <defs>
                 {/* Gradient for fading path at top and bottom */}
                 <linearGradient id="pathFade" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -564,7 +564,7 @@ const App: React.FC = () => {
                 className={`transition-all duration-1000 ${experienceVisible ? 'opacity-100' : 'opacity-0'}`}
               />
 
-              {/* White Dotted Line Moving Inside - Faster */}
+              {/* White Dotted Line Moving Inside - Bottom to Top */}
               <path
                 d="M 50 0 C 50 20, 60 30, 55 50 C 50 70, 45 80, 50 100"
                 stroke="#ffffff"
@@ -574,7 +574,7 @@ const App: React.FC = () => {
                 strokeDasharray="2 4"
                 className={`transition-all duration-1000 ${experienceVisible ? 'opacity-100' : 'opacity-0'}`}
                 style={{
-                  animation: experienceVisible ? 'moveDots 1.8s linear infinite' : 'none'
+                  animation: experienceVisible ? 'moveDotsUp 1.8s linear infinite' : 'none'
                 }}
               />
             </svg>
@@ -602,12 +602,14 @@ const App: React.FC = () => {
                       {/* Content Card */}
                       <div className={`${isEven ? 'text-right' : 'text-left col-start-2'}`}>
                         {/* Period Badge with Duration */}
-                        <div className={`inline-flex flex-col gap-1 px-4 py-2 mb-4 rounded-2xl bg-blue-50 border border-blue-100`}>
-                          <div className="flex items-center gap-2">
+                        <div className="inline-flex items-center gap-3 mb-4">
+                          <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100">
                             <div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
                             <span className="text-xs font-semibold text-blue-700 tracking-wide">{job.period}</span>
                           </div>
-                          <span className="text-[10px] text-blue-600 font-medium pl-4">{calculateDuration(job.period)}</span>
+                          <div className="px-3 py-1 rounded-full bg-slate-100 border border-slate-200">
+                            <span className="text-[10px] font-medium text-slate-600">{calculateDuration(job.period)}</span>
+                          </div>
                         </div>
 
                         {/* Card */}
