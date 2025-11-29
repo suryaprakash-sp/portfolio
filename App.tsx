@@ -4,6 +4,41 @@ import { RESUME_DATA, NAV_ITEMS, CATEGORY_ICONS, PROJECT_ICONS } from './constan
 import SkillChart from './components/SkillChart';
 import AiAssistant from './components/AiAssistant';
 
+// Helper function to calculate duration in years and months
+const calculateDuration = (period: string): string => {
+  const parts = period.split('–').map(p => p.trim());
+  if (parts.length !== 2) return '';
+
+  const parseDate = (dateStr: string) => {
+    if (dateStr.toLowerCase() === 'present') {
+      return new Date();
+    }
+    const [month, year] = dateStr.split(' ');
+    const monthMap: { [key: string]: number } = {
+      'jan': 0, 'feb': 1, 'mar': 2, 'apr': 3, 'may': 4, 'jun': 5,
+      'jul': 6, 'aug': 7, 'sep': 8, 'oct': 9, 'nov': 10, 'dec': 11
+    };
+    return new Date(parseInt(year), monthMap[month.toLowerCase()]);
+  };
+
+  const startDate = parseDate(parts[0]);
+  const endDate = parseDate(parts[1]);
+
+  const months = (endDate.getFullYear() - startDate.getFullYear()) * 12 +
+                 (endDate.getMonth() - startDate.getMonth());
+
+  const years = Math.floor(months / 12);
+  const remainingMonths = months % 12;
+
+  if (years === 0) {
+    return `${remainingMonths} ${remainingMonths === 1 ? 'month' : 'months'}`;
+  } else if (remainingMonths === 0) {
+    return `${years} ${years === 1 ? 'year' : 'years'}`;
+  } else {
+    return `${years} ${years === 1 ? 'year' : 'years'} ${remainingMonths} ${remainingMonths === 1 ? 'month' : 'months'}`;
+  }
+};
+
 // Bento Grid Project Card
 const BentoProjectCard = ({ project }: { project: any }) => {
   const Icon = project.icon ? PROJECT_ICONS[project.icon] : Terminal;
@@ -510,11 +545,11 @@ const App: React.FC = () => {
             {/* Flowing SVG Path - Desktop - Full width with beautiful S-curve */}
             <svg className="hidden md:block absolute pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none" style={{ zIndex: 0, top: '-20%', left: 0, width: '100%', height: '140%' }}>
               <defs>
-                {/* Gradient for fading path at top and bottom */}
+                {/* Gradient for fading path at top and bottom - increased fading */}
                 <linearGradient id="pathFade" x1="0%" y1="0%" x2="0%" y2="100%">
                   <stop offset="0%" stopColor="#93c5fd" stopOpacity="0" />
-                  <stop offset="10%" stopColor="#93c5fd" stopOpacity="1" />
-                  <stop offset="90%" stopColor="#93c5fd" stopOpacity="1" />
+                  <stop offset="20%" stopColor="#93c5fd" stopOpacity="1" />
+                  <stop offset="85%" stopColor="#93c5fd" stopOpacity="1" />
                   <stop offset="100%" stopColor="#93c5fd" stopOpacity="0" />
                 </linearGradient>
               </defs>
@@ -585,6 +620,9 @@ const App: React.FC = () => {
                               <span className="font-medium">{job.company}</span>
                               <span className="text-slate-400">•</span>
                               <span className="text-slate-500">{job.location}</span>
+                            </div>
+                            <div className={`mt-1 text-xs text-slate-500 ${isEven ? 'text-right' : ''}`}>
+                              {calculateDuration(job.period)}
                             </div>
                           </div>
 
