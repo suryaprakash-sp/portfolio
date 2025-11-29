@@ -600,7 +600,7 @@ const App: React.FC = () => {
                     <div className={`hidden md:grid grid-cols-2 gap-12 items-center`}>
 
                       {/* Content Card */}
-                      <div className={`${isEven ? 'text-right' : 'text-left col-start-2 ml-8'}`}>
+                      <div className={`${isEven ? 'text-left' : 'text-left col-start-2 ml-8'}`}>
                         {/* Period Badge */}
                         <div className={`inline-flex items-center gap-2 px-4 py-1.5 mb-4 rounded-full bg-blue-50 border border-blue-100`}>
                           <div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
@@ -616,19 +616,19 @@ const App: React.FC = () => {
                             <h3 className="text-xl font-bold text-slate-900 mb-1 group-hover:text-blue-600 transition-colors">
                               {job.role}
                             </h3>
-                            <div className={`flex items-center gap-2 text-slate-600 text-sm ${isEven ? 'justify-end' : ''}`}>
+                            <div className={`flex items-center gap-2 text-slate-600 text-sm`}>
                               <span className="font-medium">{job.company}</span>
                               <span className="text-slate-400">•</span>
                               <span className="text-slate-500">{job.location}</span>
                             </div>
-                            <div className={`mt-1 text-xs text-slate-500 ${isEven ? 'text-right' : ''}`}>
+                            <div className={`mt-1 text-xs text-slate-500`}>
                               {calculateDuration(job.period)}
                             </div>
                           </div>
 
                           <ul className="space-y-2.5">
                             {job.achievements.slice(0, 3).map((achievement, i) => (
-                              <li key={i} className={`flex items-start gap-2.5 text-slate-700 text-sm leading-relaxed ${isEven ? 'flex-row-reverse text-right' : ''}`}>
+                              <li key={i} className={`flex items-start gap-2.5 text-slate-700 text-sm leading-relaxed`}>
                                 <div className="mt-2 w-1 h-1 rounded-full bg-blue-400 shrink-0"></div>
                                 <span>{achievement}</span>
                               </li>
