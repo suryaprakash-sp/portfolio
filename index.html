@@ -125,6 +125,18 @@
       .animate-node-pulse {
         animation: nodePulseSync 3s infinite;
       }
+
+      /* SVG Path Flow Animation (Bottom to Top) */
+      @keyframes dashFlow {
+        0% { stroke-dashoffset: 0; }
+        100% { stroke-dashoffset: -100; }
+      }
+
+      /* Traveling segment animation (bottom to top) */
+      @keyframes pathTravel {
+        0% { stroke-dashoffset: 200; }
+        100% { stroke-dashoffset: 0; }
+      }
     </style>
   <script type="importmap">
 {

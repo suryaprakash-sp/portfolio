@@ -492,70 +492,170 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* Experience Section */}
-      <section id="experience" ref={experienceRef} className="scroll-mt-28 py-24 max-w-5xl mx-auto px-6 bg-[#fafafa]">
-        <h2 className={`text-3xl font-bold text-slate-900 mb-16 text-center transition-all duration-700 ${experienceVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          Professional Experience
-        </h2>
+      {/* Experience Section - Flowing Path Design */}
+      <section id="experience" ref={experienceRef} className="scroll-mt-28 py-24 bg-gradient-to-b from-slate-50/50 via-white to-slate-50/50 relative overflow-hidden">
+        {/* Subtle Background Grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:64px_64px]"></div>
 
-        {/* Experience Container */}
-        <div className="relative">
-          {/* Animated Flow Line Track (Bottom-to-Top Flow) */}
-          <div className={`absolute left-5 md:left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2 md:-translate-x-1/2 bg-slate-200 overflow-hidden rounded-full transition-opacity duration-1000 ${experienceVisible ? 'opacity-100' : 'opacity-0'}`}>
-             {/* The "Beam" moving upwards */}
-             <div className="absolute inset-x-0 h-[40%] bg-gradient-to-t from-transparent via-blue-500 to-transparent w-full animate-beam-up opacity-0">
-               {/* Arrow at the top of the gradient */}
-               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 text-blue-500 drop-shadow-[0_0_8px_rgba(59,130,246,0.8)]">
-                  <ChevronUp className="w-6 h-6" />
-               </div>
-             </div>
+        <div className="max-w-6xl mx-auto px-6 relative">
+          {/* Header */}
+          <div className={`text-center mb-20 transition-all duration-700 ${experienceVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-3">Professional Journey</h2>
+            <p className="text-slate-500 text-lg">Following the path of data excellence</p>
           </div>
 
-          {/* Job Items Wrapper */}
-          <div className="space-y-12">
-            {RESUME_DATA.experience.map((job, idx) => (
-              <div 
-                key={idx} 
-                style={{ transitionDelay: `${(idx + 1) * 200}ms` }}
-                className={`relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active transition-all duration-700 ease-out transform ${experienceVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
-              >
-                
-                {/* Timeline Node/Circle */}
-                <div 
-                  className={`flex items-center justify-center w-10 h-10 rounded-full border border-slate-200 bg-white group-hover:bg-slate-50 group-hover:scale-110 transition-all shadow-sm z-10 shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 ${experienceVisible ? 'animate-node-pulse' : ''}`}
-                  style={{
-                    // Delay calculation: beam moves bottom (index N) to top (index 0).
-                    // The beam duration is 3s.
-                    // Bottom item needs small delay, Top item needs larger delay.
-                    animationDelay: `${((RESUME_DATA.experience.length - 1 - idx) * 1.5)}s`
-                  }}
-                >
-                  <div className="w-3 h-3 bg-slate-400 rounded-full group-hover:bg-blue-500 transition-colors"></div>
-                </div>
-                
-                {/* Content Card */}
-                <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 bg-white border border-slate-100 rounded-2xl shadow-sm hover:shadow-md transition-shadow relative">
-                  {/* Little Arrow pointing to the node */}
-                  <div className="hidden md:block absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-l border-b border-slate-100 rotate-45 group-odd:-right-2 group-even:-left-2 transform border-t-0 border-r-0"></div>
-                  
-                  <div className="flex flex-col mb-4">
-                    <div className="text-slate-400 text-xs font-mono font-medium mb-1 uppercase tracking-wide">
-                      {job.period}
+          {/* Journey Path Container */}
+          <div className="relative max-w-5xl mx-auto">
+
+            {/* Flowing SVG Path - Desktop */}
+            <svg className="hidden md:block absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none" style={{ zIndex: 0 }}>
+              <defs>
+                {/* Gradient for the traveling segment - tapers from thick to thin */}
+                <linearGradient id="travelingSegment" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#3b82f6" stopOpacity="1" />
+                  <stop offset="30%" stopColor="#60a5fa" stopOpacity="1" />
+                  <stop offset="70%" stopColor="#93c5fd" stopOpacity="0.6" />
+                  <stop offset="100%" stopColor="#3b82f6" stopOpacity="0" />
+                </linearGradient>
+              </defs>
+
+              {/* Base Dotted Path */}
+              <path
+                d="M 50 100 Q 40 75, 50 50 T 50 0"
+                stroke="#cbd5e1"
+                strokeWidth="0.5"
+                fill="none"
+                strokeLinecap="round"
+                strokeDasharray="4 4"
+                className={`transition-all duration-1000 ${experienceVisible ? 'opacity-100' : 'opacity-0'}`}
+              />
+
+              {/* Traveling Segment (moves bottom to top) */}
+              <path
+                d="M 50 100 Q 40 75, 50 50 T 50 0"
+                stroke="url(#travelingSegment)"
+                strokeWidth="1.2"
+                fill="none"
+                strokeLinecap="round"
+                strokeDasharray="30 170"
+                className={`transition-all duration-1000 ${experienceVisible ? 'opacity-100' : 'opacity-0'}`}
+                style={{
+                  animation: experienceVisible ? 'pathTravel 3s ease-in-out infinite' : 'none'
+                }}
+              />
+
+              {/* Second Traveling Segment (delayed for continuous effect) */}
+              <path
+                d="M 50 100 Q 40 75, 50 50 T 50 0"
+                stroke="url(#travelingSegment)"
+                strokeWidth="1.2"
+                fill="none"
+                strokeLinecap="round"
+                strokeDasharray="30 170"
+                className={`transition-all duration-1000 ${experienceVisible ? 'opacity-100' : 'opacity-0'}`}
+                style={{
+                  animation: experienceVisible ? 'pathTravel 3s ease-in-out infinite' : 'none',
+                  animationDelay: '1.5s'
+                }}
+              />
+            </svg>
+
+            {/* Mobile Line */}
+            <div className="md:hidden absolute left-6 top-0 bottom-0 w-[3px] bg-gradient-to-b from-blue-200 via-blue-400 to-blue-200 rounded-full overflow-hidden">
+              {/* Animated gradient flowing up */}
+              <div className={`absolute inset-0 bg-gradient-to-t from-transparent via-blue-500 to-transparent h-[40%] ${experienceVisible ? 'animate-beam-up' : ''}`}></div>
+            </div>
+
+            {/* Experience Items */}
+            <div className="space-y-0 relative" style={{ zIndex: 1 }}>
+              {RESUME_DATA.experience.map((job, idx) => {
+                const isEven = idx % 2 === 0;
+
+                return (
+                  <div
+                    key={idx}
+                    style={{ transitionDelay: `${idx * 200}ms` }}
+                    className={`relative pb-16 last:pb-0 transition-all duration-700 ${experienceVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                  >
+                    {/* Desktop Layout - Alternating */}
+                    <div className={`hidden md:grid grid-cols-2 gap-12 items-center`}>
+
+                      {/* Content Card */}
+                      <div className={`${isEven ? 'text-right' : 'text-left col-start-2'}`}>
+                        {/* Period Badge */}
+                        <div className={`inline-flex items-center gap-2 px-4 py-1.5 mb-4 rounded-full bg-blue-50 border border-blue-100`}>
+                          <div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+                          <span className="text-xs font-semibold text-blue-700 tracking-wide">{job.period}</span>
+                        </div>
+
+                        {/* Card */}
+                        <div className="group bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-xl hover:border-blue-300 transition-all duration-300 relative">
+                          {/* Connecting Line to Path */}
+                          <div className={`hidden md:block absolute top-1/2 -translate-y-1/2 ${isEven ? '-right-12 left-full' : '-left-12 right-full'} w-12 h-[2px] bg-gradient-to-r ${isEven ? 'from-slate-200 to-transparent' : 'from-transparent to-slate-200'}`}></div>
+
+                          <div className="mb-4">
+                            <h3 className="text-xl font-bold text-slate-900 mb-1 group-hover:text-blue-600 transition-colors">
+                              {job.role}
+                            </h3>
+                            <div className="flex items-center gap-2 text-slate-600 text-sm">
+                              <span className="font-medium">{job.company}</span>
+                              <span className="text-slate-400">•</span>
+                              <span className="text-slate-500">{job.location}</span>
+                            </div>
+                          </div>
+
+                          <ul className="space-y-2.5">
+                            {job.achievements.slice(0, 3).map((achievement, i) => (
+                              <li key={i} className="flex items-start gap-2.5 text-slate-700 text-sm leading-relaxed">
+                                <div className="mt-2 w-1 h-1 rounded-full bg-blue-400 shrink-0"></div>
+                                <span>{achievement}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+
                     </div>
-                    <h3 className="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors">{job.role}</h3>
-                    <div className="text-slate-500 font-medium text-sm">{job.company} — {job.location}</div>
+
+                    {/* Mobile Layout */}
+                    <div className="md:hidden flex gap-6">
+                      <div className="relative flex flex-col items-center shrink-0">
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 shadow-lg flex items-center justify-center z-10">
+                          <div className="w-2 h-2 rounded-full bg-white"></div>
+                        </div>
+                      </div>
+
+                      <div className="flex-1 pb-2">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 mb-3 rounded-full bg-blue-50 border border-blue-100">
+                          <div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+                          <span className="text-xs font-semibold text-blue-700">{job.period}</span>
+                        </div>
+
+                        <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-sm hover:shadow-lg transition-shadow">
+                          <div className="mb-3">
+                            <h3 className="text-lg font-bold text-slate-900 mb-1">{job.role}</h3>
+                            <div className="text-slate-600 text-sm">
+                              <span className="font-medium">{job.company}</span>
+                              <span className="text-slate-400 mx-1">•</span>
+                              <span className="text-slate-500">{job.location}</span>
+                            </div>
+                          </div>
+
+                          <ul className="space-y-2">
+                            {job.achievements.slice(0, 3).map((achievement, i) => (
+                              <li key={i} className="flex items-start gap-2 text-slate-700 text-sm leading-relaxed">
+                                <div className="mt-2 w-1 h-1 rounded-full bg-blue-400 shrink-0"></div>
+                                <span>{achievement}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  
-                  <ul className="space-y-2">
-                    {job.achievements.slice(0, 3).map((achievement, i) => (
-                      <li key={i} className="text-slate-600 text-sm leading-6 font-light">
-                        • {achievement}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
@@ -618,48 +718,79 @@ const App: React.FC = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-24 bg-slate-900 text-white relative overflow-hidden">
+      <footer className="py-20 bg-slate-900 text-white relative overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-50 blur-sm"></div>
 
-        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-20 relative z-10">
-          <div>
-            <h2 className="text-4xl font-bold tracking-tighter mb-8">Let's build something <span className="text-blue-500">amazing.</span></h2>
-            <p className="text-slate-400 max-w-sm mb-10 leading-relaxed">
-              Available for full-time roles and freelance projects. Let's discuss how data can transform your business.
-            </p>
-            <div className="flex gap-4">
-              <a href={`mailto:${RESUME_DATA.contact.email}`} className="px-6 py-3 bg-white text-slate-900 rounded-lg font-medium hover:bg-blue-50 transition-colors">
+        <div className="max-w-6xl mx-auto px-6 relative z-10">
+          <div className="grid md:grid-cols-2 gap-16 mb-16">
+            <div>
+              <h2 className="text-4xl font-bold tracking-tighter mb-6">Let's build something <span className="text-blue-500">amazing.</span></h2>
+              <p className="text-slate-400 max-w-sm mb-8 leading-relaxed">
+                Available for full-time roles and freelance projects. Let's discuss how data can transform your business.
+              </p>
+              <a href={`mailto:${RESUME_DATA.contact.email}`} className="inline-block px-6 py-3 bg-white text-slate-900 rounded-lg font-medium hover:bg-blue-50 transition-colors">
                 Drop me a line
               </a>
             </div>
-          </div>
-          
-          <div className="flex flex-col justify-between">
+
             <div className="grid grid-cols-2 gap-10">
               <div>
                 <h4 className="font-bold mb-6 text-slate-200">Navigation</h4>
                 <ul className="space-y-4 text-slate-400">
                   <li><a href="#about" className="hover:text-white transition-colors">About</a></li>
                   <li><a href="#skills" className="hover:text-white transition-colors">Skills</a></li>
+                  <li><a href="#experience" className="hover:text-white transition-colors">Experience</a></li>
                   <li><a href="#projects" className="hover:text-white transition-colors">Projects</a></li>
                 </ul>
               </div>
               <div>
                 <h4 className="font-bold mb-6 text-slate-200">Connect</h4>
                 <ul className="space-y-4 text-slate-400">
-                  <li><a href={`https://${RESUME_DATA.contact.linkedin}`} className="hover:text-white transition-colors">LinkedIn</a></li>
-                  <li><a href="#" className="hover:text-white transition-colors">GitHub</a></li>
-                  <li><a href="#" className="hover:text-white transition-colors">Twitter</a></li>
+                  <li>
+                    <a href={`https://${RESUME_DATA.contact.linkedin}`} target="_blank" rel="noreferrer" className="hover:text-white transition-colors flex items-center gap-2">
+                      <Linkedin className="w-4 h-4" />
+                      LinkedIn
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/suryaprakash-sp" target="_blank" rel="noreferrer" className="hover:text-white transition-colors flex items-center gap-2">
+                      <Github className="w-4 h-4" />
+                      GitHub
+                    </a>
+                  </li>
+                  <li>
+                    <a href={`mailto:${RESUME_DATA.contact.email}`} className="hover:text-white transition-colors flex items-center gap-2">
+                      <Mail className="w-4 h-4" />
+                      Email
+                    </a>
+                  </li>
                 </ul>
               </div>
             </div>
-            
-            <div className="mt-20 pt-8 border-t border-slate-800 text-slate-500 text-sm flex justify-between items-center">
-              <p>© {new Date().getFullYear()} Surya Prakash.</p>
-              <div className="flex gap-2 text-xs font-mono">
-                <span>Designed & Built with</span>
-                <span className="text-blue-500">React + Tailwind</span>
-              </div>
+          </div>
+
+          <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="text-slate-500 text-sm">
+              Designed and built by{' '}
+              <a href="https://aistudio.google.com" target="_blank" rel="noreferrer" className="text-blue-400 hover:text-blue-300 transition-colors">
+                Google AI Studio
+              </a>
+              {' '}and{' '}
+              <a href="https://claude.ai" target="_blank" rel="noreferrer" className="text-blue-400 hover:text-blue-300 transition-colors">
+                Claude Code
+              </a>
+            </div>
+
+            <div className="flex gap-6">
+              <a href={`https://${RESUME_DATA.contact.linkedin}`} target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white transition-colors">
+                <Linkedin className="w-5 h-5" />
+              </a>
+              <a href="https://github.com/suryaprakash-sp" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white transition-colors">
+                <Github className="w-5 h-5" />
+              </a>
+              <a href={`mailto:${RESUME_DATA.contact.email}`} className="text-slate-400 hover:text-white transition-colors">
+                <Mail className="w-5 h-5" />
+              </a>
             </div>
           </div>
         </div>
