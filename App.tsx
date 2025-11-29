@@ -543,7 +543,7 @@ const App: React.FC = () => {
           <div className="relative max-w-5xl mx-auto overflow-visible">
 
             {/* Flowing SVG Path - Desktop - Centered in gap between cards */}
-            <svg className="hidden md:block absolute pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none" style={{ zIndex: 0, top: '-20%', left: '50%', transform: 'translateX(-50%)', width: '60px', height: '140%' }}>
+            <svg className="hidden md:block absolute pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none" style={{ zIndex: 0, top: '-20%', left: '50%', transform: 'translateX(-50%)', width: '100px', height: '140%' }}>
               <defs>
                 {/* Gradient for fading path at top and bottom */}
                 <linearGradient id="pathFade" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -558,7 +558,7 @@ const App: React.FC = () => {
               <path
                 d="M 50 0 C 50 20, 60 30, 55 50 C 50 70, 45 80, 50 100"
                 stroke="url(#pathFade)"
-                strokeWidth="1.2"
+                strokeWidth="2"
                 fill="none"
                 strokeLinecap="round"
                 className={`transition-all duration-1000 ${experienceVisible ? 'opacity-100' : 'opacity-0'}`}
@@ -568,7 +568,7 @@ const App: React.FC = () => {
               <path
                 d="M 50 0 C 50 20, 60 30, 55 50 C 50 70, 45 80, 50 100"
                 stroke="#ffffff"
-                strokeWidth="0.25"
+                strokeWidth="0.5"
                 fill="none"
                 strokeLinecap="round"
                 strokeDasharray="2 4"
