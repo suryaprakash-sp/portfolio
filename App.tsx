@@ -482,7 +482,7 @@ const App: React.FC = () => {
                 <p className="text-slate-500 font-light text-lg">The modern stack I use to architect scalable data solutions.</p>
               </div>
 
-              <div className="space-y-6">
+              <div className="space-y-5">
                 {RESUME_DATA.skills.map((category, idx) => (
                   <div
                     key={category.category}
@@ -493,49 +493,32 @@ const App: React.FC = () => {
                         : 'opacity-0 translate-y-10'
                     }`}
                   >
-                    {/* Card Container */}
-                    <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm hover:shadow-lg hover:border-blue-200 transition-all duration-300">
-                      <div className="flex items-start gap-4 mb-4">
-                        {/* Icon */}
-                        <div className="p-2.5 rounded-lg bg-gradient-to-br from-blue-50 to-slate-50 text-blue-600 group-hover:from-blue-100 group-hover:to-blue-50 transition-all duration-300 shadow-sm">
+                    {/* Card with enhanced styling */}
+                    <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-sm hover:shadow-md hover:border-blue-200 transition-all duration-300">
+                      <div className="flex items-start gap-4">
+                        {/* Icon with subtle gradient */}
+                        <div className="mt-0.5 p-2 rounded-lg bg-gradient-to-br from-blue-50 to-slate-50 text-blue-600 group-hover:from-blue-100 group-hover:to-blue-50 transition-all duration-300">
                           <div className="w-5 h-5 flex items-center justify-center">
-                            {CATEGORY_ICONS[category.category] && React.createElement(CATEGORY_ICONS[category.category], { size: 20, strokeWidth: 2.5 })}
+                            {CATEGORY_ICONS[category.category] && React.createElement(CATEGORY_ICONS[category.category], { size: 20 })}
                           </div>
                         </div>
 
-                        {/* Category Title with Proficiency Bar */}
                         <div className="flex-1">
-                          <h3 className="text-base font-bold text-slate-900 mb-2 tracking-tight">{category.category}</h3>
-                          {/* Proficiency Indicator */}
-                          <div className="flex items-center gap-2">
-                            <div className="flex-1 h-1.5 bg-slate-100 rounded-full overflow-hidden">
-                              <div
-                                className="h-full bg-gradient-to-r from-blue-500 to-blue-400 rounded-full transition-all duration-1000"
-                                style={{
-                                  width: skillsVisible ? ['95%', '90%', '88%', '92%', '85%'][idx] : '0%',
-                                  transitionDelay: `${idx * 100 + 300}ms`
-                                }}
-                              ></div>
-                            </div>
-                            <span className="text-xs font-semibold text-blue-600 min-w-[38px]">
-                              {['95%', '90%', '88%', '92%', '85%'][idx]}
-                            </span>
+                          {/* Category name */}
+                          <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-3">{category.category}</h3>
+
+                          {/* Skills */}
+                          <div className="flex flex-wrap gap-2">
+                            {category.skills.map((skill) => (
+                              <span
+                                key={skill}
+                                className="px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 font-mono text-xs hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 transition-all duration-200 cursor-default"
+                              >
+                                {skill}
+                              </span>
+                            ))}
                           </div>
                         </div>
-                      </div>
-
-                      {/* Skills Tags */}
-                      <div className="flex flex-wrap gap-2">
-                        {category.skills.map((skill, skillIdx) => (
-                          <span
-                            key={skill}
-                            className={`px-3 py-1.5 bg-gradient-to-br from-slate-50 to-white border border-slate-200 rounded-lg text-slate-700 font-mono text-xs font-medium hover:border-blue-300 hover:shadow-sm hover:scale-105 transition-all duration-200 cursor-default ${
-                              skillIdx === 0 ? 'ring-1 ring-blue-100 border-blue-200 text-blue-700' : ''
-                            }`}
-                          >
-                            {skill}
-                          </span>
-                        ))}
                       </div>
                     </div>
                   </div>
