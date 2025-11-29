@@ -481,33 +481,61 @@ const App: React.FC = () => {
                 <h2 className="text-3xl font-bold text-slate-900 mb-4 tracking-tight">Technical Arsenal</h2>
                 <p className="text-slate-500 font-light text-lg">The modern stack I use to architect scalable data solutions.</p>
               </div>
-              
-              <div className="space-y-8">
+
+              <div className="space-y-6">
                 {RESUME_DATA.skills.map((category, idx) => (
-                  <div 
-                    key={category.category} 
+                  <div
+                    key={category.category}
                     style={{ transitionDelay: `${idx * 100}ms` }}
                     className={`group transition-all duration-700 transform ${
-                      skillsVisible 
-                        ? 'opacity-100 translate-y-0' 
+                      skillsVisible
+                        ? 'opacity-100 translate-y-0'
                         : 'opacity-0 translate-y-10'
                     }`}
                   >
-                    <div className="flex items-start gap-5">
-                      <div className="mt-1 p-2 rounded-lg bg-slate-50 text-slate-400 group-hover:text-blue-600 group-hover:bg-blue-50 transition-colors duration-300">
-                        <div className="w-5 h-5 flex items-center justify-center">
-                            {CATEGORY_ICONS[category.category] && React.createElement(CATEGORY_ICONS[category.category], { size: 20 })}
+                    {/* Card Container */}
+                    <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm hover:shadow-lg hover:border-blue-200 transition-all duration-300">
+                      <div className="flex items-start gap-4 mb-4">
+                        {/* Icon */}
+                        <div className="p-2.5 rounded-lg bg-gradient-to-br from-blue-50 to-slate-50 text-blue-600 group-hover:from-blue-100 group-hover:to-blue-50 transition-all duration-300 shadow-sm">
+                          <div className="w-5 h-5 flex items-center justify-center">
+                            {CATEGORY_ICONS[category.category] && React.createElement(CATEGORY_ICONS[category.category], { size: 20, strokeWidth: 2.5 })}
+                          </div>
+                        </div>
+
+                        {/* Category Title with Proficiency Bar */}
+                        <div className="flex-1">
+                          <h3 className="text-base font-bold text-slate-900 mb-2 tracking-tight">{category.category}</h3>
+                          {/* Proficiency Indicator */}
+                          <div className="flex items-center gap-2">
+                            <div className="flex-1 h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                              <div
+                                className="h-full bg-gradient-to-r from-blue-500 to-blue-400 rounded-full transition-all duration-1000"
+                                style={{
+                                  width: skillsVisible ? ['95%', '90%', '88%', '92%', '85%'][idx] : '0%',
+                                  transitionDelay: `${idx * 100 + 300}ms`
+                                }}
+                              ></div>
+                            </div>
+                            <span className="text-xs font-semibold text-blue-600 min-w-[38px]">
+                              {['95%', '90%', '88%', '92%', '85%'][idx]}
+                            </span>
+                          </div>
                         </div>
                       </div>
-                      <div className="flex-1 border-b border-slate-100 pb-6 group-hover:border-slate-200 transition-colors">
-                        <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-4">{category.category}</h3>
-                        <div className="flex flex-wrap gap-x-3 gap-y-3">
-                          {category.skills.map((skill) => (
-                            <span key={skill} className="px-3 py-1 bg-white border border-slate-200 rounded-md text-slate-600 font-mono text-xs hover:border-slate-400 transition-colors">
-                              {skill}
-                            </span>
-                          ))}
-                        </div>
+
+                      {/* Skills Tags */}
+                      <div className="flex flex-wrap gap-2">
+                        {category.skills.map((skill, skillIdx) => (
+                          <span
+                            key={skill}
+                            className={`px-3 py-1.5 bg-gradient-to-br from-slate-50 to-white border border-slate-200 rounded-lg text-slate-700 font-mono text-xs font-medium hover:border-blue-300 hover:shadow-sm hover:scale-105 transition-all duration-200 cursor-default ${
+                              skillIdx === 0 ? 'ring-1 ring-blue-100 border-blue-200 text-blue-700' : ''
+                            }`}
+                          >
+                            {skill}
+                          </span>
+                        ))}
                       </div>
                     </div>
                   </div>
