@@ -548,7 +548,7 @@ const App: React.FC = () => {
                 {/* Gradient for fading path at top and bottom - fade earlier at top to stay below subtitle */}
                 <linearGradient id="pathFade" x1="0%" y1="0%" x2="0%" y2="100%">
                   <stop offset="0%" stopColor="#93c5fd" stopOpacity="0" />
-                  <stop offset="28%" stopColor="#93c5fd" stopOpacity="1" />
+                  <stop offset="32%" stopColor="#93c5fd" stopOpacity="1" />
                   <stop offset="85%" stopColor="#93c5fd" stopOpacity="1" />
                   <stop offset="100%" stopColor="#93c5fd" stopOpacity="0" />
                 </linearGradient>
@@ -616,19 +616,19 @@ const App: React.FC = () => {
                             <h3 className="text-xl font-bold text-slate-900 mb-1 group-hover:text-blue-600 transition-colors">
                               {job.role}
                             </h3>
-                            <div className={`flex items-center gap-2 text-slate-600 text-sm`}>
+                            <div className="flex items-center gap-2 text-slate-600 text-sm">
                               <span className="font-medium">{job.company}</span>
                               <span className="text-slate-400">•</span>
                               <span className="text-slate-500">{job.location}</span>
                             </div>
-                            <div className={`mt-1 text-xs text-slate-500`}>
+                            <div className="mt-1 text-xs text-slate-500">
                               {calculateDuration(job.period)}
                             </div>
                           </div>
 
                           <ul className="space-y-2.5">
                             {job.achievements.slice(0, 3).map((achievement, i) => (
-                              <li key={i} className={`flex items-start gap-2.5 text-slate-700 text-sm leading-relaxed`}>
+                              <li key={i} className="flex items-start gap-2.5 text-slate-700 text-sm leading-relaxed">
                                 <div className="mt-2 w-1 h-1 rounded-full bg-blue-400 shrink-0"></div>
                                 <span>{achievement}</span>
                               </li>
