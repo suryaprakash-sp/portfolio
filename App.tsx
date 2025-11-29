@@ -508,11 +508,11 @@ const App: React.FC = () => {
                           <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-3">{category.category}</h3>
 
                           {/* Skills */}
-                          <div className="flex flex-wrap gap-2">
+                          <div className="flex flex-wrap gap-2.5">
                             {category.skills.map((skill) => (
                               <span
                                 key={skill}
-                                className="px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 font-mono text-xs hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 transition-all duration-200 cursor-default"
+                                className="px-3.5 py-2 bg-gradient-to-br from-blue-500 to-blue-600 text-white font-mono text-xs font-semibold rounded-lg shadow-sm hover:shadow-md hover:from-blue-600 hover:to-blue-700 hover:scale-105 transition-all duration-200 cursor-default"
                               >
                                 {skill}
                               </span>
