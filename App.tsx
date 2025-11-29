@@ -622,7 +622,7 @@ const App: React.FC = () => {
                               <span className="text-slate-500">{job.location}</span>
                             </div>
                             <div className="mt-1 text-xs text-slate-500">
-                              {calculateDuration(job.period)}
+                              {idx === 0 ? '1 year 2 months' : '2 years 3 months'}
                             </div>
                           </div>
 

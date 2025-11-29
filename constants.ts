@@ -37,7 +37,7 @@ export const RESUME_DATA: ResumeData = {
       role: "Data Analyst",
       company: "Masai School",
       location: "Bangalore",
-      period: "Sep 2024 – Present",
+      period: "Oct 2024 – Present",
       achievements: [
         "Manage end-to-end data infrastructure supporting 25,000+ active students across 50+ courses.",
         "Engineered comprehensive student lifecycle dashboard and 30+ Metabase dashboards using Python, improving load times by 80%.",
@@ -50,7 +50,7 @@ export const RESUME_DATA: ResumeData = {
       role: "Data Analyst",
       company: "Gamify EduTech",
       location: "Hyderabad",
-      period: "Jan 2022 – Apr 2024",
+      period: "Jan 2022 – Mar 2024",
       achievements: [
         "Migrated admissions tracking system to Google Sheets/Python, managing data for 10,000+ students.",
         "Created automated WhatsApp messaging system using WATI API for instant student engagement.",
