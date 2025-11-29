@@ -545,10 +545,10 @@ const App: React.FC = () => {
             {/* Flowing SVG Path - Desktop - Full width with beautiful S-curve */}
             <svg className="hidden md:block absolute pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none" style={{ zIndex: 0, top: '-20%', left: 0, width: '100%', height: '140%' }}>
               <defs>
-                {/* Gradient for fading path at top and bottom - increased fading */}
+                {/* Gradient for fading path at top and bottom - fade earlier at top to stay below subtitle */}
                 <linearGradient id="pathFade" x1="0%" y1="0%" x2="0%" y2="100%">
                   <stop offset="0%" stopColor="#93c5fd" stopOpacity="0" />
-                  <stop offset="20%" stopColor="#93c5fd" stopOpacity="1" />
+                  <stop offset="28%" stopColor="#93c5fd" stopOpacity="1" />
                   <stop offset="85%" stopColor="#93c5fd" stopOpacity="1" />
                   <stop offset="100%" stopColor="#93c5fd" stopOpacity="0" />
                 </linearGradient>
@@ -608,7 +608,7 @@ const App: React.FC = () => {
                         </div>
 
                         {/* Card */}
-                        <div className="group bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-xl hover:border-blue-300 transition-all duration-300 relative">
+                        <div className="group bg-white rounded-2xl border border-slate-200 p-6 shadow-md hover:shadow-2xl hover:border-blue-300 transition-all duration-300 relative">
                           {/* Connecting Line to Path */}
                           <div className={`hidden md:block absolute top-1/2 -translate-y-1/2 ${isEven ? '-right-12 left-full' : '-left-12 right-full'} w-12 h-[2px] bg-gradient-to-r ${isEven ? 'from-slate-200 to-transparent' : 'from-transparent to-slate-200'}`}></div>
 
