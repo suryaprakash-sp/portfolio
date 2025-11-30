@@ -469,54 +469,58 @@ const App: React.FC = () => {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" ref={skillsRef} className="scroll-mt-28 py-24 bg-white relative overflow-hidden">
-        {/* Subtle grid pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-40"></div>
+      <section id="skills" ref={skillsRef} className="scroll-mt-28 py-32 bg-slate-950 relative overflow-hidden">
+        {/* Animated gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.1),transparent_50%)]"></div>
 
-        <div className="max-w-6xl mx-auto px-6 relative z-10">
-          {/* Header */}
-          <div className={`text-center mb-16 transition-all duration-700 ${skillsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4 tracking-tight">Technical Skills</h2>
-            <p className="text-slate-600 text-lg">Building data solutions with modern tools</p>
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          {/* Header - Bold Typography */}
+          <div className={`mb-20 transition-all duration-1000 ${skillsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <h2 className="text-6xl md:text-7xl font-bold text-white mb-6 tracking-tight">
+              Skills
+            </h2>
+            <div className="w-20 h-1 bg-blue-500"></div>
           </div>
 
-          {/* Minimalist Grid - Staggered Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Skills - Flowing Single Column with Hover Effects */}
+          <div className="space-y-16">
             {RESUME_DATA.skills.map((category, idx) => (
               <div
                 key={category.category}
-                style={{ transitionDelay: `${idx * 100}ms` }}
-                className={`group relative transition-all duration-700 ${
-                  skillsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                } ${idx % 2 === 1 ? 'md:translate-y-8' : ''}`}
+                style={{ transitionDelay: `${idx * 150}ms` }}
+                className={`group transition-all duration-1000 ${
+                  skillsVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
+                }`}
               >
-                {/* Accent line on hover */}
-                <div className="absolute top-0 left-0 w-1 h-0 bg-blue-500 group-hover:h-full transition-all duration-500 rounded-l-lg"></div>
+                {/* Category with large typography */}
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="text-slate-600 group-hover:text-blue-400 transition-colors duration-300">
+                    {CATEGORY_ICONS[category.category] && React.createElement(CATEGORY_ICONS[category.category], { size: 32, strokeWidth: 1.5 })}
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-bold text-slate-400 group-hover:text-white transition-colors duration-300">
+                    {category.category}
+                  </h3>
+                </div>
 
-                {/* Card */}
-                <div className="bg-white border border-slate-200 rounded-xl p-6 hover:border-slate-300 hover:shadow-lg transition-all duration-300 h-full">
-                  {/* Category Header */}
-                  <div className="flex items-center gap-3 mb-5 pb-4 border-b border-slate-100">
-                    <div className="p-2 rounded-lg bg-slate-50 text-slate-400 group-hover:text-blue-500 group-hover:bg-blue-50 transition-colors duration-300">
-                      {CATEGORY_ICONS[category.category] && React.createElement(CATEGORY_ICONS[category.category], { size: 24, strokeWidth: 2 })}
+                {/* Skills - Horizontal flowing tags */}
+                <div className="flex flex-wrap gap-4">
+                  {category.skills.map((skill, skillIdx) => (
+                    <div
+                      key={skill}
+                      style={{ transitionDelay: `${skillIdx * 50}ms` }}
+                      className={`relative overflow-hidden bg-slate-900/50 border border-slate-800 rounded-lg px-6 py-3 backdrop-blur-sm hover:border-blue-500/50 hover:bg-slate-800/50 transition-all duration-300 cursor-default group/skill ${
+                        skillsVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+                      }`}
+                    >
+                      {/* Shine effect on hover */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/10 to-transparent -translate-x-full group-hover/skill:translate-x-full transition-transform duration-700"></div>
+
+                      <span className="relative text-slate-300 font-mono text-base group-hover/skill:text-blue-400 transition-colors duration-300">
+                        {skill}
+                      </span>
                     </div>
-                    <h3 className="text-lg font-bold text-slate-900">{category.category}</h3>
-                  </div>
-
-                  {/* Skills Grid */}
-                  <div className="grid grid-cols-2 gap-3">
-                    {category.skills.map((skill, skillIdx) => (
-                      <div
-                        key={skill}
-                        className="flex items-center gap-2 p-2.5 rounded-lg bg-slate-50 border border-slate-100 hover:border-blue-200 hover:bg-blue-50 transition-all duration-200 group/skill"
-                      >
-                        <div className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover/skill:bg-blue-500 transition-colors duration-200"></div>
-                        <span className="text-sm font-medium text-slate-700 group-hover/skill:text-blue-700 font-mono">
-                          {skill}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
+                  ))}
                 </div>
               </div>
             ))}
