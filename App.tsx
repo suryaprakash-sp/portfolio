@@ -349,122 +349,190 @@ const App: React.FC = () => {
         )}
       </nav>
 
-      {/* Hero Section - Image Overlay Background */}
-      <section id="about" className="scroll-mt-28 pt-24 pb-32 px-12 min-h-screen flex items-center relative overflow-hidden">
-        {/* Background Image with Overlay */}
-        <div className="absolute inset-0 -z-10">
-          {/* Image */}
-          <img
-            src="/surya.jpg"
-            alt=""
-            className="absolute inset-0 w-full h-full object-cover object-center opacity-20"
-          />
-          {/* White overlay to ensure readability */}
-          <div className="absolute inset-0 bg-white/60"></div>
-        </div>
-
-        {/* Content */}
-        <div className="w-full max-w-4xl mx-auto text-center space-y-8 relative z-10">
-          {/* Greeting + Name */}
-          <div className="space-y-4">
-            <p className="text-2xl md:text-3xl text-slate-600 font-light">Hi, I'm</p>
-            <h1 className="text-7xl md:text-8xl lg:text-9xl font-bold text-slate-900 leading-none tracking-tight">
-              Surya
-            </h1>
-            <div className="flex items-center justify-center gap-4 mt-6">
-              <div className="h-1 w-20 bg-blue-500 rounded-full"></div>
-              <p className="text-2xl md:text-3xl text-slate-900 font-light">
-                {RESUME_DATA.title}
-              </p>
-              <div className="h-1 w-20 bg-blue-500 rounded-full"></div>
-            </div>
+      {/* Hero Section */}
+      <section id="about" className="scroll-mt-28 pt-32 pb-20 px-6 max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-20 min-h-[85vh] justify-center overflow-x-clip">
+        <div className="flex-1 flex flex-col items-start z-10 w-full md:w-auto">
+          
+          {/* Group 1: Identity */}
+          <div className="mb-6 space-y-2">
+             <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-slate-900 tracking-tighter leading-none">
+               <span className="block">Hi, I'm</span>
+               <span className="block text-blue-500 mt-2">Surya.</span>
+             </h1>
+             <h2 className="text-2xl md:text-3xl font-medium text-slate-500 tracking-tight">
+               Data Analyst & Engineer
+             </h2>
           </div>
-
-          {/* Tagline */}
-          <p className="text-lg md:text-xl text-slate-900 leading-relaxed max-w-2xl mx-auto font-medium">
-            {RESUME_DATA.tagline}
+          
+          {/* Group 2: Description */}
+          <p className="text-lg text-slate-600 max-w-lg leading-relaxed font-light mb-10">
+            Building robust <span className="font-medium text-slate-900 underline decoration-blue-200/50 decoration-2 underline-offset-4">ETL pipelines</span> and interactive <span className="font-medium text-slate-900 underline decoration-purple-200/50 decoration-2 underline-offset-4">dashboards</span> to turn raw data into insights.
           </p>
-
-          {/* CTAs */}
-          <div className="flex flex-wrap gap-4 justify-center pt-4">
-            <a
-              href={`mailto:${RESUME_DATA.contact.email}`}
-              className="group flex items-center gap-3 px-8 py-4 bg-slate-900 text-white rounded-2xl font-semibold hover:bg-slate-800 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
-            >
-              <Mail size={20} />
-              Get in Touch
-            </a>
-            <a
-              href={`https://${RESUME_DATA.contact.linkedin}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center gap-3 px-8 py-4 bg-white border-2 border-slate-900 text-slate-900 rounded-2xl font-semibold hover:bg-slate-900 hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
-            >
-              <Linkedin size={20} />
-              LinkedIn
-            </a>
+          
+          {/* Group 3: Actions */}
+          <div className="flex flex-col gap-6">
+             <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+                <a 
+                  href={`mailto:${RESUME_DATA.contact.email}`}
+                  className="group w-full sm:w-auto min-w-[160px] justify-center px-8 py-4 bg-slate-900 hover:bg-black text-white rounded-xl font-medium transition-all shadow-lg shadow-slate-900/20 hover:shadow-xl hover:shadow-slate-900/30 flex items-center gap-2"
+                >
+                  <Mail className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" />
+                  Get in Touch
+                </a>
+                <a 
+                  href={`https://${RESUME_DATA.contact.linkedin}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group w-full sm:w-auto min-w-[160px] justify-center px-8 py-4 bg-white hover:bg-slate-50 text-slate-900 border border-slate-200 rounded-xl font-medium transition-all flex items-center gap-2"
+                >
+                  <Linkedin className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" />
+                  LinkedIn
+                </a>
+             </div>
+             
+             {/* Available for Opportunities Badge - Pill Style */}
+             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-100/50 self-start">
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                <span className="text-xs font-bold text-emerald-800 tracking-wide uppercase">Available for opportunities</span>
+             </div>
           </div>
 
-          {/* Status */}
-          <div className="flex items-center justify-center gap-3 pt-6">
-            <div className="relative flex h-3 w-3">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+        </div>
+        
+        {/* Photo Section - Modern Geometric Layered Frame */}
+        <div className="flex-1 w-full max-w-[550px] md:pr-10 flex justify-center items-center relative mt-20 md:mt-0">
+          
+          {/* Main Dark Gradient Canvas / Background Card */}
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900 to-slate-800 rounded-[2.5rem] rotate-2 w-[110%] h-[120%] -left-[5%] shadow-2xl z-0 overflow-hidden opacity-90">
+             <div className="absolute top-10 right-10 w-48 h-48 bg-slate-800 rounded-full blur-3xl opacity-60"></div>
+             <div className="absolute bottom-10 left-10 w-48 h-48 bg-blue-900/40 rounded-full blur-3xl opacity-60"></div>
+          </div>
+
+          {/* Tech Stack Floating Icons */}
+          
+          {/* Python - Top Right */}
+          <div className="absolute -top-10 -right-4 z-30 animate-float drop-shadow-[0_4px_12px_rgba(0,0,0,0.2)]" style={{ animationDelay: '0s' }}>
+             <svg width="40" height="40" viewBox="0 0 32 32" fill="none">
+               <path d="M15.875 2.5C10.75 2.5 9.75 4.75 9.75 4.75V7.125H19.75V8.5H9.75C7.25 8.5 2.5 10.375 2.5 15.625C2.5 20 5.625 21.625 8.125 21.625H9.375V19.375C9.375 16.5 12.375 16.125 12.375 16.125H18.625C20.625 16.125 20.875 14.375 20.875 14.375V10.25C20.875 10.25 21.25 2.5 15.875 2.5ZM14.125 5.25C14.8125 5.25 15.375 5.8125 15.375 6.5C15.375 7.1875 14.8125 7.75 14.125 7.75C13.4375 7.75 12.875 7.1875 12.875 6.5C12.875 5.8125 13.4375 5.25 14.125 5.25ZM22.25 10.375V12.625H12.25V11.25H22.25C24.75 11.25 29.5 9.375 29.5 4.125C29.5 -0.25 26.375 -1.875 23.875 -1.875H22.625V0.375C22.625 3.25 19.625 3.625 19.625 3.625H13.375C11.375 3.625 11.125 5.375 11.125 5.375V9.5C11.125 9.5 10.75 17.25 16.125 17.25C21.25 17.25 22.25 15 22.25 15V10.375ZM17.875 14.5C17.1875 14.5 16.625 13.9375 16.625 13.25C16.625 12.5625 17.1875 12 17.875 12C18.5625 12 19.125 12.5625 19.125 13.25C19.125 13.9375 18.5625 14.5 17.875 14.5Z" fill="url(#python-gradient)" transform="scale(0.8) translate(5, 5)"/>
+               <defs>
+                 <linearGradient id="python-gradient" x1="2.5" y1="2.5" x2="29.5" y2="21.625" gradientUnits="userSpaceOnUse">
+                   <stop stopColor="#3776AB"/>
+                   <stop offset="1" stopColor="#FFD43B"/>
+                 </linearGradient>
+               </defs>
+             </svg>
+          </div>
+          
+          {/* Power BI - Bottom Left */}
+          <div className="absolute bottom-6 -left-8 z-30 animate-float drop-shadow-[0_4px_12px_rgba(0,0,0,0.2)]" style={{ animationDelay: '1.5s' }}>
+             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0">
+               <path d="M6 14H10V21H6V14Z" fill="#F2C811"/>
+               <path d="M12 8H16V21H12V8Z" fill="#F2C811"/>
+               <path d="M18 3H22V21H18V3Z" fill="#F2C811"/>
+             </svg>
+          </div>
+          
+          {/* Google Sheets - Top Left */}
+          <div className="absolute top-2 -left-10 z-30 animate-float drop-shadow-[0_4px_12px_rgba(0,0,0,0.2)]" style={{ animationDelay: '2.5s' }}>
+             <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+               <path d="M15.5 2H5.5C4.4 2 3.5 2.9 3.5 4V20C3.5 21.1 4.4 22 5.5 22H18.5C19.6 22 20.5 21.1 20.5 20V7L15.5 2Z" fill="#0F9D58"/>
+               <path d="M16 2V7H21" fill="#E6F4EA"/>
+               <path d="M6 12H18V14H6V12ZM6 16H14V18H6V16Z" fill="white"/>
+             </svg>
+          </div>
+
+           {/* Generic Graph Icon - Bottom Right */}
+           <div className="absolute bottom-20 -right-8 z-30 animate-float drop-shadow-[0_4px_12px_rgba(0,0,0,0.2)]" style={{ animationDelay: '3.5s' }}>
+              <LineChart className="w-10 h-10 text-blue-500" />
+          </div>
+
+
+          {/* The Photo Frame Stack */}
+          <div className="relative w-80 h-80 md:w-96 md:h-96 z-10">
+            <div className="absolute inset-0 border-2 border-white/20 rounded-[2rem] rotate-[12deg] scale-105"></div>
+            <div className="absolute inset-0 bg-blue-600/90 rounded-[2rem] rotate-[6deg] translate-x-2 translate-y-2 shadow-lg backdrop-blur-sm"></div>
+            <div className="absolute inset-0 bg-slate-200 rounded-[2rem] -rotate-[3deg] shadow-2xl ring-4 ring-white/10">
+               <img
+                 src="/surya_l.png"
+                 alt="Surya Prakash"
+                 className="absolute bottom-0 left-0 w-full h-[150%] object-cover object-center rounded-b-[2rem]"
+                 onError={(e) => {
+                   e.currentTarget.src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop"; 
+                   e.currentTarget.onerror = null;
+                 }}
+               />
+               <div className="absolute inset-0 shadow-[inset_0_0_20px_rgba(0,0,0,0.1)] pointer-events-none rounded-[2rem]"></div>
             </div>
-            <span className="text-slate-700 font-semibold text-sm tracking-wider">AVAILABLE FOR OPPORTUNITIES</span>
           </div>
+          
         </div>
       </section>
 
       {/* Skills Section */}
       <section id="skills" ref={skillsRef} className="scroll-mt-28 py-24 bg-white relative overflow-hidden">
-        <div className="px-12">
-          {/* Header */}
-          <div className={`mb-16 transition-all duration-700 ${skillsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900">Technical Skills</h2>
-          </div>
-
-          {/* Skills Grid - Framer style cards */}
-          <div className="grid md:grid-cols-3 gap-6">
-            {RESUME_DATA.skills.map((category, idx) => (
-              <div
-                key={category.category}
-                style={{ transitionDelay: `${idx * 100}ms` }}
-                className={`group relative bg-slate-50 rounded-2xl p-6 border border-slate-200 hover:border-slate-300 hover:bg-white transition-all duration-500 ${
-                  skillsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                }`}
-              >
-                {/* Icon */}
-                <div className="mb-5 p-3 rounded-xl bg-slate-50 w-fit group-hover:bg-blue-50 transition-colors duration-300">
-                  <div className="text-slate-700 group-hover:text-blue-600 transition-colors duration-300">
-                    {CATEGORY_ICONS[category.category] && React.createElement(CATEGORY_ICONS[category.category], { size: 24, strokeWidth: 2 })}
-                  </div>
-                </div>
-
-                {/* Category */}
-                <h3 className="text-lg font-semibold text-slate-900 mb-4">{category.category}</h3>
-
-                {/* Skills list */}
-                <ul className="space-y-2">
-                  {category.skills.map((skill) => (
-                    <li key={skill} className="flex items-center gap-2 text-slate-600 text-sm group-hover:text-slate-900 transition-colors duration-300">
-                      <div className="w-1 h-1 rounded-full bg-blue-500"></div>
-                      <span>{skill}</span>
-                    </li>
-                  ))}
-                </ul>
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+        
+        <div className="max-w-6xl mx-auto px-6 relative z-10">
+          <div className="flex flex-col md:flex-row gap-20 items-center">
+            
+            {/* Skills List */}
+            <div className="flex-1 w-full space-y-12">
+              <div className={`transition-all duration-700 ${skillsVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
+                <h2 className="text-3xl font-bold text-slate-900 mb-4 tracking-tight">Technical Arsenal</h2>
+                <p className="text-slate-500 font-light text-lg">The modern stack I use to architect scalable data solutions.</p>
               </div>
-            ))}
+              
+              <div className="space-y-8">
+                {RESUME_DATA.skills.map((category, idx) => (
+                  <div 
+                    key={category.category} 
+                    style={{ transitionDelay: `${idx * 100}ms` }}
+                    className={`group transition-all duration-700 transform ${
+                      skillsVisible 
+                        ? 'opacity-100 translate-y-0' 
+                        : 'opacity-0 translate-y-10'
+                    }`}
+                  >
+                    <div className="flex items-start gap-5">
+                      <div className="mt-1 p-2 rounded-lg bg-slate-50 text-slate-400 group-hover:text-blue-600 group-hover:bg-blue-50 transition-colors duration-300">
+                        <div className="w-5 h-5 flex items-center justify-center">
+                            {CATEGORY_ICONS[category.category] && React.createElement(CATEGORY_ICONS[category.category], { size: 20 })}
+                        </div>
+                      </div>
+                      <div className="flex-1 border-b border-slate-100 pb-6 group-hover:border-slate-200 transition-colors">
+                        <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-4">{category.category}</h3>
+                        <div className="flex flex-wrap gap-x-3 gap-y-3">
+                          {category.skills.map((skill) => (
+                            <span key={skill} className="px-3 py-1 bg-white border border-slate-200 rounded-md text-slate-600 font-mono text-xs hover:border-slate-400 transition-colors">
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Radar Chart */}
+            <div className={`flex-1 w-full flex justify-center items-center transition-all duration-1000 delay-300 ${
+               skillsVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+            }`}>
+               <div className="relative p-8 bg-white/40 backdrop-blur-md rounded-3xl border border-slate-100 shadow-xl w-full max-w-[500px]">
+                 <SkillChart />
+               </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Experience Section - Flowing Path Design */}
-      <section id="experience" ref={experienceRef} className="scroll-mt-28 py-24 bg-white relative overflow-hidden">
+      <section id="experience" ref={experienceRef} className="scroll-mt-28 py-24 bg-gradient-to-b from-slate-50/50 via-white to-slate-50/50 relative overflow-hidden">
         {/* Subtle Background Grid */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:64px_64px]"></div>
 
-        <div className="px-12 relative">
+        <div className="max-w-6xl mx-auto px-6 relative">
           {/* Header */}
           <div className={`text-center mb-20 transition-all duration-700 ${experienceVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-3">Professional Journey</h2>
@@ -472,7 +540,7 @@ const App: React.FC = () => {
           </div>
 
           {/* Journey Path Container - Overflow to extend beyond section */}
-          <div className="relative overflow-visible">
+          <div className="relative max-w-5xl mx-auto overflow-visible">
 
             {/* Flowing SVG Path - Desktop - Full width with beautiful S-curve */}
             <svg className="hidden md:block absolute pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none" style={{ zIndex: 0, top: '-20%', left: 0, width: '100%', height: '140%' }}>
@@ -615,8 +683,8 @@ const App: React.FC = () => {
       </section>
 
       {/* Projects Section - Bento Grid */}
-      <section id="projects" className="scroll-mt-28 py-24 bg-white">
-        <div className="px-12">
+      <section id="projects" className="scroll-mt-28 py-24 bg-white border-t border-slate-100">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row items-end justify-between mb-12 gap-6">
             <div>
               <h2 className="text-4xl font-bold text-slate-900 mb-2 tracking-tight">Select Projects</h2>
@@ -673,7 +741,9 @@ const App: React.FC = () => {
 
       {/* Footer */}
       <footer className="py-20 bg-slate-900 text-white relative overflow-hidden">
-        <div className="px-12 relative z-10">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-50 blur-sm"></div>
+
+        <div className="max-w-6xl mx-auto px-6 relative z-10">
           <div className="grid md:grid-cols-2 gap-16 mb-16">
             <div>
               <h2 className="text-4xl font-bold tracking-tighter mb-6">Let's build something <span className="text-blue-500">amazing.</span></h2>
@@ -721,7 +791,7 @@ const App: React.FC = () => {
             </div>
           </div>
 
-          <div className="pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="text-slate-500 text-sm">
               Designed and built by{' '}
               <a href="https://aistudio.google.com" target="_blank" rel="noreferrer" className="text-blue-400 hover:text-blue-300 transition-colors">
