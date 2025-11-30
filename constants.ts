@@ -65,11 +65,17 @@ export const RESUME_DATA: ResumeData = {
     {
       title: "Student Lifecycle Dashboard",
       tech: ["Python", "Metabase", "PostgreSQL"],
-      year: "2024",
+      year: "2025",
       category: "Analytics",
       icon: "BarChart3",
       size: "large",
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
+      images: [
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1543286386-713df548e9cc?q=80&w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=800&auto=format&fit=crop"
+      ],
       description: [
         "Engineered comprehensive student lifecycle dashboard with 30+ Metabase dashboards using Python.",
         "Improved dashboard load times by 80% providing 100% visibility into student performance for 40+ business users."
@@ -83,6 +89,11 @@ export const RESUME_DATA: ResumeData = {
       icon: "Database",
       size: "large",
       image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1600&auto=format&fit=crop",
+      images: [
+        "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1558494949-efc02584299d?q=80&w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1597852074816-d933c7d2b988?q=80&w=800&auto=format&fit=crop"
+      ],
       description: [
         "Developed 20 production ETL pipelines processing millions of rows daily from MySQL/MongoDB to PostgreSQL.",
         "Reduced dashboard query time by 80% and pipeline count by 50% while maintaining analytical depth."
@@ -96,6 +107,12 @@ export const RESUME_DATA: ResumeData = {
       icon: "ShoppingBag",
       size: "normal",
       image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=800&auto=format&fit=crop",
+      images: [
+        "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?q=80&w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=800&auto=format&fit=crop"
+      ],
       description: [
         "Deployed web scraping solution using Selenium to extract 200+ personal orders from Swiggy platform.",
         "Constructed interactive dashboard in Excel/Google Sheets visualizing ordering patterns and spending trends."
@@ -104,11 +121,17 @@ export const RESUME_DATA: ResumeData = {
     {
       title: "Business Finance Analytics Tool",
       tech: ["Python", "Google Sheets", "API Integration"],
-      year: "2023",
+      year: "2025",
       category: "Automation",
       icon: "Wallet",
       size: "normal",
       image: "https://images.unsplash.com/photo-1554224155-98406858d0cb?q=80&w=800&auto=format&fit=crop",
+      images: [
+        "https://images.unsplash.com/photo-1554224155-98406858d0cb?q=80&w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1554224311-beee4ece8c35?q=80&w=800&auto=format&fit=crop"
+      ],
       description: [
         "Developed Python automation script with session-based authentication to extract data from myBillBook platform.",
         "Monitored INR 1M+ inventory across 400+ products, tracking pricing, sales trends, and profit/loss metrics."
@@ -122,6 +145,11 @@ export const RESUME_DATA: ResumeData = {
       icon: "Terminal",
       size: "normal",
       image: "https://images.unsplash.com/photo-1611746872915-64382b5c76da?q=80&w=800&auto=format&fit=crop",
+      images: [
+        "https://images.unsplash.com/photo-1611746872915-64382b5c76da?q=80&w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1614680376593-902f74cf0d41?q=80&w=800&auto=format&fit=crop"
+      ],
       description: [
         "Created automated WhatsApp messaging system using Google Sheets, Forms, and WATI API.",
         "Enabled instant and one-click message delivery at scale for student engagement campaigns."
@@ -135,6 +163,12 @@ export const RESUME_DATA: ResumeData = {
       icon: "LineChart",
       size: "normal",
       image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
+      images: [
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=800&auto=format&fit=crop"
+      ],
       description: [
         "Processed and evaluated millions of rows of campaign data across 30+ traditional advertising campaigns.",
         "Implemented QR code system for seamless multi-source data collection without link breakage."

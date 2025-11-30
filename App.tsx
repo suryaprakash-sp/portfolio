@@ -39,15 +39,92 @@ const calculateDuration = (period: string): string => {
   }
 };
 
+// Project Card with Slideshow
+const ProjectCard = ({ project, idx }: { project: any; idx: number }) => {
+  const Icon = PROJECT_ICONS[project.icon] || Terminal;
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Slideshow effect - always running
+  useEffect(() => {
+    if (!project.images || project.images.length <= 1) return;
+
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
+    }, 2000); // 2 seconds
+
+    return () => clearInterval(interval);
+  }, [project.images]);
+
+  return (
+    <div className="group w-full bg-white border border-slate-200 rounded-2xl hover:rounded-[2rem] shadow-sm hover:shadow-xl hover:border-blue-200 overflow-hidden transition-all duration-500">
+      <div className="flex h-[280px]">
+        {/* Left: Image Slideshow (40%) */}
+        <div className="w-[40%] bg-slate-900 relative overflow-hidden">
+          {project.images && project.images.map((img: string, imgIdx: number) => (
+            <img
+              key={imgIdx}
+              src={img}
+              alt={`${project.title} ${imgIdx + 1}`}
+              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+              style={{
+                opacity: imgIdx === currentImageIndex ? 1 : 0,
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Right: Content (60%) */}
+        <div className="w-[60%] p-5 flex flex-col justify-between">
+          {/* Top */}
+          <div>
+            <div className="flex items-center gap-2 mb-3">
+              <div className="p-1.5 bg-blue-50 rounded-lg border border-blue-100 group-hover:bg-blue-100 transition-colors">
+                <Icon className="w-4 h-4 text-blue-600" />
+              </div>
+              <span className="text-xs font-semibold text-blue-600 uppercase tracking-wide">{project.category}</span>
+              <span className="text-slate-300">•</span>
+              <span className="text-xs text-slate-500">{project.year}</span>
+            </div>
+
+            <h3 className="text-lg font-bold text-slate-900 mb-2.5 leading-tight group-hover:text-blue-600 transition-colors">
+              {project.title}
+            </h3>
+
+            <div className="space-y-1.5 mb-3">
+              {project.description.map((desc: string, i: number) => (
+                <p key={i} className="text-slate-600 text-xs leading-relaxed">
+                  {desc}
+                </p>
+              ))}
+            </div>
+          </div>
+
+          {/* Bottom - Tech Stack */}
+          <div className="flex flex-wrap gap-1.5">
+            {project.tech.map((tech: string, i: number) => (
+              <span
+                key={i}
+                className="px-2 py-0.5 bg-slate-50 border border-slate-200 rounded text-[10px] font-medium text-slate-700 group-hover:bg-blue-50 group-hover:border-blue-100 group-hover:text-blue-700 transition-all"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // Bento Grid Project Card
 const BentoProjectCard = ({ project }: { project: any }) => {
   const Icon = project.icon ? PROJECT_ICONS[project.icon] : Terminal;
-  
+
   return (
     <div className="group relative h-full w-full overflow-hidden rounded-3xl bg-slate-900 border border-slate-800 hover:shadow-2xl transition-all duration-500">
       {/* Background Image */}
       <div className="absolute inset-0">
-        <img 
+        <img
           src={project.image} 
           alt={project.title}
           className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-40"
@@ -682,77 +759,38 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* Projects Section - Bento Grid */}
+      {/* Projects Section - Minimal Cards with Hover */}
       <section id="projects" className="scroll-mt-28 py-24 bg-white border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="mb-16 text-center">
-            <h2 className="text-4xl font-bold text-slate-900 mb-3 tracking-tight">Featured Projects</h2>
-            <p className="text-slate-500 font-light text-lg">Data engineering & analytics work</p>
+          <div className="flex flex-col md:flex-row items-end justify-between mb-12 gap-6">
+            <div>
+              <h2 className="text-4xl font-bold text-slate-900 mb-2 tracking-tight">Featured Projects</h2>
+              <p className="text-slate-500 font-light text-lg">Data engineering & analytics work</p>
+            </div>
+
+            {/* Filter Buttons */}
+            <div className="flex flex-wrap gap-2">
+              {uniqueCategories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setActiveCategory(category)}
+                  className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-300 ${
+                    activeCategory === category
+                      ? 'bg-slate-900 text-white'
+                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                  }`}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
           </div>
 
-          {/* Bento Grid - 6 Projects */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {RESUME_DATA.projects.map((project, idx) => {
-              const Icon = PROJECT_ICONS[project.icon] || Terminal;
-
-              return (
-                <div
-                  key={idx}
-                  className="group relative h-[420px] overflow-hidden bg-white border border-slate-200 transition-all duration-500 rounded-2xl hover:rounded-[2rem] hover:shadow-xl hover:border-blue-200"
-                >
-                  {/* Background Image */}
-                  <div className="absolute inset-0">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover opacity-5 group-hover:opacity-10 group-hover:scale-105 transition-all duration-700"
-                    />
-                  </div>
-
-                  {/* Content */}
-                  <div className="relative h-full p-6 flex flex-col justify-between">
-                    {/* Top Section */}
-                    <div>
-                      <div className="flex items-center justify-between mb-5">
-                        <div className="p-2.5 bg-blue-50 rounded-xl border border-blue-100 group-hover:bg-blue-100 transition-colors duration-300">
-                          <Icon className="w-6 h-6 text-blue-600" />
-                        </div>
-                        <div className="flex items-center gap-2 px-3 py-1.5 bg-slate-50 rounded-full border border-slate-200">
-                          <div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
-                          <span className="text-xs font-medium text-slate-600">{project.category}</span>
-                          <span className="text-slate-300">•</span>
-                          <span className="text-xs text-slate-500">{project.year}</span>
-                        </div>
-                      </div>
-
-                      <h3 className="text-2xl font-bold text-slate-900 mb-3 leading-tight group-hover:text-blue-600 transition-colors duration-300">
-                        {project.title}
-                      </h3>
-
-                      <div className="space-y-2">
-                        {project.description.map((desc, i) => (
-                          <p key={i} className="text-slate-600 text-sm leading-relaxed">
-                            {desc}
-                          </p>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Bottom Section - Tech Stack */}
-                    <div className="flex flex-wrap gap-2">
-                      {project.tech.map((tech, i) => (
-                        <span
-                          key={i}
-                          className="px-2.5 py-1 bg-slate-50 border border-slate-200 rounded-lg text-xs font-medium text-slate-700 group-hover:border-blue-200 group-hover:bg-blue-50 group-hover:text-blue-700 transition-all duration-300"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+          {/* Projects Grid - 2 Columns */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {filteredProjects.map((project, idx) => (
+              <ProjectCard key={idx} project={project} idx={idx} />
+            ))}
           </div>
         </div>
       </section>

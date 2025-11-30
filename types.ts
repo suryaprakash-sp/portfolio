@@ -15,8 +15,9 @@ export interface Project {
   category?: string;
   gradient?: string;
   icon?: string;
-  image?: string;         // New: Background image URL
-  size?: 'normal' | 'large' | 'tall'; // New: Grid span control
+  image?: string;         // Background image URL
+  images?: string[];      // Array of images for slideshow
+  size?: 'normal' | 'large' | 'tall'; // Grid span control
 }
 
 export interface SkillCategory {
