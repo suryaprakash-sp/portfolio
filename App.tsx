@@ -685,57 +685,76 @@ const App: React.FC = () => {
       {/* Projects Section - Bento Grid */}
       <section id="projects" className="scroll-mt-28 py-24 bg-white border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row items-end justify-between mb-12 gap-6">
-            <div>
-              <h2 className="text-4xl font-bold text-slate-900 mb-2 tracking-tight">Select Projects</h2>
-              <p className="text-slate-500 font-light text-lg">A collection of data engineering & analytics work.</p>
-            </div>
-            
-            {/* Filter Buttons */}
-            <div className="flex flex-wrap gap-2">
-              {uniqueCategories.map((category) => (
-                <button
-                  key={category}
-                  onClick={() => setActiveCategory(category)}
-                  className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-300 ${
-                    activeCategory === category
-                      ? 'bg-slate-900 text-white'
-                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                  }`}
-                >
-                  {category}
-                </button>
-              ))}
-            </div>
+          <div className="mb-16 text-center">
+            <h2 className="text-4xl font-bold text-slate-900 mb-3 tracking-tight">Featured Projects</h2>
+            <p className="text-slate-500 font-light text-lg">Data engineering & analytics work</p>
           </div>
 
-          {/* Dynamic Bento Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[350px]">
-            {visibleProjectsList.map((project, idx) => (
-              <div 
-                key={idx}
-                className={`${project.size === 'large' ? 'md:col-span-2' : 'md:col-span-1'} ${project.size === 'tall' ? 'md:row-span-2' : ''}`}
-              >
-                <BentoProjectCard project={project} />
-              </div>
-            ))}
-          </div>
+          {/* Bento Grid - 2 Projects */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {RESUME_DATA.projects.map((project, idx) => {
+              const Icon = PROJECT_ICONS[project.icon] || Terminal;
 
-          {/* View More / View Less */}
-          {filteredProjects.length > 6 && (
-             <div className="mt-12 flex justify-center">
-                <button 
-                  onClick={() => setViewAllProjects(!viewAllProjects)}
-                  className="flex items-center gap-2 px-8 py-3 bg-slate-50 hover:bg-slate-100 text-slate-900 rounded-full font-medium transition-colors border border-slate-200"
+              return (
+                <div
+                  key={idx}
+                  className="group relative h-[500px] overflow-hidden bg-slate-900 border border-slate-800 transition-all duration-500 rounded-2xl hover:rounded-[2rem] hover:shadow-2xl"
                 >
-                  {viewAllProjects ? (
-                    <>Show Less <ChevronUp className="w-4 h-4" /></>
-                  ) : (
-                    <>View More Projects <ChevronDown className="w-4 h-4" /></>
-                  )}
-                </button>
-             </div>
-          )}
+                  {/* Background Image */}
+                  <div className="absolute inset-0">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover opacity-20 group-hover:opacity-30 group-hover:scale-105 transition-all duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-br from-slate-900/95 via-slate-900/90 to-slate-800/95"></div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="relative h-full p-8 flex flex-col justify-between">
+                    {/* Top Section */}
+                    <div>
+                      <div className="flex items-center justify-between mb-6">
+                        <div className="p-3 bg-blue-500/10 rounded-xl backdrop-blur-sm border border-blue-500/20 group-hover:bg-blue-500/20 transition-colors duration-300">
+                          <Icon className="w-7 h-7 text-blue-400" />
+                        </div>
+                        <div className="flex items-center gap-2 px-3 py-1.5 bg-slate-800/50 rounded-full backdrop-blur-sm border border-slate-700/50">
+                          <div className="w-1.5 h-1.5 rounded-full bg-blue-400"></div>
+                          <span className="text-xs font-medium text-slate-400">{project.category}</span>
+                          <span className="text-slate-600">•</span>
+                          <span className="text-xs text-slate-500">{project.year}</span>
+                        </div>
+                      </div>
+
+                      <h3 className="text-3xl font-bold text-white mb-4 leading-tight group-hover:text-blue-400 transition-colors duration-300">
+                        {project.title}
+                      </h3>
+
+                      <div className="space-y-3">
+                        {project.description.map((desc, i) => (
+                          <p key={i} className="text-slate-300 text-sm leading-relaxed">
+                            {desc}
+                          </p>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Bottom Section - Tech Stack */}
+                    <div className="flex flex-wrap gap-2">
+                      {project.tech.map((tech, i) => (
+                        <span
+                          key={i}
+                          className="px-3 py-1.5 bg-slate-800/60 backdrop-blur-sm border border-slate-700/50 rounded-lg text-xs font-medium text-slate-300 group-hover:border-slate-600 group-hover:bg-slate-800 transition-all duration-300"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </section>
 
