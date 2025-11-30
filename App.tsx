@@ -469,7 +469,7 @@ const App: React.FC = () => {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" ref={skillsRef} className="scroll-mt-28 py-24 bg-slate-50 relative overflow-hidden">
+      <section id="skills" ref={skillsRef} className="scroll-mt-28 py-24 bg-white relative overflow-hidden">
         <div className="max-w-6xl mx-auto px-6">
           {/* Header */}
           <div className={`mb-16 transition-all duration-700 ${skillsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
@@ -512,7 +512,7 @@ const App: React.FC = () => {
       </section>
 
       {/* Experience Section - Flowing Path Design */}
-      <section id="experience" ref={experienceRef} className="scroll-mt-28 py-24 bg-gradient-to-b from-slate-50/50 via-white to-slate-50/50 relative overflow-hidden">
+      <section id="experience" ref={experienceRef} className="scroll-mt-28 py-24 bg-white relative overflow-hidden">
         {/* Subtle Background Grid */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:64px_64px]"></div>
 
