@@ -482,7 +482,7 @@ const App: React.FC = () => {
               <div
                 key={category.category}
                 style={{ transitionDelay: `${idx * 100}ms` }}
-                className={`group relative bg-white rounded-2xl p-6 border border-slate-200 hover:border-slate-300 transition-all duration-500 ${
+                className={`group relative bg-slate-50 rounded-2xl p-6 border border-slate-200 hover:border-slate-300 hover:bg-white transition-all duration-500 ${
                   skillsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                 }`}
               >
