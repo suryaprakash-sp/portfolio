@@ -469,69 +469,128 @@ const App: React.FC = () => {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" ref={skillsRef} className="scroll-mt-28 py-24 bg-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-        
-        <div className="max-w-6xl mx-auto px-6 relative z-10">
-          <div className="flex flex-col md:flex-row gap-20 items-center">
-            
-            {/* Skills List */}
-            <div className="flex-1 w-full space-y-12">
-              <div className={`transition-all duration-700 ${skillsVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
-                <h2 className="text-3xl font-bold text-slate-900 mb-4 tracking-tight">Technical Arsenal</h2>
-                <p className="text-slate-500 font-light text-lg">The modern stack I use to architect scalable data solutions.</p>
-              </div>
+      <section id="skills" ref={skillsRef} className="scroll-mt-28 py-24 bg-gradient-to-br from-slate-50 via-white to-blue-50 relative overflow-hidden">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-blue-200/30 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-200/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        </div>
 
-              <div className="space-y-5">
-                {RESUME_DATA.skills.map((category, idx) => (
-                  <div
-                    key={category.category}
-                    style={{ transitionDelay: `${idx * 100}ms` }}
-                    className={`group transition-all duration-700 transform ${
-                      skillsVisible
-                        ? 'opacity-100 translate-y-0'
-                        : 'opacity-0 translate-y-10'
-                    }`}
-                  >
-                    {/* No card container - transparent background */}
-                    <div className="flex items-start gap-4">
-                      {/* Icon with subtle gradient */}
-                      <div className="mt-0.5 p-2 rounded-lg bg-gradient-to-br from-blue-50 to-slate-50 text-blue-600 group-hover:from-blue-100 group-hover:to-blue-50 transition-all duration-300">
-                        <div className="w-5 h-5 flex items-center justify-center">
-                          {CATEGORY_ICONS[category.category] && React.createElement(CATEGORY_ICONS[category.category], { size: 20 })}
-                        </div>
-                      </div>
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          {/* Header */}
+          <div className={`text-center mb-16 transition-all duration-700 ${skillsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <h2 className="text-5xl font-bold text-slate-900 mb-4 tracking-tight">Technical Arsenal</h2>
+            <p className="text-slate-600 text-lg max-w-2xl mx-auto">The modern stack powering data-driven solutions</p>
+          </div>
 
-                      <div className="flex-1">
-                        {/* Category name */}
-                        <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-3">{category.category}</h3>
+          {/* Bento Grid Layout */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 auto-rows-[180px]">
 
-                        {/* Skills */}
-                        <div className="flex flex-wrap gap-2.5">
-                          {category.skills.map((skill) => (
-                            <span
-                              key={skill}
-                              className="px-3.5 py-2 bg-blue-50 border border-blue-200 text-blue-700 font-mono text-xs font-medium rounded-lg hover:bg-blue-100 hover:border-blue-300 hover:scale-105 transition-all duration-200 cursor-default"
-                            >
-                              {skill}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+            {/* Languages - Large Card (Top Left) */}
+            <div
+              className={`md:col-span-5 md:row-span-2 group relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-600 p-8 shadow-xl hover:shadow-2xl transition-all duration-500 ${skillsVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
+              style={{ transitionDelay: '0ms' }}
+            >
+              <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzRjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em0wLTI4YzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHptMjggMGMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6TTM2IDYyYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHpNNiAzNGMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6TTYgNmMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6bTAgNTZjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em01NiAwYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHptMC0yOGMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6Ij48L3BhdGg+PC9nPjwvZz48L3N2Zz4=')] opacity-20"></div>
+              <div className="relative h-full flex flex-col">
+                <div className="flex items-center gap-3 mb-6">
+                  {CATEGORY_ICONS['Languages'] && React.createElement(CATEGORY_ICONS['Languages'], { size: 32, className: 'text-white', strokeWidth: 2 })}
+                  <h3 className="text-2xl font-bold text-white">Languages</h3>
+                </div>
+                <div className="flex-1 flex flex-wrap gap-3 content-start">
+                  {RESUME_DATA.skills[0].skills.map((skill) => (
+                    <span key={skill} className="px-4 py-2 bg-white/20 backdrop-blur-sm border border-white/30 text-white font-mono text-sm rounded-xl hover:bg-white/30 transition-all duration-200">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
 
-            {/* Radar Chart */}
-            <div className={`flex-1 w-full flex justify-center items-center transition-all duration-1000 delay-300 ${
-               skillsVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-            }`}>
-               <div className="relative p-8 bg-white/40 backdrop-blur-md rounded-3xl border border-slate-100 shadow-xl w-full max-w-[500px]">
-                 <SkillChart />
-               </div>
+            {/* Databases - Medium Card (Top Right) */}
+            <div
+              className={`md:col-span-7 group relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-500 via-teal-600 to-cyan-600 p-8 shadow-xl hover:shadow-2xl transition-all duration-500 ${skillsVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
+              style={{ transitionDelay: '100ms' }}
+            >
+              <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzRjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em0wLTI4YzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHptMjggMGMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6TTM2IDYyYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHpNNiAzNGMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6TTYgNmMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6bTAgNTZjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em01NiAwYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHptMC0yOGMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6Ij48L3BhdGg+PC9nPjwvZz48L3N2Zz4=')] opacity-20"></div>
+              <div className="relative h-full flex flex-col md:flex-row md:items-center gap-6">
+                <div className="flex items-center gap-3">
+                  {CATEGORY_ICONS['Databases'] && React.createElement(CATEGORY_ICONS['Databases'], { size: 28, className: 'text-white', strokeWidth: 2 })}
+                  <h3 className="text-2xl font-bold text-white">Databases</h3>
+                </div>
+                <div className="flex flex-wrap gap-2.5">
+                  {RESUME_DATA.skills[1].skills.map((skill) => (
+                    <span key={skill} className="px-3.5 py-1.5 bg-white/20 backdrop-blur-sm border border-white/30 text-white font-mono text-sm rounded-lg hover:bg-white/30 transition-all duration-200">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
+
+            {/* BI & Visualization - Wide Card */}
+            <div
+              className={`md:col-span-7 group relative overflow-hidden rounded-3xl bg-gradient-to-br from-violet-500 via-purple-600 to-fuchsia-600 p-8 shadow-xl hover:shadow-2xl transition-all duration-500 ${skillsVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
+              style={{ transitionDelay: '200ms' }}
+            >
+              <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzRjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em0wLTI4YzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHptMjggMGMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6TTM2IDYyYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHpNNiAzNGMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6TTYgNmMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6bTAgNTZjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em01NiAwYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHptMC0yOGMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6Ij48L3BhdGg+PC9nPjwvZz48L3N2Zz4=')] opacity-20"></div>
+              <div className="relative h-full flex flex-col md:flex-row md:items-center gap-6">
+                <div className="flex items-center gap-3">
+                  {CATEGORY_ICONS['BI & Visualization'] && React.createElement(CATEGORY_ICONS['BI & Visualization'], { size: 28, className: 'text-white', strokeWidth: 2 })}
+                  <h3 className="text-2xl font-bold text-white whitespace-nowrap">BI & Visualization</h3>
+                </div>
+                <div className="flex flex-wrap gap-2.5">
+                  {RESUME_DATA.skills[2].skills.map((skill) => (
+                    <span key={skill} className="px-3.5 py-1.5 bg-white/20 backdrop-blur-sm border border-white/30 text-white font-mono text-sm rounded-lg hover:bg-white/30 transition-all duration-200">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Libraries & Frameworks - Tall Card (Bottom Left) */}
+            <div
+              className={`md:col-span-5 md:row-span-2 group relative overflow-hidden rounded-3xl bg-gradient-to-br from-amber-500 via-orange-600 to-red-600 p-8 shadow-xl hover:shadow-2xl transition-all duration-500 ${skillsVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
+              style={{ transitionDelay: '300ms' }}
+            >
+              <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzRjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em0wLTI4YzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHptMjggMGMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6TTM2IDYyYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHpNNiAzNGMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6TTYgNmMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6bTAgNTZjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em01NiAwYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHptMC0yOGMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6Ij48L3BhdGg+PC9nPjwvZz48L3N2Zz4=')] opacity-20"></div>
+              <div className="relative h-full flex flex-col">
+                <div className="flex items-center gap-3 mb-6">
+                  {CATEGORY_ICONS['Libraries & Frameworks'] && React.createElement(CATEGORY_ICONS['Libraries & Frameworks'], { size: 32, className: 'text-white', strokeWidth: 2 })}
+                  <h3 className="text-2xl font-bold text-white">Libraries & Frameworks</h3>
+                </div>
+                <div className="flex-1 flex flex-wrap gap-3 content-start">
+                  {RESUME_DATA.skills[3].skills.map((skill) => (
+                    <span key={skill} className="px-4 py-2 bg-white/20 backdrop-blur-sm border border-white/30 text-white font-mono text-sm rounded-xl hover:bg-white/30 transition-all duration-200">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Data Engineering - Bottom Right */}
+            <div
+              className={`md:col-span-7 group relative overflow-hidden rounded-3xl bg-gradient-to-br from-rose-500 via-pink-600 to-purple-600 p-8 shadow-xl hover:shadow-2xl transition-all duration-500 ${skillsVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
+              style={{ transitionDelay: '400ms' }}
+            >
+              <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzRjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em0wLTI4YzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHptMjggMGMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6TTM2IDYyYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHpNNiAzNGMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6TTYgNmMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6bTAgNTZjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em01NiAwYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHptMC0yOGMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6Ij48L3BhdGg+PC9nPjwvZz48L3N2Zz4=')] opacity-20"></div>
+              <div className="relative h-full flex flex-col md:flex-row md:items-center gap-6">
+                <div className="flex items-center gap-3">
+                  {CATEGORY_ICONS['Data Engineering'] && React.createElement(CATEGORY_ICONS['Data Engineering'], { size: 28, className: 'text-white', strokeWidth: 2 })}
+                  <h3 className="text-2xl font-bold text-white">Data Engineering</h3>
+                </div>
+                <div className="flex flex-wrap gap-2.5">
+                  {RESUME_DATA.skills[4].skills.map((skill) => (
+                    <span key={skill} className="px-3.5 py-1.5 bg-white/20 backdrop-blur-sm border border-white/30 text-white font-mono text-sm rounded-lg hover:bg-white/30 transition-all duration-200">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
