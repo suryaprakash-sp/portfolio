@@ -725,9 +725,7 @@ const App: React.FC = () => {
 
       {/* Footer */}
       <footer className="py-20 bg-slate-900 text-white relative overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-50 blur-sm"></div>
-
-        <div className="max-w-6xl mx-auto px-6 relative z-10">
+        <div className="px-12 relative z-10">
           <div className="grid md:grid-cols-2 gap-16 mb-16">
             <div>
               <h2 className="text-4xl font-bold tracking-tighter mb-6">Let's build something <span className="text-blue-500">amazing.</span></h2>
