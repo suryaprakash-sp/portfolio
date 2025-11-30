@@ -469,38 +469,42 @@ const App: React.FC = () => {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" ref={skillsRef} className="scroll-mt-28 py-24 bg-white relative overflow-hidden">
-        <div className="max-w-5xl mx-auto px-6">
-          {/* Simple header */}
-          <div className={`mb-12 transition-all duration-700 ${skillsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <h2 className="text-4xl font-bold text-slate-900 mb-2">Skills</h2>
+      <section id="skills" ref={skillsRef} className="scroll-mt-28 py-24 bg-slate-50 relative overflow-hidden">
+        <div className="max-w-6xl mx-auto px-6">
+          {/* Header */}
+          <div className={`mb-16 transition-all duration-700 ${skillsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900">Technical Skills</h2>
           </div>
 
-          {/* Clean table-like layout */}
-          <div className="space-y-0 border-t border-slate-200">
+          {/* Skills Grid - Framer style cards */}
+          <div className="grid md:grid-cols-3 gap-6">
             {RESUME_DATA.skills.map((category, idx) => (
               <div
                 key={category.category}
                 style={{ transitionDelay: `${idx * 100}ms` }}
-                className={`group border-b border-slate-200 py-8 transition-all duration-700 hover:bg-slate-50 ${
+                className={`group relative bg-white rounded-2xl p-6 border border-slate-200 hover:border-slate-300 transition-all duration-500 ${
                   skillsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                 }`}
               >
-                <div className="grid md:grid-cols-4 gap-8">
-                  {/* Category name - fixed width */}
-                  <div className="md:col-span-1">
-                    <h3 className="text-sm font-semibold text-slate-500 uppercase tracking-wider">
-                      {category.category}
-                    </h3>
-                  </div>
-
-                  {/* Skills - flowing text */}
-                  <div className="md:col-span-3">
-                    <p className="text-lg text-slate-700 leading-relaxed">
-                      {category.skills.join(' · ')}
-                    </p>
+                {/* Icon */}
+                <div className="mb-5 p-3 rounded-xl bg-slate-50 w-fit group-hover:bg-blue-50 transition-colors duration-300">
+                  <div className="text-slate-700 group-hover:text-blue-600 transition-colors duration-300">
+                    {CATEGORY_ICONS[category.category] && React.createElement(CATEGORY_ICONS[category.category], { size: 24, strokeWidth: 2 })}
                   </div>
                 </div>
+
+                {/* Category */}
+                <h3 className="text-lg font-semibold text-slate-900 mb-4">{category.category}</h3>
+
+                {/* Skills list */}
+                <ul className="space-y-2">
+                  {category.skills.map((skill) => (
+                    <li key={skill} className="flex items-center gap-2 text-slate-600 text-sm group-hover:text-slate-900 transition-colors duration-300">
+                      <div className="w-1 h-1 rounded-full bg-blue-500"></div>
+                      <span>{skill}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>
