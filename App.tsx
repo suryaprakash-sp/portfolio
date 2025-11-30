@@ -469,58 +469,37 @@ const App: React.FC = () => {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" ref={skillsRef} className="scroll-mt-28 py-32 bg-slate-950 relative overflow-hidden">
-        {/* Animated gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.1),transparent_50%)]"></div>
-
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          {/* Header - Bold Typography */}
-          <div className={`mb-20 transition-all duration-1000 ${skillsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <h2 className="text-6xl md:text-7xl font-bold text-white mb-6 tracking-tight">
-              Skills
-            </h2>
-            <div className="w-20 h-1 bg-blue-500"></div>
+      <section id="skills" ref={skillsRef} className="scroll-mt-28 py-24 bg-white relative overflow-hidden">
+        <div className="max-w-5xl mx-auto px-6">
+          {/* Simple header */}
+          <div className={`mb-12 transition-all duration-700 ${skillsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <h2 className="text-4xl font-bold text-slate-900 mb-2">Skills</h2>
           </div>
 
-          {/* Skills - Flowing Single Column with Hover Effects */}
-          <div className="space-y-16">
+          {/* Clean table-like layout */}
+          <div className="space-y-0 border-t border-slate-200">
             {RESUME_DATA.skills.map((category, idx) => (
               <div
                 key={category.category}
-                style={{ transitionDelay: `${idx * 150}ms` }}
-                className={`group transition-all duration-1000 ${
-                  skillsVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
+                style={{ transitionDelay: `${idx * 100}ms` }}
+                className={`group border-b border-slate-200 py-8 transition-all duration-700 hover:bg-slate-50 ${
+                  skillsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                 }`}
               >
-                {/* Category with large typography */}
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="text-slate-600 group-hover:text-blue-400 transition-colors duration-300">
-                    {CATEGORY_ICONS[category.category] && React.createElement(CATEGORY_ICONS[category.category], { size: 32, strokeWidth: 1.5 })}
+                <div className="grid md:grid-cols-4 gap-8">
+                  {/* Category name - fixed width */}
+                  <div className="md:col-span-1">
+                    <h3 className="text-sm font-semibold text-slate-500 uppercase tracking-wider">
+                      {category.category}
+                    </h3>
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-slate-400 group-hover:text-white transition-colors duration-300">
-                    {category.category}
-                  </h3>
-                </div>
 
-                {/* Skills - Horizontal flowing tags */}
-                <div className="flex flex-wrap gap-4">
-                  {category.skills.map((skill, skillIdx) => (
-                    <div
-                      key={skill}
-                      style={{ transitionDelay: `${skillIdx * 50}ms` }}
-                      className={`relative overflow-hidden bg-slate-900/50 border border-slate-800 rounded-lg px-6 py-3 backdrop-blur-sm hover:border-blue-500/50 hover:bg-slate-800/50 transition-all duration-300 cursor-default group/skill ${
-                        skillsVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-                      }`}
-                    >
-                      {/* Shine effect on hover */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/10 to-transparent -translate-x-full group-hover/skill:translate-x-full transition-transform duration-700"></div>
-
-                      <span className="relative text-slate-300 font-mono text-base group-hover/skill:text-blue-400 transition-colors duration-300">
-                        {skill}
-                      </span>
-                    </div>
-                  ))}
+                  {/* Skills - flowing text */}
+                  <div className="md:col-span-3">
+                    <p className="text-lg text-slate-700 leading-relaxed">
+                      {category.skills.join(' · ')}
+                    </p>
+                  </div>
                 </div>
               </div>
             ))}
