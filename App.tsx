@@ -512,7 +512,7 @@ const App: React.FC = () => {
                             {category.skills.map((skill) => (
                               <span
                                 key={skill}
-                                className="px-3.5 py-2 bg-gradient-to-br from-blue-500 to-blue-600 text-white font-mono text-xs font-semibold rounded-lg shadow-sm hover:shadow-md hover:from-blue-600 hover:to-blue-700 hover:scale-105 transition-all duration-200 cursor-default"
+                                className="px-3.5 py-2 bg-blue-50 border border-blue-200 text-blue-700 font-mono text-xs font-medium rounded-lg hover:bg-blue-100 hover:border-blue-300 hover:scale-105 transition-all duration-200 cursor-default"
                               >
                                 {skill}
                               </span>
