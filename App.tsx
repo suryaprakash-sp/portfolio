@@ -690,49 +690,48 @@ const App: React.FC = () => {
             <p className="text-slate-500 font-light text-lg">Data engineering & analytics work</p>
           </div>
 
-          {/* Bento Grid - 2 Projects */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Bento Grid - 6 Projects */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {RESUME_DATA.projects.map((project, idx) => {
               const Icon = PROJECT_ICONS[project.icon] || Terminal;
 
               return (
                 <div
                   key={idx}
-                  className="group relative h-[500px] overflow-hidden bg-slate-900 border border-slate-800 transition-all duration-500 rounded-2xl hover:rounded-[2rem] hover:shadow-2xl"
+                  className="group relative h-[420px] overflow-hidden bg-white border border-slate-200 transition-all duration-500 rounded-2xl hover:rounded-[2rem] hover:shadow-xl hover:border-blue-200"
                 >
                   {/* Background Image */}
                   <div className="absolute inset-0">
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover opacity-20 group-hover:opacity-30 group-hover:scale-105 transition-all duration-700"
+                      className="w-full h-full object-cover opacity-5 group-hover:opacity-10 group-hover:scale-105 transition-all duration-700"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-br from-slate-900/95 via-slate-900/90 to-slate-800/95"></div>
                   </div>
 
                   {/* Content */}
-                  <div className="relative h-full p-8 flex flex-col justify-between">
+                  <div className="relative h-full p-6 flex flex-col justify-between">
                     {/* Top Section */}
                     <div>
-                      <div className="flex items-center justify-between mb-6">
-                        <div className="p-3 bg-blue-500/10 rounded-xl backdrop-blur-sm border border-blue-500/20 group-hover:bg-blue-500/20 transition-colors duration-300">
-                          <Icon className="w-7 h-7 text-blue-400" />
+                      <div className="flex items-center justify-between mb-5">
+                        <div className="p-2.5 bg-blue-50 rounded-xl border border-blue-100 group-hover:bg-blue-100 transition-colors duration-300">
+                          <Icon className="w-6 h-6 text-blue-600" />
                         </div>
-                        <div className="flex items-center gap-2 px-3 py-1.5 bg-slate-800/50 rounded-full backdrop-blur-sm border border-slate-700/50">
-                          <div className="w-1.5 h-1.5 rounded-full bg-blue-400"></div>
-                          <span className="text-xs font-medium text-slate-400">{project.category}</span>
-                          <span className="text-slate-600">•</span>
+                        <div className="flex items-center gap-2 px-3 py-1.5 bg-slate-50 rounded-full border border-slate-200">
+                          <div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+                          <span className="text-xs font-medium text-slate-600">{project.category}</span>
+                          <span className="text-slate-300">•</span>
                           <span className="text-xs text-slate-500">{project.year}</span>
                         </div>
                       </div>
 
-                      <h3 className="text-3xl font-bold text-white mb-4 leading-tight group-hover:text-blue-400 transition-colors duration-300">
+                      <h3 className="text-2xl font-bold text-slate-900 mb-3 leading-tight group-hover:text-blue-600 transition-colors duration-300">
                         {project.title}
                       </h3>
 
-                      <div className="space-y-3">
+                      <div className="space-y-2">
                         {project.description.map((desc, i) => (
-                          <p key={i} className="text-slate-300 text-sm leading-relaxed">
+                          <p key={i} className="text-slate-600 text-sm leading-relaxed">
                             {desc}
                           </p>
                         ))}
@@ -744,7 +743,7 @@ const App: React.FC = () => {
                       {project.tech.map((tech, i) => (
                         <span
                           key={i}
-                          className="px-3 py-1.5 bg-slate-800/60 backdrop-blur-sm border border-slate-700/50 rounded-lg text-xs font-medium text-slate-300 group-hover:border-slate-600 group-hover:bg-slate-800 transition-all duration-300"
+                          className="px-2.5 py-1 bg-slate-50 border border-slate-200 rounded-lg text-xs font-medium text-slate-700 group-hover:border-blue-200 group-hover:bg-blue-50 group-hover:text-blue-700 transition-all duration-300"
                         >
                           {tech}
                         </span>

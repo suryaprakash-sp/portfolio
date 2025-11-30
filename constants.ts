@@ -87,6 +87,58 @@ export const RESUME_DATA: ResumeData = {
         "Built automated scraping pipeline to extract product data from multiple e-commerce APIs.",
         "Processed and stored 50,000+ product listings with pricing and inventory data in MongoDB."
       ]
+    },
+    {
+      title: "Real-time Stock Pipeline",
+      tech: ["Kafka", "Spark", "Cassandra"],
+      year: "2024",
+      category: "Data Engineering",
+      icon: "LineChart",
+      size: "normal",
+      image: "https://images.unsplash.com/photo-1611974765270-ca1258634369?q=80&w=1600&auto=format&fit=crop",
+      description: [
+        "Architected a real-time streaming pipeline to ingest stock market data using Kafka.",
+        "Implemented Cassandra sink for high-throughput write operations."
+      ]
+    },
+    {
+      title: "Sales Forecasting Dashboard",
+      tech: ["Prophet", "Python", "Streamlit"],
+      year: "2023",
+      category: "Analytics",
+      icon: "BarChart3",
+      size: "normal",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
+      description: [
+        "Time-series forecasting application for inventory planning.",
+        "Reduced stockouts by 15% through predictive analytics."
+      ]
+    },
+    {
+      title: "Cloud ETL Infrastructure",
+      tech: ["AWS Glue", "Redshift", "Airflow"],
+      year: "2023",
+      category: "Data Engineering",
+      icon: "Cloud",
+      size: "normal",
+      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1600&auto=format&fit=crop",
+      description: [
+        "Designed serverless ETL workflows processing TBs of log data.",
+        "Reduced query latency by 40% through optimized schema design."
+      ]
+    },
+    {
+      title: "Customer Segmentation Model",
+      tech: ["Scikit-Learn", "Python", "SQL"],
+      year: "2022",
+      category: "Analytics",
+      icon: "Terminal",
+      size: "normal",
+      image: "https://images.unsplash.com/photo-1543286386-713df548e9cc?q=80&w=800&auto=format&fit=crop",
+      description: [
+        "Machine learning model for customer segmentation and targeting.",
+        "Improved marketing campaign ROI by 25% through better targeting."
+      ]
     }
   ],
   education: [
