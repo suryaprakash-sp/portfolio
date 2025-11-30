@@ -350,7 +350,7 @@ const App: React.FC = () => {
       </nav>
 
       {/* Hero Section */}
-      <section id="about" className="scroll-mt-28 pt-32 pb-20 px-6 max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-20 min-h-[85vh] justify-center overflow-x-clip">
+      <section id="about" className="scroll-mt-28 pt-32 pb-20 px-12 flex flex-col md:flex-row items-center gap-20 min-h-[85vh] justify-center overflow-x-clip">
         <div className="flex-1 flex flex-col items-start z-10 w-full md:w-auto">
           
           {/* Group 1: Identity */}
@@ -470,7 +470,7 @@ const App: React.FC = () => {
 
       {/* Skills Section */}
       <section id="skills" ref={skillsRef} className="scroll-mt-28 py-24 bg-white relative overflow-hidden">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="px-12">
           {/* Header */}
           <div className={`mb-16 transition-all duration-700 ${skillsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900">Technical Skills</h2>
@@ -516,7 +516,7 @@ const App: React.FC = () => {
         {/* Subtle Background Grid */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:64px_64px]"></div>
 
-        <div className="max-w-6xl mx-auto px-6 relative">
+        <div className="px-12 relative">
           {/* Header */}
           <div className={`text-center mb-20 transition-all duration-700 ${experienceVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-3">Professional Journey</h2>
@@ -524,7 +524,7 @@ const App: React.FC = () => {
           </div>
 
           {/* Journey Path Container - Overflow to extend beyond section */}
-          <div className="relative max-w-5xl mx-auto overflow-visible">
+          <div className="relative overflow-visible">
 
             {/* Flowing SVG Path - Desktop - Full width with beautiful S-curve */}
             <svg className="hidden md:block absolute pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none" style={{ zIndex: 0, top: '-20%', left: 0, width: '100%', height: '140%' }}>
@@ -667,8 +667,8 @@ const App: React.FC = () => {
       </section>
 
       {/* Projects Section - Bento Grid */}
-      <section id="projects" className="scroll-mt-28 py-24 bg-white border-t border-slate-100">
-        <div className="max-w-7xl mx-auto px-6">
+      <section id="projects" className="scroll-mt-28 py-24 bg-white">
+        <div className="px-12">
           <div className="flex flex-col md:flex-row items-end justify-between mb-12 gap-6">
             <div>
               <h2 className="text-4xl font-bold text-slate-900 mb-2 tracking-tight">Select Projects</h2>
@@ -775,7 +775,7 @@ const App: React.FC = () => {
             </div>
           </div>
 
-          <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="text-slate-500 text-sm">
               Designed and built by{' '}
               <a href="https://aistudio.google.com" target="_blank" rel="noreferrer" className="text-blue-400 hover:text-blue-300 transition-colors">
