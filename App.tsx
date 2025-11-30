@@ -349,122 +349,89 @@ const App: React.FC = () => {
         )}
       </nav>
 
-      {/* Hero Section */}
-      <section id="about" className="scroll-mt-28 pt-32 pb-20 px-12 flex flex-col md:flex-row items-center gap-20 min-h-[85vh] justify-center overflow-x-clip">
-        <div className="flex-1 flex flex-col items-start z-10 w-full md:w-auto">
-          
-          {/* Group 1: Identity */}
-          <div className="mb-6 space-y-2">
-             <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-slate-900 tracking-tighter leading-none">
-               <span className="block">Hi, I'm</span>
-               <span className="block text-blue-500 mt-2">Surya.</span>
-             </h1>
-             <h2 className="text-2xl md:text-3xl font-medium text-slate-500 tracking-tight">
-               Data Analyst & Engineer
-             </h2>
-          </div>
-          
-          {/* Group 2: Description */}
-          <p className="text-lg text-slate-600 max-w-lg leading-relaxed font-light mb-10">
-            Building robust <span className="font-medium text-slate-900 underline decoration-blue-200/50 decoration-2 underline-offset-4">ETL pipelines</span> and interactive <span className="font-medium text-slate-900 underline decoration-purple-200/50 decoration-2 underline-offset-4">dashboards</span> to turn raw data into insights.
-          </p>
-          
-          {/* Group 3: Actions */}
-          <div className="flex flex-col gap-6">
-             <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-                <a 
-                  href={`mailto:${RESUME_DATA.contact.email}`}
-                  className="group w-full sm:w-auto min-w-[160px] justify-center px-8 py-4 bg-slate-900 hover:bg-black text-white rounded-xl font-medium transition-all shadow-lg shadow-slate-900/20 hover:shadow-xl hover:shadow-slate-900/30 flex items-center gap-2"
-                >
-                  <Mail className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" />
-                  Get in Touch
-                </a>
-                <a 
-                  href={`https://${RESUME_DATA.contact.linkedin}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group w-full sm:w-auto min-w-[160px] justify-center px-8 py-4 bg-white hover:bg-slate-50 text-slate-900 border border-slate-200 rounded-xl font-medium transition-all flex items-center gap-2"
-                >
-                  <Linkedin className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" />
-                  LinkedIn
-                </a>
-             </div>
-             
-             {/* Available for Opportunities Badge - Pill Style */}
-             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-100/50 self-start">
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
-                <span className="text-xs font-bold text-emerald-800 tracking-wide uppercase">Available for opportunities</span>
-             </div>
-          </div>
-
+      {/* Hero Section - Bold Full Width */}
+      <section id="about" className="scroll-mt-28 pt-24 pb-32 px-12 min-h-screen flex items-center relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-20 right-0 w-1/3 h-1/3 bg-blue-500/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 left-0 w-1/3 h-1/3 bg-purple-500/5 rounded-full blur-3xl"></div>
         </div>
-        
-        {/* Photo Section - Modern Geometric Layered Frame */}
-        <div className="flex-1 w-full max-w-[550px] md:pr-10 flex justify-center items-center relative mt-20 md:mt-0">
-          
-          {/* Main Dark Gradient Canvas / Background Card */}
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-900 to-slate-800 rounded-[2.5rem] rotate-2 w-[110%] h-[120%] -left-[5%] shadow-2xl z-0 overflow-hidden opacity-90">
-             <div className="absolute top-10 right-10 w-48 h-48 bg-slate-800 rounded-full blur-3xl opacity-60"></div>
-             <div className="absolute bottom-10 left-10 w-48 h-48 bg-blue-900/40 rounded-full blur-3xl opacity-60"></div>
-          </div>
 
-          {/* Tech Stack Floating Icons */}
-          
-          {/* Python - Top Right */}
-          <div className="absolute -top-10 -right-4 z-30 animate-float drop-shadow-[0_4px_12px_rgba(0,0,0,0.2)]" style={{ animationDelay: '0s' }}>
-             <svg width="40" height="40" viewBox="0 0 32 32" fill="none">
-               <path d="M15.875 2.5C10.75 2.5 9.75 4.75 9.75 4.75V7.125H19.75V8.5H9.75C7.25 8.5 2.5 10.375 2.5 15.625C2.5 20 5.625 21.625 8.125 21.625H9.375V19.375C9.375 16.5 12.375 16.125 12.375 16.125H18.625C20.625 16.125 20.875 14.375 20.875 14.375V10.25C20.875 10.25 21.25 2.5 15.875 2.5ZM14.125 5.25C14.8125 5.25 15.375 5.8125 15.375 6.5C15.375 7.1875 14.8125 7.75 14.125 7.75C13.4375 7.75 12.875 7.1875 12.875 6.5C12.875 5.8125 13.4375 5.25 14.125 5.25ZM22.25 10.375V12.625H12.25V11.25H22.25C24.75 11.25 29.5 9.375 29.5 4.125C29.5 -0.25 26.375 -1.875 23.875 -1.875H22.625V0.375C22.625 3.25 19.625 3.625 19.625 3.625H13.375C11.375 3.625 11.125 5.375 11.125 5.375V9.5C11.125 9.5 10.75 17.25 16.125 17.25C21.25 17.25 22.25 15 22.25 15V10.375ZM17.875 14.5C17.1875 14.5 16.625 13.9375 16.625 13.25C16.625 12.5625 17.1875 12 17.875 12C18.5625 12 19.125 12.5625 19.125 13.25C19.125 13.9375 18.5625 14.5 17.875 14.5Z" fill="url(#python-gradient)" transform="scale(0.8) translate(5, 5)"/>
-               <defs>
-                 <linearGradient id="python-gradient" x1="2.5" y1="2.5" x2="29.5" y2="21.625" gradientUnits="userSpaceOnUse">
-                   <stop stopColor="#3776AB"/>
-                   <stop offset="1" stopColor="#FFD43B"/>
-                 </linearGradient>
-               </defs>
-             </svg>
-          </div>
-          
-          {/* Power BI - Bottom Left */}
-          <div className="absolute bottom-6 -left-8 z-30 animate-float drop-shadow-[0_4px_12px_rgba(0,0,0,0.2)]" style={{ animationDelay: '1.5s' }}>
-             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0">
-               <path d="M6 14H10V21H6V14Z" fill="#F2C811"/>
-               <path d="M12 8H16V21H12V8Z" fill="#F2C811"/>
-               <path d="M18 3H22V21H18V3Z" fill="#F2C811"/>
-             </svg>
-          </div>
-          
-          {/* Google Sheets - Top Left */}
-          <div className="absolute top-2 -left-10 z-30 animate-float drop-shadow-[0_4px_12px_rgba(0,0,0,0.2)]" style={{ animationDelay: '2.5s' }}>
-             <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-               <path d="M15.5 2H5.5C4.4 2 3.5 2.9 3.5 4V20C3.5 21.1 4.4 22 5.5 22H18.5C19.6 22 20.5 21.1 20.5 20V7L15.5 2Z" fill="#0F9D58"/>
-               <path d="M16 2V7H21" fill="#E6F4EA"/>
-               <path d="M6 12H18V14H6V12ZM6 16H14V18H6V16Z" fill="white"/>
-             </svg>
-          </div>
+        <div className="w-full grid md:grid-cols-2 gap-16 items-center">
+          {/* Left: Content */}
+          <div className="space-y-8">
+            {/* Name - HUGE */}
+            <div className="space-y-4">
+              <h1 className="text-7xl md:text-8xl lg:text-9xl font-bold text-slate-900 leading-none tracking-tight">
+                Surya
+              </h1>
+              <div className="flex items-center gap-4">
+                <div className="h-1 w-24 bg-blue-500 rounded-full"></div>
+                <p className="text-2xl md:text-3xl text-slate-600 font-light">
+                  {RESUME_DATA.title}
+                </p>
+              </div>
+            </div>
 
-           {/* Generic Graph Icon - Bottom Right */}
-           <div className="absolute bottom-20 -right-8 z-30 animate-float drop-shadow-[0_4px_12px_rgba(0,0,0,0.2)]" style={{ animationDelay: '3.5s' }}>
-              <LineChart className="w-10 h-10 text-blue-500" />
-          </div>
+            {/* Tagline */}
+            <p className="text-lg md:text-xl text-slate-600 leading-relaxed max-w-xl">
+              {RESUME_DATA.tagline}
+            </p>
 
+            {/* CTAs */}
+            <div className="flex flex-wrap gap-4 pt-4">
+              <a
+                href={`mailto:${RESUME_DATA.contact.email}`}
+                className="group flex items-center gap-3 px-8 py-4 bg-slate-900 text-white rounded-2xl font-semibold hover:bg-slate-800 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+              >
+                <Mail size={20} />
+                Get in Touch
+              </a>
+              <a
+                href={`https://${RESUME_DATA.contact.linkedin}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-3 px-8 py-4 bg-white border-2 border-slate-900 text-slate-900 rounded-2xl font-semibold hover:bg-slate-900 hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+              >
+                <Linkedin size={20} />
+                LinkedIn
+              </a>
+            </div>
 
-          {/* The Photo Frame Stack */}
-          <div className="relative w-80 h-80 md:w-96 md:h-96 z-10">
-            <div className="absolute inset-0 border-2 border-white/20 rounded-[2rem] rotate-[12deg] scale-105"></div>
-            <div className="absolute inset-0 bg-blue-600/90 rounded-[2rem] rotate-[6deg] translate-x-2 translate-y-2 shadow-lg backdrop-blur-sm"></div>
-            <div className="absolute inset-0 bg-slate-200 rounded-[2rem] -rotate-[3deg] shadow-2xl ring-4 ring-white/10">
-               <img
-                 src="/surya_l.png"
-                 alt="Surya Prakash"
-                 className="absolute bottom-0 left-0 w-full h-[150%] object-cover object-center rounded-b-[2rem]"
-                 onError={(e) => {
-                   e.currentTarget.src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop"; 
-                   e.currentTarget.onerror = null;
-                 }}
-               />
-               <div className="absolute inset-0 shadow-[inset_0_0_20px_rgba(0,0,0,0.1)] pointer-events-none rounded-[2rem]"></div>
+            {/* Status */}
+            <div className="flex items-center gap-3 pt-6">
+              <div className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+              </div>
+              <span className="text-slate-600 font-semibold text-sm tracking-wider">AVAILABLE FOR OPPORTUNITIES</span>
             </div>
           </div>
-          
+
+          {/* Right: Image */}
+          <div className="relative flex justify-center md:justify-end">
+            <div className="relative group w-full max-w-lg">
+              {/* Gradient Background */}
+              <div className="absolute -inset-8 bg-gradient-to-tr from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-[3rem] blur-3xl opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
+
+              {/* Image Container */}
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl border-8 border-white bg-white transform group-hover:scale-[1.02] transition-transform duration-500">
+                <img
+                  src="/surya.jpg"
+                  alt="Surya Prakash"
+                  className="w-full h-auto object-cover aspect-[3/4]"
+                />
+              </div>
+
+              {/* Floating Icons */}
+              <div className="absolute -top-6 -left-6 p-4 bg-white rounded-2xl shadow-xl animate-float hidden md:block">
+                <Database className="w-8 h-8 text-blue-600" />
+              </div>
+              <div className="absolute -bottom-6 -right-6 p-4 bg-white rounded-2xl shadow-xl animate-float hidden md:block" style={{ animationDelay: '1s' }}>
+                <BarChart3 className="w-8 h-8 text-purple-600" />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
