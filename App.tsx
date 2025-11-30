@@ -469,128 +469,57 @@ const App: React.FC = () => {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" ref={skillsRef} className="scroll-mt-28 py-24 bg-gradient-to-br from-slate-50 via-white to-blue-50 relative overflow-hidden">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-blue-200/30 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-200/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-        </div>
+      <section id="skills" ref={skillsRef} className="scroll-mt-28 py-24 bg-white relative overflow-hidden">
+        {/* Subtle grid pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-40"></div>
 
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="max-w-6xl mx-auto px-6 relative z-10">
           {/* Header */}
           <div className={`text-center mb-16 transition-all duration-700 ${skillsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <h2 className="text-5xl font-bold text-slate-900 mb-4 tracking-tight">Technical Arsenal</h2>
-            <p className="text-slate-600 text-lg max-w-2xl mx-auto">The modern stack powering data-driven solutions</p>
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4 tracking-tight">Technical Skills</h2>
+            <p className="text-slate-600 text-lg">Building data solutions with modern tools</p>
           </div>
 
-          {/* Bento Grid Layout */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 auto-rows-[180px]">
+          {/* Minimalist Grid - Staggered Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {RESUME_DATA.skills.map((category, idx) => (
+              <div
+                key={category.category}
+                style={{ transitionDelay: `${idx * 100}ms` }}
+                className={`group relative transition-all duration-700 ${
+                  skillsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                } ${idx % 2 === 1 ? 'md:translate-y-8' : ''}`}
+              >
+                {/* Accent line on hover */}
+                <div className="absolute top-0 left-0 w-1 h-0 bg-blue-500 group-hover:h-full transition-all duration-500 rounded-l-lg"></div>
 
-            {/* Languages - Large Card (Top Left) */}
-            <div
-              className={`md:col-span-5 md:row-span-2 group relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-600 p-8 shadow-xl hover:shadow-2xl transition-all duration-500 ${skillsVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
-              style={{ transitionDelay: '0ms' }}
-            >
-              <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzRjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em0wLTI4YzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHptMjggMGMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6TTM2IDYyYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHpNNiAzNGMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6TTYgNmMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6bTAgNTZjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em01NiAwYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHptMC0yOGMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6Ij48L3BhdGg+PC9nPjwvZz48L3N2Zz4=')] opacity-20"></div>
-              <div className="relative h-full flex flex-col">
-                <div className="flex items-center gap-3 mb-6">
-                  {CATEGORY_ICONS['Languages'] && React.createElement(CATEGORY_ICONS['Languages'], { size: 32, className: 'text-white', strokeWidth: 2 })}
-                  <h3 className="text-2xl font-bold text-white">Languages</h3>
-                </div>
-                <div className="flex-1 flex flex-wrap gap-3 content-start">
-                  {RESUME_DATA.skills[0].skills.map((skill) => (
-                    <span key={skill} className="px-4 py-2 bg-white/20 backdrop-blur-sm border border-white/30 text-white font-mono text-sm rounded-xl hover:bg-white/30 transition-all duration-200">
-                      {skill}
-                    </span>
-                  ))}
+                {/* Card */}
+                <div className="bg-white border border-slate-200 rounded-xl p-6 hover:border-slate-300 hover:shadow-lg transition-all duration-300 h-full">
+                  {/* Category Header */}
+                  <div className="flex items-center gap-3 mb-5 pb-4 border-b border-slate-100">
+                    <div className="p-2 rounded-lg bg-slate-50 text-slate-400 group-hover:text-blue-500 group-hover:bg-blue-50 transition-colors duration-300">
+                      {CATEGORY_ICONS[category.category] && React.createElement(CATEGORY_ICONS[category.category], { size: 24, strokeWidth: 2 })}
+                    </div>
+                    <h3 className="text-lg font-bold text-slate-900">{category.category}</h3>
+                  </div>
+
+                  {/* Skills Grid */}
+                  <div className="grid grid-cols-2 gap-3">
+                    {category.skills.map((skill, skillIdx) => (
+                      <div
+                        key={skill}
+                        className="flex items-center gap-2 p-2.5 rounded-lg bg-slate-50 border border-slate-100 hover:border-blue-200 hover:bg-blue-50 transition-all duration-200 group/skill"
+                      >
+                        <div className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover/skill:bg-blue-500 transition-colors duration-200"></div>
+                        <span className="text-sm font-medium text-slate-700 group-hover/skill:text-blue-700 font-mono">
+                          {skill}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
-
-            {/* Databases - Medium Card (Top Right) */}
-            <div
-              className={`md:col-span-7 group relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-500 via-teal-600 to-cyan-600 p-8 shadow-xl hover:shadow-2xl transition-all duration-500 ${skillsVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
-              style={{ transitionDelay: '100ms' }}
-            >
-              <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzRjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em0wLTI4YzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHptMjggMGMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6TTM2IDYyYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHpNNiAzNGMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6TTYgNmMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6bTAgNTZjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em01NiAwYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHptMC0yOGMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6Ij48L3BhdGg+PC9nPjwvZz48L3N2Zz4=')] opacity-20"></div>
-              <div className="relative h-full flex flex-col md:flex-row md:items-center gap-6">
-                <div className="flex items-center gap-3">
-                  {CATEGORY_ICONS['Databases'] && React.createElement(CATEGORY_ICONS['Databases'], { size: 28, className: 'text-white', strokeWidth: 2 })}
-                  <h3 className="text-2xl font-bold text-white">Databases</h3>
-                </div>
-                <div className="flex flex-wrap gap-2.5">
-                  {RESUME_DATA.skills[1].skills.map((skill) => (
-                    <span key={skill} className="px-3.5 py-1.5 bg-white/20 backdrop-blur-sm border border-white/30 text-white font-mono text-sm rounded-lg hover:bg-white/30 transition-all duration-200">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* BI & Visualization - Wide Card */}
-            <div
-              className={`md:col-span-7 group relative overflow-hidden rounded-3xl bg-gradient-to-br from-violet-500 via-purple-600 to-fuchsia-600 p-8 shadow-xl hover:shadow-2xl transition-all duration-500 ${skillsVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
-              style={{ transitionDelay: '200ms' }}
-            >
-              <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzRjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em0wLTI4YzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHptMjggMGMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6TTM2IDYyYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHpNNiAzNGMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6TTYgNmMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6bTAgNTZjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em01NiAwYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHptMC0yOGMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6Ij48L3BhdGg+PC9nPjwvZz48L3N2Zz4=')] opacity-20"></div>
-              <div className="relative h-full flex flex-col md:flex-row md:items-center gap-6">
-                <div className="flex items-center gap-3">
-                  {CATEGORY_ICONS['BI & Visualization'] && React.createElement(CATEGORY_ICONS['BI & Visualization'], { size: 28, className: 'text-white', strokeWidth: 2 })}
-                  <h3 className="text-2xl font-bold text-white whitespace-nowrap">BI & Visualization</h3>
-                </div>
-                <div className="flex flex-wrap gap-2.5">
-                  {RESUME_DATA.skills[2].skills.map((skill) => (
-                    <span key={skill} className="px-3.5 py-1.5 bg-white/20 backdrop-blur-sm border border-white/30 text-white font-mono text-sm rounded-lg hover:bg-white/30 transition-all duration-200">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Libraries & Frameworks - Tall Card (Bottom Left) */}
-            <div
-              className={`md:col-span-5 md:row-span-2 group relative overflow-hidden rounded-3xl bg-gradient-to-br from-amber-500 via-orange-600 to-red-600 p-8 shadow-xl hover:shadow-2xl transition-all duration-500 ${skillsVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
-              style={{ transitionDelay: '300ms' }}
-            >
-              <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzRjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em0wLTI4YzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHptMjggMGMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6TTM2IDYyYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHpNNiAzNGMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6TTYgNmMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6bTAgNTZjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em01NiAwYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHptMC0yOGMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6Ij48L3BhdGg+PC9nPjwvZz48L3N2Zz4=')] opacity-20"></div>
-              <div className="relative h-full flex flex-col">
-                <div className="flex items-center gap-3 mb-6">
-                  {CATEGORY_ICONS['Libraries & Frameworks'] && React.createElement(CATEGORY_ICONS['Libraries & Frameworks'], { size: 32, className: 'text-white', strokeWidth: 2 })}
-                  <h3 className="text-2xl font-bold text-white">Libraries & Frameworks</h3>
-                </div>
-                <div className="flex-1 flex flex-wrap gap-3 content-start">
-                  {RESUME_DATA.skills[3].skills.map((skill) => (
-                    <span key={skill} className="px-4 py-2 bg-white/20 backdrop-blur-sm border border-white/30 text-white font-mono text-sm rounded-xl hover:bg-white/30 transition-all duration-200">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Data Engineering - Bottom Right */}
-            <div
-              className={`md:col-span-7 group relative overflow-hidden rounded-3xl bg-gradient-to-br from-rose-500 via-pink-600 to-purple-600 p-8 shadow-xl hover:shadow-2xl transition-all duration-500 ${skillsVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
-              style={{ transitionDelay: '400ms' }}
-            >
-              <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzRjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em0wLTI4YzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHptMjggMGMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6TTM2IDYyYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHpNNiAzNGMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6TTYgNmMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6bTAgNTZjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em01NiAwYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHptMC0yOGMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNCAxLjc5IDQgNCA0IDQtMS43OSA0LTR6Ij48L3BhdGg+PC9nPjwvZz48L3N2Zz4=')] opacity-20"></div>
-              <div className="relative h-full flex flex-col md:flex-row md:items-center gap-6">
-                <div className="flex items-center gap-3">
-                  {CATEGORY_ICONS['Data Engineering'] && React.createElement(CATEGORY_ICONS['Data Engineering'], { size: 28, className: 'text-white', strokeWidth: 2 })}
-                  <h3 className="text-2xl font-bold text-white">Data Engineering</h3>
-                </div>
-                <div className="flex flex-wrap gap-2.5">
-                  {RESUME_DATA.skills[4].skills.map((skill) => (
-                    <span key={skill} className="px-3.5 py-1.5 bg-white/20 backdrop-blur-sm border border-white/30 text-white font-mono text-sm rounded-lg hover:bg-white/30 transition-all duration-200">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-
+            ))}
           </div>
         </div>
       </section>
