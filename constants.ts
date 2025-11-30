@@ -63,81 +63,81 @@ export const RESUME_DATA: ResumeData = {
   ],
   projects: [
     {
-      title: "Swiggy Order Analytics",
-      tech: ["Python", "Selenium", "Pandas"],
-      year: "2023",
+      title: "Student Lifecycle Dashboard",
+      tech: ["Python", "Metabase", "PostgreSQL"],
+      year: "2024",
       category: "Analytics",
-      icon: "ShoppingBag",
+      icon: "BarChart3",
       size: "large",
-      image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=800&auto=format&fit=crop",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
       description: [
-        "Deployed web scraping solution to extract 200+ personal orders from Swiggy platform.",
-        "Constructed interactive dashboard visualizing key spending metrics and ordering patterns."
+        "Engineered comprehensive student lifecycle dashboard with 30+ Metabase dashboards using Python.",
+        "Improved dashboard load times by 80% providing 100% visibility into student performance for 40+ business users."
       ]
     },
     {
-      title: "E-commerce API Data Scraping",
-      tech: ["Python", "BeautifulSoup", "Requests", "MongoDB"],
-      year: "2023",
+      title: "Production ETL Pipeline Infrastructure",
+      tech: ["Python", "MySQL", "MongoDB", "PostgreSQL"],
+      year: "2024",
       category: "Data Engineering",
       icon: "Database",
       size: "large",
-      image: "https://images.unsplash.com/photo-1557821552-17105176677c?q=80&w=1600&auto=format&fit=crop",
-      description: [
-        "Built automated scraping pipeline to extract product data from multiple e-commerce APIs.",
-        "Processed and stored 50,000+ product listings with pricing and inventory data in MongoDB."
-      ]
-    },
-    {
-      title: "Real-time Stock Pipeline",
-      tech: ["Kafka", "Spark", "Cassandra"],
-      year: "2024",
-      category: "Data Engineering",
-      icon: "LineChart",
-      size: "normal",
-      image: "https://images.unsplash.com/photo-1611974765270-ca1258634369?q=80&w=1600&auto=format&fit=crop",
-      description: [
-        "Architected a real-time streaming pipeline to ingest stock market data using Kafka.",
-        "Implemented Cassandra sink for high-throughput write operations."
-      ]
-    },
-    {
-      title: "Sales Forecasting Dashboard",
-      tech: ["Prophet", "Python", "Streamlit"],
-      year: "2023",
-      category: "Analytics",
-      icon: "BarChart3",
-      size: "normal",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
-      description: [
-        "Time-series forecasting application for inventory planning.",
-        "Reduced stockouts by 15% through predictive analytics."
-      ]
-    },
-    {
-      title: "Cloud ETL Infrastructure",
-      tech: ["AWS Glue", "Redshift", "Airflow"],
-      year: "2023",
-      category: "Data Engineering",
-      icon: "Cloud",
-      size: "normal",
       image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1600&auto=format&fit=crop",
       description: [
-        "Designed serverless ETL workflows processing TBs of log data.",
-        "Reduced query latency by 40% through optimized schema design."
+        "Developed 20 production ETL pipelines processing millions of rows daily from MySQL/MongoDB to PostgreSQL.",
+        "Reduced dashboard query time by 80% and pipeline count by 50% while maintaining analytical depth."
       ]
     },
     {
-      title: "Customer Segmentation Model",
-      tech: ["Scikit-Learn", "Python", "SQL"],
-      year: "2022",
+      title: "Personal Food Ordering Analysis",
+      tech: ["Python", "Selenium", "Excel", "Google Sheets"],
+      year: "2023",
       category: "Analytics",
+      icon: "ShoppingBag",
+      size: "normal",
+      image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=800&auto=format&fit=crop",
+      description: [
+        "Deployed web scraping solution using Selenium to extract 200+ personal orders from Swiggy platform.",
+        "Constructed interactive dashboard in Excel/Google Sheets visualizing ordering patterns and spending trends."
+      ]
+    },
+    {
+      title: "Business Finance Analytics Tool",
+      tech: ["Python", "Google Sheets", "API Integration"],
+      year: "2023",
+      category: "Automation",
+      icon: "Wallet",
+      size: "normal",
+      image: "https://images.unsplash.com/photo-1554224155-98406858d0cb?q=80&w=800&auto=format&fit=crop",
+      description: [
+        "Developed Python automation script with session-based authentication to extract data from myBillBook platform.",
+        "Monitored INR 1M+ inventory across 400+ products, tracking pricing, sales trends, and profit/loss metrics."
+      ]
+    },
+    {
+      title: "WhatsApp Messaging Automation",
+      tech: ["Python", "Google Sheets", "WATI API"],
+      year: "2022",
+      category: "Automation",
       icon: "Terminal",
       size: "normal",
-      image: "https://images.unsplash.com/photo-1543286386-713df548e9cc?q=80&w=800&auto=format&fit=crop",
+      image: "https://images.unsplash.com/photo-1611746872915-64382b5c76da?q=80&w=800&auto=format&fit=crop",
       description: [
-        "Machine learning model for customer segmentation and targeting.",
-        "Improved marketing campaign ROI by 25% through better targeting."
+        "Created automated WhatsApp messaging system using Google Sheets, Forms, and WATI API.",
+        "Enabled instant and one-click message delivery at scale for student engagement campaigns."
+      ]
+    },
+    {
+      title: "Campaign Analytics System",
+      tech: ["Python", "Google Sheets", "QR Codes"],
+      year: "2022",
+      category: "Analytics",
+      icon: "LineChart",
+      size: "normal",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
+      description: [
+        "Processed and evaluated millions of rows of campaign data across 30+ traditional advertising campaigns.",
+        "Implemented QR code system for seamless multi-source data collection without link breakage."
       ]
     }
   ],
