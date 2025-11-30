@@ -493,31 +493,29 @@ const App: React.FC = () => {
                         : 'opacity-0 translate-y-10'
                     }`}
                   >
-                    {/* Card with enhanced styling */}
-                    <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-sm hover:shadow-md hover:border-blue-200 transition-all duration-300">
-                      <div className="flex items-start gap-4">
-                        {/* Icon with subtle gradient */}
-                        <div className="mt-0.5 p-2 rounded-lg bg-gradient-to-br from-blue-50 to-slate-50 text-blue-600 group-hover:from-blue-100 group-hover:to-blue-50 transition-all duration-300">
-                          <div className="w-5 h-5 flex items-center justify-center">
-                            {CATEGORY_ICONS[category.category] && React.createElement(CATEGORY_ICONS[category.category], { size: 20 })}
-                          </div>
+                    {/* No card container - transparent background */}
+                    <div className="flex items-start gap-4">
+                      {/* Icon with subtle gradient */}
+                      <div className="mt-0.5 p-2 rounded-lg bg-gradient-to-br from-blue-50 to-slate-50 text-blue-600 group-hover:from-blue-100 group-hover:to-blue-50 transition-all duration-300">
+                        <div className="w-5 h-5 flex items-center justify-center">
+                          {CATEGORY_ICONS[category.category] && React.createElement(CATEGORY_ICONS[category.category], { size: 20 })}
                         </div>
+                      </div>
 
-                        <div className="flex-1">
-                          {/* Category name */}
-                          <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-3">{category.category}</h3>
+                      <div className="flex-1">
+                        {/* Category name */}
+                        <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-3">{category.category}</h3>
 
-                          {/* Skills */}
-                          <div className="flex flex-wrap gap-2.5">
-                            {category.skills.map((skill) => (
-                              <span
-                                key={skill}
-                                className="px-3.5 py-2 bg-blue-50 border border-blue-200 text-blue-700 font-mono text-xs font-medium rounded-lg hover:bg-blue-100 hover:border-blue-300 hover:scale-105 transition-all duration-200 cursor-default"
-                              >
-                                {skill}
-                              </span>
-                            ))}
-                          </div>
+                        {/* Skills */}
+                        <div className="flex flex-wrap gap-2.5">
+                          {category.skills.map((skill) => (
+                            <span
+                              key={skill}
+                              className="px-3.5 py-2 bg-blue-50 border border-blue-200 text-blue-700 font-mono text-xs font-medium rounded-lg hover:bg-blue-100 hover:border-blue-300 hover:scale-105 transition-all duration-200 cursor-default"
+                            >
+                              {skill}
+                            </span>
+                          ))}
                         </div>
                       </div>
                     </div>
