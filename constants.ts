@@ -4,6 +4,8 @@ import { Database, BarChart3, Code2, Server, Globe, Terminal, LucideIcon, LineCh
 
 export const RESUME_DATA: ResumeData = {
   name: "Surya Prakash Manubolu",
+  title: "Data Analyst & Engineer",
+  tagline: "Transforming complex data into actionable insights. Specialized in building scalable pipelines, interactive dashboards, and automation systems that drive business decisions.",
   contact: {
     phone: "8309206731",
     email: "suryaprakash.sp987@gmail.com",

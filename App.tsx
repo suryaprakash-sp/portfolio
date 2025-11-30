@@ -373,7 +373,7 @@ const App: React.FC = () => {
             </h1>
             <div className="flex items-center justify-center gap-4 mt-6">
               <div className="h-1 w-20 bg-blue-500 rounded-full"></div>
-              <p className="text-2xl md:text-3xl text-slate-600 font-light">
+              <p className="text-2xl md:text-3xl text-slate-900 font-light">
                 {RESUME_DATA.title}
               </p>
               <div className="h-1 w-20 bg-blue-500 rounded-full"></div>
@@ -381,7 +381,7 @@ const App: React.FC = () => {
           </div>
 
           {/* Tagline */}
-          <p className="text-lg md:text-xl text-slate-700 leading-relaxed max-w-2xl mx-auto font-medium">
+          <p className="text-lg md:text-xl text-slate-900 leading-relaxed max-w-2xl mx-auto font-medium">
             {RESUME_DATA.tagline}
           </p>
 

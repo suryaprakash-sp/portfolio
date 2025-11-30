@@ -1,0 +1,85 @@
+      {/* Hero Section - Bold Full Width */}
+      <section id="about" className="scroll-mt-28 pt-24 pb-32 px-12 min-h-screen flex items-center relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-20 right-0 w-1/3 h-1/3 bg-blue-500/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 left-0 w-1/3 h-1/3 bg-purple-500/5 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="w-full grid md:grid-cols-2 gap-16 items-center">
+          {/* Left: Content */}
+          <div className="space-y-8">
+            {/* Name - HUGE */}
+            <div className="space-y-4">
+              <h1 className="text-7xl md:text-8xl lg:text-9xl font-bold text-slate-900 leading-none tracking-tight">
+                Surya
+              </h1>
+              <div className="flex items-center gap-4">
+                <div className="h-1 w-24 bg-blue-500 rounded-full"></div>
+                <p className="text-2xl md:text-3xl text-slate-600 font-light">
+                  {RESUME_DATA.title}
+                </p>
+              </div>
+            </div>
+
+            {/* Tagline */}
+            <p className="text-lg md:text-xl text-slate-600 leading-relaxed max-w-xl">
+              {RESUME_DATA.tagline}
+            </p>
+
+            {/* CTAs */}
+            <div className="flex flex-wrap gap-4 pt-4">
+              <a
+                href={`mailto:${RESUME_DATA.contact.email}`}
+                className="group flex items-center gap-3 px-8 py-4 bg-slate-900 text-white rounded-2xl font-semibold hover:bg-slate-800 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+              >
+                <Mail size={20} />
+                Get in Touch
+              </a>
+              <a
+                href={`https://${RESUME_DATA.contact.linkedin}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-3 px-8 py-4 bg-white border-2 border-slate-900 text-slate-900 rounded-2xl font-semibold hover:bg-slate-900 hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+              >
+                <Linkedin size={20} />
+                LinkedIn
+              </a>
+            </div>
+
+            {/* Status */}
+            <div className="flex items-center gap-3 pt-6">
+              <div className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+              </div>
+              <span className="text-slate-600 font-semibold text-sm tracking-wider">AVAILABLE FOR OPPORTUNITIES</span>
+            </div>
+          </div>
+
+          {/* Right: Image */}
+          <div className="relative flex justify-center md:justify-end">
+            <div className="relative group w-full max-w-lg">
+              {/* Gradient Background */}
+              <div className="absolute -inset-8 bg-gradient-to-tr from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-[3rem] blur-3xl opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
+
+              {/* Image Container */}
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl border-8 border-white bg-white transform group-hover:scale-[1.02] transition-transform duration-500">
+                <img
+                  src="/surya.jpg"
+                  alt="Surya Prakash"
+                  className="w-full h-auto object-cover aspect-[3/4]"
+                />
+              </div>
+
+              {/* Floating Icons */}
+              <div className="absolute -top-6 -left-6 p-4 bg-white rounded-2xl shadow-xl animate-float hidden md:block">
+                <Database className="w-8 h-8 text-blue-600" />
+              </div>
+              <div className="absolute -bottom-6 -right-6 p-4 bg-white rounded-2xl shadow-xl animate-float hidden md:block" style={{ animationDelay: '1s' }}>
+                <BarChart3 className="w-8 h-8 text-purple-600" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
