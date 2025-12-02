@@ -1,8 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Menu, X, Github, Linkedin, Mail, Play, Database, ArrowRight, CheckCircle2, Loader2, Sparkles, Code2, Terminal, Server, BarChart3, ExternalLink, Zap, LineChart, ArrowUp, ChevronDown, ChevronUp } from 'lucide-react';
+import { Menu, X, Github, Mail, Play, Database, ArrowRight, CheckCircle2, Loader2, Sparkles, Code2, Terminal, Server, BarChart3, ExternalLink, Zap, LineChart, ArrowUp, ChevronDown, ChevronUp } from 'lucide-react';
 import { RESUME_DATA, NAV_ITEMS, CATEGORY_ICONS, PROJECT_ICONS } from './constants';
 import SkillChart from './components/SkillChart';
 import AiAssistant from './components/AiAssistant';
+
+// Custom LinkedIn Icon with latest design
+const LinkedInIcon = ({ size = 20, className = "" }: { size?: number; className?: string }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={className}
+  >
+    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+  </svg>
+);
 
 // Helper function to calculate duration in years and months
 const calculateDuration = (period: string): string => {
@@ -39,24 +52,36 @@ const calculateDuration = (period: string): string => {
   }
 };
 
-// Project Card with Slideshow
+// Project Card with Slideshow on Hover
 const ProjectCard = ({ project, idx }: { project: any; idx: number }) => {
   const Icon = PROJECT_ICONS[project.icon] || Terminal;
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
 
-  // Slideshow effect - always running
+  // Slideshow effect - only on hover
   useEffect(() => {
-    if (!project.images || project.images.length <= 1) return;
+    if (!project.images || project.images.length <= 1 || !isHovered) return;
 
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
     }, 2000); // 2 seconds
 
     return () => clearInterval(interval);
-  }, [project.images]);
+  }, [project.images, isHovered]);
+
+  // Reset to first image when hover ends
+  useEffect(() => {
+    if (!isHovered) {
+      setCurrentImageIndex(0);
+    }
+  }, [isHovered]);
 
   return (
-    <div className="group w-full bg-white border border-slate-200 rounded-2xl hover:rounded-[2rem] shadow-sm hover:shadow-xl hover:border-blue-200 overflow-hidden transition-all duration-500">
+    <div
+      className="group w-full bg-white border border-slate-200 rounded-2xl hover:rounded-[2rem] shadow-sm hover:shadow-xl hover:border-blue-200 overflow-hidden transition-all duration-500"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <div className="flex h-[280px]">
         {/* Left: Image Slideshow (40%) */}
         <div className="w-[40%] bg-slate-900 relative overflow-hidden">
@@ -65,7 +90,7 @@ const ProjectCard = ({ project, idx }: { project: any; idx: number }) => {
               key={imgIdx}
               src={img}
               alt={`${project.title} ${imgIdx + 1}`}
-              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-[2000ms]"
               style={{
                 opacity: imgIdx === currentImageIndex ? 1 : 0,
               }}
@@ -449,27 +474,29 @@ const App: React.FC = () => {
           {/* Group 3: Actions */}
           <div className="flex flex-col gap-6">
              <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-                <a 
+                <a
                   href={`mailto:${RESUME_DATA.contact.email}`}
-                  className="group w-full sm:w-auto min-w-[160px] justify-center px-8 py-4 bg-slate-900 hover:bg-black text-white rounded-xl font-medium transition-all shadow-lg shadow-slate-900/20 hover:shadow-xl hover:shadow-slate-900/30 flex items-center gap-2"
+                  className="group w-full sm:w-auto min-w-[160px] justify-center px-8 py-4 bg-slate-900 hover:bg-black text-white rounded-xl font-medium transition-all duration-300 shadow-lg shadow-slate-900/20 hover:shadow-xl hover:shadow-slate-900/30 hover:scale-105 hover:-translate-y-0.5 flex items-center gap-2"
                 >
-                  <Mail className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" />
+                  <Mail className="w-4 h-4 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" />
                   Get in Touch
                 </a>
-                <a 
+                <a
                   href={`https://${RESUME_DATA.contact.linkedin}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="group w-full sm:w-auto min-w-[160px] justify-center px-8 py-4 bg-white hover:bg-slate-50 text-slate-900 border border-slate-200 rounded-xl font-medium transition-all flex items-center gap-2"
+                  className="group w-full sm:w-auto min-w-[160px] justify-center px-8 py-4 bg-white hover:bg-slate-50 text-slate-900 border border-slate-200 hover:border-slate-300 rounded-xl font-medium transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 hover:shadow-md flex items-center gap-2"
                 >
-                  <Linkedin className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" />
+                  <LinkedInIcon size={16} className="group-hover:scale-110 transition-all duration-300" />
                   LinkedIn
                 </a>
              </div>
-             
+
              {/* Available for Opportunities Badge - Pill Style */}
-             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-100/50 self-start">
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-100/50 self-start hover:bg-emerald-100 transition-colors duration-300">
+                <span className="relative w-2.5 h-2.5 rounded-full bg-emerald-500">
+                  <span className="absolute inset-0 rounded-full bg-emerald-500 animate-ping opacity-75"></span>
+                </span>
                 <span className="text-xs font-bold text-emerald-800 tracking-wide uppercase">Available for opportunities</span>
              </div>
           </div>
@@ -477,7 +504,7 @@ const App: React.FC = () => {
         </div>
         
         {/* Photo Section - Modern Geometric Layered Frame */}
-        <div className="flex-1 w-full max-w-[550px] md:pr-10 flex justify-center items-center relative mt-20 md:mt-0">
+        <div className="flex-1 w-full max-w-[550px] md:pr-10 flex justify-center items-center relative mt-20 md:mt-0 overflow-visible">
           
           {/* Main Dark Gradient Canvas / Background Card */}
           <div className="absolute inset-0 bg-gradient-to-br from-slate-900 to-slate-800 rounded-[2.5rem] rotate-2 w-[110%] h-[120%] -left-[5%] shadow-2xl z-0 overflow-hidden opacity-90">
@@ -485,42 +512,60 @@ const App: React.FC = () => {
              <div className="absolute bottom-10 left-10 w-48 h-48 bg-blue-900/40 rounded-full blur-3xl opacity-60"></div>
           </div>
 
-          {/* Tech Stack Floating Icons */}
-          
-          {/* Python - Top Right */}
-          <div className="absolute -top-10 -right-4 z-30 animate-float drop-shadow-[0_4px_12px_rgba(0,0,0,0.2)]" style={{ animationDelay: '0s' }}>
-             <svg width="40" height="40" viewBox="0 0 32 32" fill="none">
-               <path d="M15.875 2.5C10.75 2.5 9.75 4.75 9.75 4.75V7.125H19.75V8.5H9.75C7.25 8.5 2.5 10.375 2.5 15.625C2.5 20 5.625 21.625 8.125 21.625H9.375V19.375C9.375 16.5 12.375 16.125 12.375 16.125H18.625C20.625 16.125 20.875 14.375 20.875 14.375V10.25C20.875 10.25 21.25 2.5 15.875 2.5ZM14.125 5.25C14.8125 5.25 15.375 5.8125 15.375 6.5C15.375 7.1875 14.8125 7.75 14.125 7.75C13.4375 7.75 12.875 7.1875 12.875 6.5C12.875 5.8125 13.4375 5.25 14.125 5.25ZM22.25 10.375V12.625H12.25V11.25H22.25C24.75 11.25 29.5 9.375 29.5 4.125C29.5 -0.25 26.375 -1.875 23.875 -1.875H22.625V0.375C22.625 3.25 19.625 3.625 19.625 3.625H13.375C11.375 3.625 11.125 5.375 11.125 5.375V9.5C11.125 9.5 10.75 17.25 16.125 17.25C21.25 17.25 22.25 15 22.25 15V10.375ZM17.875 14.5C17.1875 14.5 16.625 13.9375 16.625 13.25C16.625 12.5625 17.1875 12 17.875 12C18.5625 12 19.125 12.5625 19.125 13.25C19.125 13.9375 18.5625 14.5 17.875 14.5Z" fill="url(#python-gradient)" transform="scale(0.8) translate(5, 5)"/>
-               <defs>
-                 <linearGradient id="python-gradient" x1="2.5" y1="2.5" x2="29.5" y2="21.625" gradientUnits="userSpaceOnUse">
-                   <stop stopColor="#3776AB"/>
-                   <stop offset="1" stopColor="#FFD43B"/>
-                 </linearGradient>
-               </defs>
-             </svg>
-          </div>
-          
-          {/* Power BI - Bottom Left */}
-          <div className="absolute bottom-6 -left-8 z-30 animate-float drop-shadow-[0_4px_12px_rgba(0,0,0,0.2)]" style={{ animationDelay: '1.5s' }}>
-             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0">
-               <path d="M6 14H10V21H6V14Z" fill="#F2C811"/>
-               <path d="M12 8H16V21H12V8Z" fill="#F2C811"/>
-               <path d="M18 3H22V21H18V3Z" fill="#F2C811"/>
-             </svg>
-          </div>
-          
-          {/* Google Sheets - Top Left */}
-          <div className="absolute top-2 -left-10 z-30 animate-float drop-shadow-[0_4px_12px_rgba(0,0,0,0.2)]" style={{ animationDelay: '2.5s' }}>
-             <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-               <path d="M15.5 2H5.5C4.4 2 3.5 2.9 3.5 4V20C3.5 21.1 4.4 22 5.5 22H18.5C19.6 22 20.5 21.1 20.5 20V7L15.5 2Z" fill="#0F9D58"/>
-               <path d="M16 2V7H21" fill="#E6F4EA"/>
-               <path d="M6 12H18V14H6V12ZM6 16H14V18H6V16Z" fill="white"/>
-             </svg>
+          {/* Tech Stack Floating Icons - Randomly positioned */}
+
+          {/* MySQL - Top Left Area */}
+          <div className="absolute -top-6 -left-12 z-30 animate-float drop-shadow-[0_4px_12px_rgba(0,0,0,0.2)]" style={{ animationDelay: '0s' }}>
+             <img
+               src="/mysql.png"
+               alt="MySQL"
+               className="h-11 w-auto object-contain"
+             />
           </div>
 
-           {/* Generic Graph Icon - Bottom Right */}
-           <div className="absolute bottom-20 -right-8 z-30 animate-float drop-shadow-[0_4px_12px_rgba(0,0,0,0.2)]" style={{ animationDelay: '3.5s' }}>
-              <LineChart className="w-10 h-10 text-blue-500" />
+          {/* Python - Top Right Area */}
+          <div className="absolute top-4 right-2 z-30 animate-float drop-shadow-[0_4px_12px_rgba(0,0,0,0.2)]" style={{ animationDelay: '1s' }}>
+             <img
+               src="/python.png"
+               alt="Python"
+               className="h-11 w-auto object-contain"
+             />
+          </div>
+
+          {/* GitHub - Left Upper Middle */}
+          <div className="absolute top-[28%] -left-10 z-30 animate-float drop-shadow-[0_4px_12px_rgba(0,0,0,0.2)]" style={{ animationDelay: '2s' }}>
+             <img
+               src="/github.png"
+               alt="GitHub"
+               className="h-11 w-auto object-contain"
+             />
+          </div>
+
+          {/* Power BI - Right Middle */}
+          <div className="absolute top-[45%] right-4 z-30 animate-float drop-shadow-[0_4px_12px_rgba(0,0,0,0.2)]" style={{ animationDelay: '3s' }}>
+             <img
+               src="/powerbi.png"
+               alt="Power BI"
+               className="h-11 w-auto object-contain"
+             />
+          </div>
+
+          {/* Google Sheets - Bottom Left */}
+          <div className="absolute bottom-8 -left-8 z-30 animate-float drop-shadow-[0_4px_12px_rgba(0,0,0,0.2)]" style={{ animationDelay: '4s' }}>
+             <img
+               src="/google_sheets.png"
+               alt="Google Sheets"
+               className="h-11 w-auto object-contain"
+             />
+          </div>
+
+          {/* Metabase - Bottom Right */}
+          <div className="absolute bottom-16 right-6 z-30 animate-float drop-shadow-[0_4px_12px_rgba(0,0,0,0.2)]" style={{ animationDelay: '5s' }}>
+             <img
+               src="/metabase.png"
+               alt="Metabase"
+               className="h-11 w-auto object-contain"
+             />
           </div>
 
 
@@ -826,7 +871,7 @@ const App: React.FC = () => {
                 <ul className="space-y-4 text-slate-400">
                   <li>
                     <a href={`https://${RESUME_DATA.contact.linkedin}`} target="_blank" rel="noreferrer" className="hover:text-white transition-colors flex items-center gap-2">
-                      <Linkedin className="w-4 h-4" />
+                      <LinkedInIcon size={16} />
                       LinkedIn
                     </a>
                   </li>
@@ -861,7 +906,7 @@ const App: React.FC = () => {
 
             <div className="flex gap-6">
               <a href={`https://${RESUME_DATA.contact.linkedin}`} target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white transition-colors">
-                <Linkedin className="w-5 h-5" />
+                <LinkedInIcon size={20} />
               </a>
               <a href="https://github.com/suryaprakash-sp" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-white transition-colors">
                 <Github className="w-5 h-5" />

@@ -23,7 +23,7 @@ export const RESUME_DATA: ResumeData = {
     },
     {
       category: "BI & Visualization",
-      skills: ["Metabase", "Redash", "Google Sheets", "Excel"]
+      skills: ["Metabase", "Power BI", "Redash", "Google Sheets", "Excel"]
     },
     {
       category: "Libraries & Frameworks",
@@ -88,11 +88,12 @@ export const RESUME_DATA: ResumeData = {
       category: "Data Engineering",
       icon: "Database",
       size: "large",
-      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1600&auto=format&fit=crop",
+      image: "https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=1600&auto=format&fit=crop",
       images: [
-        "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=1600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=800&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1558494949-efc02584299d?q=80&w=800&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1597852074816-d933c7d2b988?q=80&w=800&auto=format&fit=crop"
+        "https://images.unsplash.com/photo-1576444356170-66073046b1bc?q=80&w=800&auto=format&fit=crop"
       ],
       description: [
         "Developed 20 production ETL pipelines processing millions of rows daily from MySQL/MongoDB to PostgreSQL.",
@@ -125,12 +126,12 @@ export const RESUME_DATA: ResumeData = {
       category: "Automation",
       icon: "Wallet",
       size: "normal",
-      image: "https://images.unsplash.com/photo-1554224155-98406858d0cb?q=80&w=800&auto=format&fit=crop",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
       images: [
-        "https://images.unsplash.com/photo-1554224155-98406858d0cb?q=80&w=800&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1554224311-beee4ece8c35?q=80&w=800&auto=format&fit=crop"
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1543286386-713df548e9cc?q=80&w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=800&auto=format&fit=crop"
       ],
       description: [
         "Developed Python automation script with session-based authentication to extract data from myBillBook platform.",
