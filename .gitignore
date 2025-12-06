@@ -30,3 +30,8 @@ Portfolio.iml
 # Claude Code
 .claude/
 claude.md
+
+# Playwright MCP
+.playwright-mcp/
+playwright-report/
+test-results/

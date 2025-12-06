@@ -80,6 +80,7 @@
       }
       .animate-float {
         animation: float 6s ease-in-out infinite;
+        will-change: transform;
       }
 
       @keyframes fadeIn {
@@ -88,6 +89,94 @@
       }
       .animate-fade-in {
         animation: fadeIn 0.5s ease-out forwards;
+      }
+
+      /* ============================================
+         INFINITE LOGO MARQUEE - BEST PRACTICES
+         ============================================ */
+
+      /* Marquee Animation - Safari compatible with translate3d */
+      @keyframes marqueeScroll {
+        0% {
+          transform: translate3d(0, 0, 0);
+        }
+        100% {
+          transform: translate3d(-50%, 0, 0);
+        }
+      }
+
+      /* Track container - flex layout with gap */
+      .logo-marquee-track {
+        display: flex;
+        width: max-content;
+        gap: 3rem; /* 48px gap between logos */
+        animation: marqueeScroll 40s linear infinite;
+        will-change: transform;
+      }
+
+      /* Pause on hover - smooth without glitching */
+      .logo-marquee-track:hover {
+        animation-play-state: paused;
+      }
+
+      /* Content wrapper for each set */
+      .logo-marquee-content {
+        display: flex;
+        gap: 3rem; /* Must match track gap */
+        flex-shrink: 0;
+      }
+
+      /* Individual logo item with extra padding for hover expansion */
+      .logo-marquee-item {
+        flex-shrink: 0;
+        padding: 1rem; /* Extra space to prevent clipping on scale */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Logo wrapper with hover effect */
+      .logo-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transform-origin: center;
+      }
+
+      /* Hover scale effect - won't clip due to padding */
+      .logo-marquee-item:hover .logo-wrapper {
+        transform: scale(1.2);
+      }
+
+      /* Logo image styling */
+      .logo-image {
+        height: 3rem; /* 48px */
+        width: auto;
+        max-width: 8rem; /* 128px max width */
+        object-fit: contain;
+        display: block;
+        filter: brightness(0.95);
+        transition: filter 0.3s ease;
+      }
+
+      /* Brighten on hover */
+      .logo-marquee-item:hover .logo-image {
+        filter: brightness(1.1);
+      }
+
+      /* Accessibility: Respect user's motion preferences */
+      @media (prefers-reduced-motion: reduce) {
+        .logo-marquee-track {
+          animation: none;
+        }
+        .logo-marquee-track:hover {
+          animation: none;
+        }
+        /* Keep hover effects but remove motion */
+        .logo-wrapper {
+          transition: none;
+        }
       }
 
       /* Experience Flow Animation (Bottom to Up) */

@@ -19,12 +19,14 @@ This portfolio demonstrates modern web development practices while showcasing da
 
 ## Features
 
+- **Multi-Page Portfolio**: React Router-based navigation with dedicated project detail pages
+- **Infinite Logo Marquee**: Smooth, performant horizontal scroll showcasing 14+ technology stack logos with hover pause and accessibility support
 - **AI Chat Assistant**: Interactive chatbot powered by Google Gemini API that answers questions about professional experience
 - **Skill Visualization**: Radar chart displaying proficiency across key technical areas
 - **Interactive IDE Demo**: Animated code editor showcasing data engineering capabilities
 - **Responsive Design**: Mobile-first approach with glass-morphism effects and smooth animations
-- **Professional Timeline**: Visual representation of work experience with achievements
-- **Project Showcase**: Featured projects with tech stack tags and detailed descriptions
+- **Professional Timeline**: Visual representation of work experience with flowing path animation (ChartDB-inspired)
+- **Project Showcase**: Interactive slideshow cards with hover effects and detailed project pages
 
 ## Tech Stack
 
@@ -32,9 +34,10 @@ This portfolio demonstrates modern web development practices while showcasing da
 - **React 19.2** - UI library
 - **TypeScript 5.8** - Type safety and developer experience
 - **Vite 6.2** - Fast build tool with HMR
+- **React Router 7** - Client-side routing for multi-page navigation
 
 ### UI & Styling
-- **Tailwind CSS** - Utility-first CSS framework
+- **Tailwind CSS** - Utility-first CSS framework (CDN)
 - **Lucide React** - Icon library
 - **Recharts** - Data visualization
 
@@ -88,19 +91,24 @@ npm run dev
 
 ```
 Portfolio/
-├── components/           # React components
-│   ├── AiAssistant.tsx  # Chat widget component
-│   └── SkillChart.tsx   # Radar chart visualization
-├── services/            # External service integrations
-│   └── gemini.ts        # Gemini API client
-├── App.tsx              # Main application component
-├── constants.ts         # Resume data and configuration
-├── types.ts             # TypeScript type definitions
-├── index.tsx            # React DOM entry point
-├── index.html           # HTML template
-├── vite.config.ts       # Vite configuration
-├── tsconfig.json        # TypeScript configuration
-└── package.json         # Project dependencies
+├── src/
+│   └── components/          # React components
+│       └── ProjectDetail.tsx # Individual project detail page
+├── components/              # Legacy components (to be migrated)
+│   ├── AiAssistant.tsx     # Chat widget component
+│   └── SkillChart.tsx      # Radar chart visualization
+├── services/               # External service integrations
+│   └── gemini.ts           # Gemini API client
+├── public/                 # Static assets
+│   └── *.png              # Logo images and profile photo
+├── App.tsx                 # Main application component (homepage)
+├── constants.ts            # Resume data and configuration
+├── types.ts                # TypeScript type definitions
+├── index.tsx               # React Router setup and entry point
+├── index.html              # HTML template with Tailwind config
+├── vite.config.ts          # Vite configuration
+├── tsconfig.json           # TypeScript configuration
+└── package.json            # Project dependencies
 ```
 
 ## Configuration
@@ -137,6 +145,17 @@ Radar chart visualization using Recharts showing proficiency across 6 key techni
 - Visualization (80%)
 - Cloud & Infrastructure (75%)
 
+### Infinite Logo Marquee
+Premium horizontal scrolling tech stack showcase with best-in-class implementation:
+- **14 Technology Logos**: MySQL, PostgreSQL, MongoDB, Python, Tableau, Power BI, Metabase, Google Sheets, GitHub, ChartDB, Claude AI, Excel, Pandas, Redash
+- **Seamless Infinite Loop**: Dual content sets with translate3d animation for flawless cycling
+- **Safari Compatible**: Uses translate3d instead of translateX to prevent flickering
+- **Hover Pause**: Smooth animation-play-state pause without glitching
+- **No Clipping**: Strategic padding allows 1.2x scale on hover without cutoff
+- **Accessibility**: aria-hidden on duplicates, prefers-reduced-motion support
+- **GPU Accelerated**: will-change: transform for 60fps performance
+- **40-second Duration**: Optimal speed for comfortable viewing
+
 ## Customization
 
 ### Updating Resume Data
@@ -161,10 +180,14 @@ Modify the system prompt in `components/AiAssistant.tsx` to customize the AI ass
 
 ## Performance Optimizations
 
-- CDN delivery for React, Recharts, and Lucide libraries
-- Vite's fast build times and Hot Module Replacement
-- Intersection Observer for scroll-based animation triggers
-- Lazy loading and code splitting
+- **CDN Delivery**: React, Recharts, and Lucide libraries loaded from CDN
+- **Component Memoization**: React.memo() on ProjectCard components
+- **Lazy Loading**: All images use loading="lazy" attribute
+- **GPU Acceleration**: transform animations with will-change optimization
+- **Vite HMR**: Fast build times and Hot Module Replacement
+- **Intersection Observer**: Scroll-based animation triggers for efficient rendering
+- **translate3d**: Hardware-accelerated animations (Safari compatible)
+- **Optimized Transitions**: Reduced durations (300ms-700ms) for snappy interactions
 
 ## Browser Support
 

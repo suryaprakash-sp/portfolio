@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { Menu, X, Github, Mail, Play, Database, ArrowRight, CheckCircle2, Loader2, Sparkles, Code2, Terminal, Server, BarChart3, ExternalLink, Zap, LineChart, ArrowUp, ChevronDown, ChevronUp } from 'lucide-react';
 import { RESUME_DATA, NAV_ITEMS, CATEGORY_ICONS, PROJECT_ICONS } from './constants';
 import SkillChart from './components/SkillChart';
@@ -52,19 +53,25 @@ const calculateDuration = (period: string): string => {
   }
 };
 
-// Project Card with Slideshow on Hover
-const ProjectCard = ({ project, idx }: { project: any; idx: number }) => {
+// Project Card with Slideshow on Hover - Memoized for performance
+const ProjectCard = React.memo(({ project, idx }: { project: any; idx: number }) => {
   const Icon = PROJECT_ICONS[project.icon] || Terminal;
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
-  // Slideshow effect - only on hover
+  // Convert project title to URL-friendly slug - memoized
+  const projectSlug = React.useMemo(() =>
+    project.title.toLowerCase().replace(/\s+/g, '-'),
+    [project.title]
+  );
+
+  // Slideshow effect - only on hover with faster transitions
   useEffect(() => {
     if (!project.images || project.images.length <= 1 || !isHovered) return;
 
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
-    }, 2000); // 2 seconds
+    }, 1500); // 1.5 seconds for snappier feel
 
     return () => clearInterval(interval);
   }, [project.images, isHovered]);
@@ -77,8 +84,9 @@ const ProjectCard = ({ project, idx }: { project: any; idx: number }) => {
   }, [isHovered]);
 
   return (
-    <div
-      className="group w-full bg-white border border-slate-200 rounded-2xl hover:rounded-[2rem] shadow-sm hover:shadow-xl hover:border-blue-200 overflow-hidden transition-all duration-500"
+    <Link
+      to={`/project/${projectSlug}`}
+      className="group w-full bg-white border border-slate-200 rounded-2xl hover:rounded-[2rem] shadow-sm hover:shadow-xl hover:border-blue-200 overflow-hidden transition-all duration-300 block cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -90,7 +98,8 @@ const ProjectCard = ({ project, idx }: { project: any; idx: number }) => {
               key={imgIdx}
               src={img}
               alt={`${project.title} ${imgIdx + 1}`}
-              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-[2000ms]"
+              loading="lazy"
+              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700"
               style={{
                 opacity: imgIdx === currentImageIndex ? 1 : 0,
               }}
@@ -137,9 +146,9 @@ const ProjectCard = ({ project, idx }: { project: any; idx: number }) => {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
-};
+});
 
 // Bento Grid Project Card
 const BentoProjectCard = ({ project }: { project: any }) => {
@@ -504,7 +513,7 @@ const App: React.FC = () => {
         </div>
         
         {/* Photo Section - Modern Geometric Layered Frame */}
-        <div className="flex-1 w-full max-w-[550px] md:pr-10 flex justify-center items-center relative mt-20 md:mt-0 overflow-visible">
+        <div className="flex-1 w-full max-w-[550px] md:pr-10 flex justify-center items-center relative mt-32 md:mt-10 overflow-visible">
           
           {/* Main Dark Gradient Canvas / Background Card */}
           <div className="absolute inset-0 bg-gradient-to-br from-slate-900 to-slate-800 rounded-[2.5rem] rotate-2 w-[110%] h-[120%] -left-[5%] shadow-2xl z-0 overflow-hidden opacity-90">
@@ -512,70 +521,13 @@ const App: React.FC = () => {
              <div className="absolute bottom-10 left-10 w-48 h-48 bg-blue-900/40 rounded-full blur-3xl opacity-60"></div>
           </div>
 
-          {/* Tech Stack Floating Icons - Randomly positioned */}
-
-          {/* MySQL - Top Left Area */}
-          <div className="absolute -top-6 -left-12 z-30 animate-float drop-shadow-[0_4px_12px_rgba(0,0,0,0.2)]" style={{ animationDelay: '0s' }}>
-             <img
-               src="/mysql.png"
-               alt="MySQL"
-               className="h-11 w-auto object-contain"
-             />
-          </div>
-
-          {/* Python - Top Right Area */}
-          <div className="absolute top-4 right-2 z-30 animate-float drop-shadow-[0_4px_12px_rgba(0,0,0,0.2)]" style={{ animationDelay: '1s' }}>
-             <img
-               src="/python.png"
-               alt="Python"
-               className="h-11 w-auto object-contain"
-             />
-          </div>
-
-          {/* GitHub - Left Upper Middle */}
-          <div className="absolute top-[28%] -left-10 z-30 animate-float drop-shadow-[0_4px_12px_rgba(0,0,0,0.2)]" style={{ animationDelay: '2s' }}>
-             <img
-               src="/github.png"
-               alt="GitHub"
-               className="h-11 w-auto object-contain"
-             />
-          </div>
-
-          {/* Power BI - Right Middle */}
-          <div className="absolute top-[45%] right-4 z-30 animate-float drop-shadow-[0_4px_12px_rgba(0,0,0,0.2)]" style={{ animationDelay: '3s' }}>
-             <img
-               src="/powerbi.png"
-               alt="Power BI"
-               className="h-11 w-auto object-contain"
-             />
-          </div>
-
-          {/* Google Sheets - Bottom Left */}
-          <div className="absolute bottom-8 -left-8 z-30 animate-float drop-shadow-[0_4px_12px_rgba(0,0,0,0.2)]" style={{ animationDelay: '4s' }}>
-             <img
-               src="/google_sheets.png"
-               alt="Google Sheets"
-               className="h-11 w-auto object-contain"
-             />
-          </div>
-
-          {/* Metabase - Bottom Right */}
-          <div className="absolute bottom-16 right-6 z-30 animate-float drop-shadow-[0_4px_12px_rgba(0,0,0,0.2)]" style={{ animationDelay: '5s' }}>
-             <img
-               src="/metabase.png"
-               alt="Metabase"
-               className="h-11 w-auto object-contain"
-             />
-          </div>
-
-
           {/* The Photo Frame Stack */}
-          <div className="relative w-80 h-80 md:w-96 md:h-96 z-10">
+          <div className="relative w-80 h-80 md:w-96 md:h-96 z-10 mt-16">
             <div className="absolute inset-0 border-2 border-white/20 rounded-[2rem] rotate-[12deg] scale-105"></div>
             <div className="absolute inset-0 bg-blue-600/90 rounded-[2rem] rotate-[6deg] translate-x-2 translate-y-2 shadow-lg backdrop-blur-sm"></div>
             <div className="absolute inset-0 bg-slate-200 rounded-[2rem] -rotate-[3deg] shadow-2xl ring-4 ring-white/10">
                <img
-                 src="/surya_l.png"
+                 src="/surya.png"
                  alt="Surya Prakash"
                  className="absolute bottom-0 left-0 w-full h-[150%] object-cover object-center rounded-b-[2rem]"
                  onError={(e) => {
@@ -644,6 +596,85 @@ const App: React.FC = () => {
                <div className="relative p-8 bg-white/40 backdrop-blur-md rounded-3xl border border-slate-100 shadow-xl w-full max-w-[500px]">
                  <SkillChart />
                </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Tech Stack Logos - Infinite Horizontal Scroll Marquee */}
+      <section className="py-20 bg-gradient-to-r from-slate-50 via-white to-slate-50 overflow-hidden" aria-label="Technology Stack">
+        {/* Outer wrapper with overflow hidden */}
+        <div className="relative w-full overflow-hidden">
+          {/* Inner track wrapper - pauses on hover */}
+          <div className="logo-marquee-track group">
+            {/* First set of logos */}
+            <div className="logo-marquee-content">
+              {[
+                { src: '/mysql.png', alt: 'MySQL', name: 'MySQL' },
+                { src: '/postgresql.png', alt: 'PostgreSQL', name: 'PostgreSQL' },
+                { src: '/mongodb.png', alt: 'MongoDB', name: 'MongoDB' },
+                { src: '/python.png', alt: 'Python', name: 'Python' },
+                { src: '/tableau.png', alt: 'Tableau', name: 'Tableau' },
+                { src: '/powerbi.png', alt: 'Power BI', name: 'Power BI' },
+                { src: '/metabase.png', alt: 'Metabase', name: 'Metabase' },
+                { src: '/google_sheets.png', alt: 'Google Sheets', name: 'Google Sheets' },
+                { src: '/github.png', alt: 'GitHub', name: 'GitHub' },
+                { src: '/chartdb.png', alt: 'ChartDB', name: 'ChartDB' },
+                { src: '/claude.png', alt: 'Claude AI', name: 'Claude' },
+                { src: '/excel.png', alt: 'Microsoft Excel', name: 'Excel' },
+                { src: '/pandas.png', alt: 'Pandas', name: 'Pandas' },
+                { src: '/redash.png', alt: 'Redash', name: 'Redash' },
+              ].map((logo, idx) => (
+                <div
+                  key={`logo-primary-${idx}`}
+                  className="logo-marquee-item"
+                  role="listitem"
+                >
+                  <div className="logo-wrapper">
+                    <img
+                      src={logo.src}
+                      alt={logo.alt}
+                      title={logo.name}
+                      className="logo-image"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Duplicate set for seamless infinite loop - hidden from screen readers */}
+            <div className="logo-marquee-content" aria-hidden="true">
+              {[
+                { src: '/mysql.png', alt: 'MySQL', name: 'MySQL' },
+                { src: '/postgresql.png', alt: 'PostgreSQL', name: 'PostgreSQL' },
+                { src: '/mongodb.png', alt: 'MongoDB', name: 'MongoDB' },
+                { src: '/python.png', alt: 'Python', name: 'Python' },
+                { src: '/tableau.png', alt: 'Tableau', name: 'Tableau' },
+                { src: '/powerbi.png', alt: 'Power BI', name: 'Power BI' },
+                { src: '/metabase.png', alt: 'Metabase', name: 'Metabase' },
+                { src: '/google_sheets.png', alt: 'Google Sheets', name: 'Google Sheets' },
+                { src: '/github.png', alt: 'GitHub', name: 'GitHub' },
+                { src: '/chartdb.png', alt: 'ChartDB', name: 'ChartDB' },
+                { src: '/claude.png', alt: 'Claude AI', name: 'Claude' },
+                { src: '/excel.png', alt: 'Microsoft Excel', name: 'Excel' },
+                { src: '/pandas.png', alt: 'Pandas', name: 'Pandas' },
+                { src: '/redash.png', alt: 'Redash', name: 'Redash' },
+              ].map((logo, idx) => (
+                <div
+                  key={`logo-duplicate-${idx}`}
+                  className="logo-marquee-item"
+                >
+                  <div className="logo-wrapper">
+                    <img
+                      src={logo.src}
+                      alt=""
+                      className="logo-image"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
