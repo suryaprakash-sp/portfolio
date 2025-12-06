@@ -484,7 +484,7 @@ const App: React.FC = () => {
             <ul className="space-y-2.5">
               <li className="flex items-start gap-2.5">
                 <span className="text-blue-600 mt-0.5 text-lg">•</span>
-                <span className="text-slate-700 font-medium text-sm">80% faster dashboard load times at Gola Supply</span>
+                <span className="text-slate-700 font-medium text-sm">80% faster dashboard load times at Masai School</span>
               </li>
               <li className="flex items-start gap-2.5">
                 <span className="text-blue-600 mt-0.5 text-lg">•</span>
@@ -659,7 +659,7 @@ const App: React.FC = () => {
                 <h3 className="text-5xl font-bold text-blue-600">80%</h3>
                 <p className="text-slate-900 font-semibold text-lg">Faster Dashboards</p>
                 <p className="text-slate-600 text-sm leading-relaxed">
-                  Reduced Metabase dashboard load times from 15s to 3s through query optimization at Gola Supply
+                  Improved Metabase dashboard load times by 80% through Python optimization at Masai School
                 </p>
               </div>
             </div>
