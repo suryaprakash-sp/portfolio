@@ -512,33 +512,101 @@ const App: React.FC = () => {
 
         </div>
         
-        {/* Photo Section - Modern Geometric Layered Frame */}
-        <div className="flex-1 w-full max-w-[550px] md:pr-10 flex justify-center items-center relative mt-32 md:mt-10 overflow-visible">
-          
-          {/* Main Dark Gradient Canvas / Background Card */}
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-900 to-slate-800 rounded-[2.5rem] rotate-2 w-[110%] h-[120%] -left-[5%] shadow-2xl z-0 overflow-hidden opacity-90">
-             <div className="absolute top-10 right-10 w-48 h-48 bg-slate-800 rounded-full blur-3xl opacity-60"></div>
-             <div className="absolute bottom-10 left-10 w-48 h-48 bg-blue-900/40 rounded-full blur-3xl opacity-60"></div>
-          </div>
+        {/* Photo Section - Data-Centric Professional Design */}
+        <div className="flex-1 w-full max-w-[600px] flex justify-center items-center relative mt-32 md:mt-10">
 
-          {/* The Photo Frame Stack */}
-          <div className="relative w-80 h-80 md:w-96 md:h-96 z-10 mt-16">
-            <div className="absolute inset-0 border-2 border-white/20 rounded-[2rem] rotate-[12deg] scale-105"></div>
-            <div className="absolute inset-0 bg-blue-600/90 rounded-[2rem] rotate-[6deg] translate-x-2 translate-y-2 shadow-lg backdrop-blur-sm"></div>
-            <div className="absolute inset-0 bg-slate-200 rounded-[2rem] -rotate-[3deg] shadow-2xl ring-4 ring-white/10">
-               <img
-                 src="/surya.png"
-                 alt="Surya Prakash"
-                 className="absolute bottom-0 left-0 w-full h-[150%] object-cover object-center rounded-b-[2rem]"
-                 onError={(e) => {
-                   e.currentTarget.src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop"; 
-                   e.currentTarget.onerror = null;
-                 }}
-               />
-               <div className="absolute inset-0 shadow-[inset_0_0_20px_rgba(0,0,0,0.1)] pointer-events-none rounded-[2rem]"></div>
+          {/* Subtle Dot Grid Background - Data Aesthetic */}
+          <div className="absolute inset-0 opacity-[0.15]" style={{
+            backgroundImage: 'radial-gradient(circle, #64748b 1px, transparent 1px)',
+            backgroundSize: '24px 24px',
+            maskImage: 'radial-gradient(ellipse at center, black 40%, transparent 75%)',
+            WebkitMaskImage: 'radial-gradient(ellipse at center, black 40%, transparent 75%)'
+          }}></div>
+
+          {/* Main Photo Container - Group for hover effects */}
+          <div className="relative z-10 flex items-center justify-center group">
+            {/* Geometric Accent Shape - Rotated Square (Data Viz Element) */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none -z-10">
+              <div className="hero-accent-shape absolute w-[420px] h-[420px] rounded-[3rem] rotate-45 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-blue-600/10 blur-2xl"></div>
+              <div className="absolute w-[380px] h-[380px] rounded-[2.5rem] rotate-12 border-2 border-blue-500/10"></div>
+            </div>
+
+            {/* Photo Circle with Gradient Border - Photo Extends Beyond */}
+            <div className="relative">
+              {/* Animated Gradient Border */}
+              <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-purple-500 to-blue-600 rounded-full blur-lg opacity-30 group-hover:opacity-50 transition-all duration-500 animate-pulse-slow"></div>
+
+              {/* Photo Frame - Photo extends beyond the frame */}
+              <div className="relative w-80 h-80 md:w-96 md:h-96 rounded-full bg-white p-2 shadow-2xl transform transition-all duration-500 group-hover:scale-105 overflow-visible">
+                <div className="w-full h-full rounded-full border-4 border-slate-100 relative overflow-visible">
+                  {/* Photo extends upward beyond the circular frame */}
+                  <img
+                    src="/surya.png"
+                    alt="Surya Prakash Manubolu"
+                    className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[110%] h-[130%] object-cover object-top transform transition-transform duration-500 group-hover:scale-105 rounded-full"
+                    style={{
+                      clipPath: 'ellipse(50% 65% at 50% 65%)'
+                    }}
+                    onError={(e) => {
+                      e.currentTarget.src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop";
+                      e.currentTarget.onerror = null;
+                    }}
+                  />
+                  {/* Subtle overlay gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-blue-900/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full pointer-events-none"></div>
+                </div>
+              </div>
+            </div>
+
+            {/* Floating Stat Badges - Glassmorphic */}
+            {/* Badge 1: Top Left - Years of Experience */}
+            <div className="stat-badge absolute top-8 -left-12 md:-left-16 animate-float" style={{ animationDelay: '0s' }}>
+              <div className="backdrop-blur-xl bg-white/80 border border-slate-200/50 rounded-2xl px-5 py-3 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-default">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-md">
+                    <span className="text-white font-bold text-sm">3+</span>
+                  </div>
+                  <div>
+                    <p className="text-xs text-slate-500 font-medium">Years</p>
+                    <p className="text-sm font-bold text-slate-900">Experience</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Badge 2: Top Right - Projects Delivered */}
+            <div className="stat-badge absolute top-16 -right-8 md:-right-12 animate-float" style={{ animationDelay: '1s' }}>
+              <div className="backdrop-blur-xl bg-white/80 border border-slate-200/50 rounded-2xl px-5 py-3 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-default">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center shadow-md">
+                    <span className="text-white font-bold text-sm">15+</span>
+                  </div>
+                  <div>
+                    <p className="text-xs text-slate-500 font-medium">Projects</p>
+                    <p className="text-sm font-bold text-slate-900">Delivered</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Badge 3: Bottom Left - Tech Stack */}
+            <div className="stat-badge absolute bottom-12 -left-8 md:-left-12 animate-float" style={{ animationDelay: '2s' }}>
+              <div className="backdrop-blur-xl bg-white/80 border border-slate-200/50 rounded-2xl px-5 py-3 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-default">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-md">
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-xs text-slate-500 font-medium">Python</p>
+                    <p className="text-sm font-bold text-slate-900">SQL Expert</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          
+
         </div>
       </section>
 

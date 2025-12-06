@@ -92,6 +92,38 @@
       }
 
       /* ============================================
+         HERO SECTION - DATA-CENTRIC DESIGN
+         ============================================ */
+
+      /* Slow pulse for gradient border */
+      @keyframes pulseSlow {
+        0%, 100% {
+          opacity: 0.3;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.5;
+          transform: scale(1.05);
+        }
+      }
+      .animate-pulse-slow {
+        animation: pulseSlow 3s ease-in-out infinite;
+      }
+
+      /* Hero accent shape - rotates on hover */
+      .hero-accent-shape {
+        transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .group:hover .hero-accent-shape {
+        transform: rotate(405deg) scale(1.1);
+      }
+
+      /* Stat badges - subtle floating with stagger */
+      .stat-badge {
+        will-change: transform;
+      }
+
+      /* ============================================
          INFINITE LOGO MARQUEE - BEST PRACTICES
          ============================================ */
 
