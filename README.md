@@ -15,8 +15,6 @@ A modern, interactive portfolio showcasing data engineering and analytics expert
 
 This portfolio demonstrates modern web development practices while showcasing data engineering and analytics capabilities. It features an AI-powered chat assistant, interactive visualizations, and a polished user experience.
 
-**Live Demo:** [View on AI Studio](https://ai.studio/apps/drive/1cM3INqXbUXvvtk0Iblx2kWOdVDrjszx5)
-
 ## Features
 
 - **Multi-Page Portfolio**: React Router-based navigation with dedicated project detail pages
