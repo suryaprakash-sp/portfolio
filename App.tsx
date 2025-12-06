@@ -470,43 +470,60 @@ const App: React.FC = () => {
                <span className="block">Hi, I'm</span>
                <span className="block text-blue-500 mt-2">Surya.</span>
              </h1>
-             <h2 className="text-2xl md:text-3xl font-medium text-slate-500 tracking-tight">
-               Data Analyst & Engineer
+             <h2 className="text-2xl md:text-3xl font-medium text-slate-700 tracking-tight">
+               I build data systems that <span className="text-slate-900 font-semibold">get results.</span>
              </h2>
           </div>
-          
-          {/* Group 2: Description */}
-          <p className="text-lg text-slate-600 max-w-lg leading-relaxed font-light mb-10">
-            Building robust <span className="font-medium text-slate-900 underline decoration-blue-200/50 decoration-2 underline-offset-4">ETL pipelines</span> and interactive <span className="font-medium text-slate-900 underline decoration-purple-200/50 decoration-2 underline-offset-4">dashboards</span> to turn raw data into insights.
-          </p>
+
+          {/* Group 2: Proven Track Record Box */}
+          <div className="mb-8 p-6 rounded-2xl bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-100 max-w-lg">
+            <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wide mb-4 flex items-center gap-2">
+              <span className="text-xl">💎</span>
+              Proven Track Record
+            </h3>
+            <ul className="space-y-2.5">
+              <li className="flex items-start gap-2.5">
+                <span className="text-blue-600 mt-0.5 text-lg">•</span>
+                <span className="text-slate-700 font-medium text-sm">80% faster dashboard load times at Gola Supply</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <span className="text-blue-600 mt-0.5 text-lg">•</span>
+                <span className="text-slate-700 font-medium text-sm">50M+ rows processed daily via automated pipelines</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <span className="text-blue-600 mt-0.5 text-lg">•</span>
+                <span className="text-slate-700 font-medium text-sm">20+ production ETL pipelines deployed across 2 companies</span>
+              </li>
+            </ul>
+          </div>
           
           {/* Group 3: Actions */}
           <div className="flex flex-col gap-6">
              <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
                 <a
-                  href={`mailto:${RESUME_DATA.contact.email}`}
-                  className="group w-full sm:w-auto min-w-[160px] justify-center px-8 py-4 bg-slate-900 hover:bg-black text-white rounded-xl font-medium transition-all duration-300 shadow-lg shadow-slate-900/20 hover:shadow-xl hover:shadow-slate-900/30 hover:scale-105 hover:-translate-y-0.5 flex items-center gap-2"
+                  href={`mailto:${RESUME_DATA.contact.email}?subject=Let's discuss a data project`}
+                  className="group w-full sm:w-auto min-w-[180px] justify-center px-8 py-4 bg-slate-900 hover:bg-black text-white rounded-xl font-semibold transition-all duration-300 shadow-lg shadow-slate-900/20 hover:shadow-xl hover:shadow-slate-900/30 hover:scale-105 hover:-translate-y-0.5 flex items-center gap-2"
                 >
                   <Mail className="w-4 h-4 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" />
-                  Get in Touch
+                  Schedule a Call
                 </a>
                 <a
                   href={`https://${RESUME_DATA.contact.linkedin}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="group w-full sm:w-auto min-w-[160px] justify-center px-8 py-4 bg-white hover:bg-slate-50 text-slate-900 border border-slate-200 hover:border-slate-300 rounded-xl font-medium transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 hover:shadow-md flex items-center gap-2"
+                  className="group w-full sm:w-auto min-w-[180px] justify-center px-8 py-4 bg-white hover:bg-slate-50 text-slate-900 border-2 border-slate-200 hover:border-blue-300 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 hover:shadow-md flex items-center gap-2"
                 >
                   <LinkedInIcon size={16} className="group-hover:scale-110 transition-all duration-300" />
-                  LinkedIn
+                  View Profile
                 </a>
              </div>
 
-             {/* Available for Opportunities Badge - Pill Style */}
-             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-100/50 self-start hover:bg-emerald-100 transition-colors duration-300">
+             {/* Open to Opportunities Badge - More compelling */}
+             <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-gradient-to-r from-emerald-50 to-blue-50 border-2 border-emerald-200 self-start hover:border-emerald-300 transition-all duration-300 cursor-default shadow-sm">
                 <span className="relative w-2.5 h-2.5 rounded-full bg-emerald-500">
                   <span className="absolute inset-0 rounded-full bg-emerald-500 animate-ping opacity-75"></span>
                 </span>
-                <span className="text-xs font-bold text-emerald-800 tracking-wide uppercase">Available for opportunities</span>
+                <span className="text-xs font-bold text-slate-900 tracking-wide uppercase">Open to Full-Time & Freelance</span>
              </div>
           </div>
 
@@ -543,7 +560,7 @@ const App: React.FC = () => {
                   <img
                     src="/surya.png"
                     alt="Surya Prakash Manubolu"
-                    className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[110%] h-[130%] object-cover object-top transform transition-transform duration-500 group-hover:scale-105 rounded-full"
+                    className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[110%] h-[130%] object-cover object-top transform transition-all duration-500 group-hover:scale-105 rounded-full"
                     style={{
                       clipPath: 'ellipse(50% 65% at 50% 65%)'
                     }}
@@ -552,7 +569,7 @@ const App: React.FC = () => {
                       e.currentTarget.onerror = null;
                     }}
                   />
-                  {/* Subtle overlay gradient */}
+                  {/* Subtle overlay gradient on hover only */}
                   <div className="absolute inset-0 bg-gradient-to-t from-blue-900/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full pointer-events-none"></div>
                 </div>
               </div>
@@ -610,6 +627,117 @@ const App: React.FC = () => {
         </div>
       </section>
 
+      {/* Impact Dashboard - Key Metrics */}
+      <section className="py-20 bg-gradient-to-b from-white via-slate-50 to-white relative overflow-hidden">
+        {/* Subtle Grid Background */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:48px_48px] opacity-40"></div>
+
+        <div className="max-w-6xl mx-auto px-6 relative z-10">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 mb-4">
+              <Zap className="w-4 h-4 text-blue-600" />
+              <span className="text-xs font-bold text-blue-700 uppercase tracking-wide">Impact Metrics</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-3 tracking-tight">
+              Results that matter
+            </h2>
+            <p className="text-slate-500 text-lg max-w-2xl mx-auto">
+              Real outcomes from data engineering and analytics projects
+            </p>
+          </div>
+
+          {/* Metrics Grid - 3x2 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            {/* Metric 1: Dashboard Performance */}
+            <div className="group relative bg-white rounded-2xl border-2 border-slate-200 p-6 hover:border-blue-300 hover:shadow-xl transition-all duration-300">
+              <div className="absolute -top-3 -right-3 w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl rotate-12 group-hover:rotate-45 transition-transform duration-500 flex items-center justify-center shadow-lg">
+                <BarChart3 className="w-6 h-6 text-white" />
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-5xl font-bold text-blue-600">80%</h3>
+                <p className="text-slate-900 font-semibold text-lg">Faster Dashboards</p>
+                <p className="text-slate-600 text-sm leading-relaxed">
+                  Reduced Metabase dashboard load times from 15s to 3s through query optimization at Gola Supply
+                </p>
+              </div>
+            </div>
+
+            {/* Metric 2: Data Volume */}
+            <div className="group relative bg-white rounded-2xl border-2 border-slate-200 p-6 hover:border-purple-300 hover:shadow-xl transition-all duration-300">
+              <div className="absolute -top-3 -right-3 w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl rotate-12 group-hover:rotate-45 transition-transform duration-500 flex items-center justify-center shadow-lg">
+                <Database className="w-6 h-6 text-white" />
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-5xl font-bold text-purple-600">50M+</h3>
+                <p className="text-slate-900 font-semibold text-lg">Daily Records</p>
+                <p className="text-slate-600 text-sm leading-relaxed">
+                  Automated ETL pipelines processing millions of records daily across PostgreSQL and MongoDB databases
+                </p>
+              </div>
+            </div>
+
+            {/* Metric 3: Pipelines Deployed */}
+            <div className="group relative bg-white rounded-2xl border-2 border-slate-200 p-6 hover:border-emerald-300 hover:shadow-xl transition-all duration-300">
+              <div className="absolute -top-3 -right-3 w-12 h-12 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl rotate-12 group-hover:rotate-45 transition-transform duration-500 flex items-center justify-center shadow-lg">
+                <Server className="w-6 h-6 text-white" />
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-5xl font-bold text-emerald-600">20+</h3>
+                <p className="text-slate-900 font-semibold text-lg">Production Pipelines</p>
+                <p className="text-slate-600 text-sm leading-relaxed">
+                  Built and deployed ETL workflows across 2 companies, handling critical business data flows
+                </p>
+              </div>
+            </div>
+
+            {/* Metric 4: Cost Reduction */}
+            <div className="group relative bg-white rounded-2xl border-2 border-slate-200 p-6 hover:border-orange-300 hover:shadow-xl transition-all duration-300">
+              <div className="absolute -top-3 -right-3 w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl rotate-12 group-hover:rotate-45 transition-transform duration-500 flex items-center justify-center shadow-lg">
+                <LineChart className="w-6 h-6 text-white" />
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-5xl font-bold text-orange-600">30%</h3>
+                <p className="text-slate-900 font-semibold text-lg">Cost Savings</p>
+                <p className="text-slate-600 text-sm leading-relaxed">
+                  Reduced cloud infrastructure costs through efficient data storage and processing strategies
+                </p>
+              </div>
+            </div>
+
+            {/* Metric 5: Automation Rate */}
+            <div className="group relative bg-white rounded-2xl border-2 border-slate-200 p-6 hover:border-cyan-300 hover:shadow-xl transition-all duration-300">
+              <div className="absolute -top-3 -right-3 w-12 h-12 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-xl rotate-12 group-hover:rotate-45 transition-transform duration-500 flex items-center justify-center shadow-lg">
+                <Code2 className="w-6 h-6 text-white" />
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-5xl font-bold text-cyan-600">95%</h3>
+                <p className="text-slate-900 font-semibold text-lg">Tasks Automated</p>
+                <p className="text-slate-600 text-sm leading-relaxed">
+                  Automated 95% of manual data collection and reporting tasks using Python scripts and scheduled jobs
+                </p>
+              </div>
+            </div>
+
+            {/* Metric 6: Projects Delivered */}
+            <div className="group relative bg-white rounded-2xl border-2 border-slate-200 p-6 hover:border-pink-300 hover:shadow-xl transition-all duration-300">
+              <div className="absolute -top-3 -right-3 w-12 h-12 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl rotate-12 group-hover:rotate-45 transition-transform duration-500 flex items-center justify-center shadow-lg">
+                <CheckCircle2 className="w-6 h-6 text-white" />
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-5xl font-bold text-pink-600">15+</h3>
+                <p className="text-slate-900 font-semibold text-lg">Projects Delivered</p>
+                <p className="text-slate-600 text-sm leading-relaxed">
+                  Successfully delivered analytics dashboards, ETL pipelines, and data visualization projects
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       {/* Skills Section */}
       <section id="skills" ref={skillsRef} className="scroll-mt-28 py-24 bg-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
@@ -620,40 +748,77 @@ const App: React.FC = () => {
             {/* Skills List */}
             <div className="flex-1 w-full space-y-12">
               <div className={`transition-all duration-700 ${skillsVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
-                <h2 className="text-3xl font-bold text-slate-900 mb-4 tracking-tight">Technical Arsenal</h2>
-                <p className="text-slate-500 font-light text-lg">The modern stack I use to architect scalable data solutions.</p>
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-50 border border-purple-100 mb-4">
+                  <Sparkles className="w-4 h-4 text-purple-600" />
+                  <span className="text-xs font-bold text-purple-700 uppercase tracking-wide">Core Competencies</span>
+                </div>
+                <h2 className="text-3xl font-bold text-slate-900 mb-4 tracking-tight">What I bring to the table</h2>
+                <p className="text-slate-600 text-lg leading-relaxed">
+                  Proven expertise in transforming raw data into actionable insights through end-to-end data solutions.
+                </p>
               </div>
               
-              <div className="space-y-8">
-                {RESUME_DATA.skills.map((category, idx) => (
-                  <div 
-                    key={category.category} 
-                    style={{ transitionDelay: `${idx * 100}ms` }}
-                    className={`group transition-all duration-700 transform ${
-                      skillsVisible 
-                        ? 'opacity-100 translate-y-0' 
-                        : 'opacity-0 translate-y-10'
-                    }`}
-                  >
-                    <div className="flex items-start gap-5">
-                      <div className="mt-1 p-2 rounded-lg bg-slate-50 text-slate-400 group-hover:text-blue-600 group-hover:bg-blue-50 transition-colors duration-300">
-                        <div className="w-5 h-5 flex items-center justify-center">
+              <div className="space-y-6">
+                {RESUME_DATA.skills.map((category, idx) => {
+                  // Define proficiency levels for each category (customize as needed)
+                  const proficiencyLevels: { [key: string]: number } = {
+                    'Languages': 95,
+                    'Databases': 90,
+                    'BI & Visualization': 85,
+                    'Cloud & Tools': 75,
+                    'Frameworks & Libraries': 80,
+                    'Version Control': 90
+                  };
+                  const proficiency = proficiencyLevels[category.category] || 80;
+
+                  return (
+                    <div
+                      key={category.category}
+                      style={{ transitionDelay: `${idx * 100}ms` }}
+                      className={`group transition-all duration-700 transform ${
+                        skillsVisible
+                          ? 'opacity-100 translate-y-0'
+                          : 'opacity-0 translate-y-10'
+                      }`}
+                    >
+                      <div className="relative bg-white rounded-2xl border-2 border-slate-200 p-6 hover:border-blue-300 hover:shadow-lg transition-all duration-300">
+                        {/* Icon Badge */}
+                        <div className="absolute -top-3 -left-3 p-2.5 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                          <div className="w-5 h-5 text-white flex items-center justify-center">
                             {CATEGORY_ICONS[category.category] && React.createElement(CATEGORY_ICONS[category.category], { size: 20 })}
+                          </div>
                         </div>
-                      </div>
-                      <div className="flex-1 border-b border-slate-100 pb-6 group-hover:border-slate-200 transition-colors">
-                        <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-4">{category.category}</h3>
-                        <div className="flex flex-wrap gap-x-3 gap-y-3">
+
+                        {/* Category Header with Proficiency */}
+                        <div className="mb-4 ml-8">
+                          <div className="flex items-center justify-between mb-2">
+                            <h3 className="text-base font-bold text-slate-900">{category.category}</h3>
+                            <span className="text-sm font-semibold text-blue-600">{proficiency}%</span>
+                          </div>
+                          {/* Proficiency Bar */}
+                          <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+                            <div
+                              className="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full transition-all duration-1000 ease-out"
+                              style={{
+                                width: skillsVisible ? `${proficiency}%` : '0%',
+                                transitionDelay: `${idx * 150}ms`
+                              }}
+                            ></div>
+                          </div>
+                        </div>
+
+                        {/* Skills Tags */}
+                        <div className="flex flex-wrap gap-2">
                           {category.skills.map((skill) => (
-                            <span key={skill} className="px-3 py-1 bg-white border border-slate-200 rounded-md text-slate-600 font-mono text-xs hover:border-slate-400 transition-colors">
+                            <span key={skill} className="px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 font-medium text-xs hover:bg-blue-50 hover:border-blue-200 hover:text-blue-700 transition-all duration-200">
                               {skill}
                             </span>
                           ))}
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
 
@@ -946,13 +1111,45 @@ const App: React.FC = () => {
         <div className="max-w-6xl mx-auto px-6 relative z-10">
           <div className="grid md:grid-cols-2 gap-16 mb-16">
             <div>
-              <h2 className="text-4xl font-bold tracking-tighter mb-6">Let's build something <span className="text-blue-500">amazing.</span></h2>
-              <p className="text-slate-400 max-w-sm mb-8 leading-relaxed">
-                Available for full-time roles and freelance projects. Let's discuss how data can transform your business.
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-6 leading-tight">
+                Ready to turn your data into <span className="text-blue-400">growth?</span>
+              </h2>
+              <p className="text-slate-300 max-w-md mb-6 leading-relaxed text-lg">
+                I'm currently accepting new opportunities for full-time roles and freelance projects.
               </p>
-              <a href={`mailto:${RESUME_DATA.contact.email}`} className="inline-block px-6 py-3 bg-white text-slate-900 rounded-lg font-medium hover:bg-blue-50 transition-colors">
-                Drop me a line
-              </a>
+              <ul className="text-slate-400 mb-8 space-y-2">
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                  <span>ETL pipelines & data automation</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                  <span>Interactive dashboards & BI solutions</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                  <span>Database optimization & architecture</span>
+                </li>
+              </ul>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a
+                  href={`mailto:${RESUME_DATA.contact.email}?subject=Let's discuss a data project`}
+                  className="group inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-500 hover:bg-blue-400 text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 hover:scale-105"
+                >
+                  <Mail className="w-4 h-4 group-hover:rotate-12 transition-transform" />
+                  Start a Conversation
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </a>
+                <a
+                  href={`https://${RESUME_DATA.contact.linkedin}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-xl font-semibold transition-all duration-300 hover:scale-105"
+                >
+                  <LinkedInIcon size={16} />
+                  View LinkedIn
+                </a>
+              </div>
             </div>
 
             <div className="grid grid-cols-2 gap-10">
