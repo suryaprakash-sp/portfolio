@@ -462,39 +462,21 @@ const App: React.FC = () => {
 
       {/* Hero Section */}
       <section id="about" className="scroll-mt-28 pt-32 pb-20 px-6 max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-20 min-h-[85vh] justify-center overflow-x-clip">
-        <div className="flex-1 flex flex-col items-start z-10 w-full md:w-auto">
-          
+        <div className="flex-1 flex flex-col items-start z-10 w-full md:w-auto max-w-2xl">
+
           {/* Group 1: Identity */}
-          <div className="mb-6 space-y-2">
+          <div className="mb-10 space-y-4">
              <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-slate-900 tracking-tighter leading-none">
                <span className="block">Hi, I'm</span>
                <span className="block text-blue-500 mt-2">Surya.</span>
              </h1>
-             <h2 className="text-2xl md:text-3xl font-medium text-slate-700 tracking-tight">
-               I build data systems that <span className="text-slate-900 font-semibold">get results.</span>
+             <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight leading-snug">
+               I build data systems that get results.
              </h2>
-          </div>
-
-          {/* Group 2: Proven Track Record Box */}
-          <div className="mb-8 p-6 rounded-2xl bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-100 max-w-lg">
-            <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wide mb-4 flex items-center gap-2">
-              <span className="text-xl">💎</span>
-              Proven Track Record
-            </h3>
-            <ul className="space-y-2.5">
-              <li className="flex items-start gap-2.5">
-                <span className="text-blue-600 mt-0.5 text-lg">•</span>
-                <span className="text-slate-700 font-medium text-sm">80% faster dashboard load times at Masai School</span>
-              </li>
-              <li className="flex items-start gap-2.5">
-                <span className="text-blue-600 mt-0.5 text-lg">•</span>
-                <span className="text-slate-700 font-medium text-sm">50M+ rows processed daily via automated pipelines</span>
-              </li>
-              <li className="flex items-start gap-2.5">
-                <span className="text-blue-600 mt-0.5 text-lg">•</span>
-                <span className="text-slate-700 font-medium text-sm">20+ production ETL pipelines deployed across 2 companies</span>
-              </li>
-            </ul>
+             <p className="text-lg text-slate-600 leading-relaxed max-w-xl">
+               Data Analyst & Engineer with 3+ years turning complex data into actionable insights.
+               Specialized in <span className="font-semibold text-slate-900">ETL pipelines</span>, <span className="font-semibold text-slate-900">dashboards</span>, and <span className="font-semibold text-slate-900">automation</span>.
+             </p>
           </div>
           
           {/* Group 3: Actions */}
@@ -635,9 +617,9 @@ const App: React.FC = () => {
         <div className="max-w-6xl mx-auto px-6 relative z-10">
           {/* Header */}
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 mb-4">
-              <Zap className="w-4 h-4 text-blue-600" />
-              <span className="text-xs font-bold text-blue-700 uppercase tracking-wide">Impact Metrics</span>
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-100 border border-slate-200 mb-4">
+              <Zap className="w-4 h-4 text-slate-600" />
+              <span className="text-xs font-bold text-slate-700 uppercase tracking-wide">Impact Metrics</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-3 tracking-tight">
               Results that matter
@@ -748,9 +730,9 @@ const App: React.FC = () => {
             {/* Skills List */}
             <div className="flex-1 w-full space-y-12">
               <div className={`transition-all duration-700 ${skillsVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-50 border border-purple-100 mb-4">
-                  <Sparkles className="w-4 h-4 text-purple-600" />
-                  <span className="text-xs font-bold text-purple-700 uppercase tracking-wide">Core Competencies</span>
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-100 border border-slate-200 mb-4">
+                  <Sparkles className="w-4 h-4 text-slate-600" />
+                  <span className="text-xs font-bold text-slate-700 uppercase tracking-wide">Core Competencies</span>
                 </div>
                 <h2 className="text-3xl font-bold text-slate-900 mb-4 tracking-tight">What I bring to the table</h2>
                 <p className="text-slate-600 text-lg leading-relaxed">
@@ -758,67 +740,36 @@ const App: React.FC = () => {
                 </p>
               </div>
               
-              <div className="space-y-6">
-                {RESUME_DATA.skills.map((category, idx) => {
-                  // Define proficiency levels for each category (customize as needed)
-                  const proficiencyLevels: { [key: string]: number } = {
-                    'Languages': 95,
-                    'Databases': 90,
-                    'BI & Visualization': 85,
-                    'Cloud & Tools': 75,
-                    'Frameworks & Libraries': 80,
-                    'Version Control': 90
-                  };
-                  const proficiency = proficiencyLevels[category.category] || 80;
-
-                  return (
-                    <div
-                      key={category.category}
-                      style={{ transitionDelay: `${idx * 100}ms` }}
-                      className={`group transition-all duration-700 transform ${
-                        skillsVisible
-                          ? 'opacity-100 translate-y-0'
-                          : 'opacity-0 translate-y-10'
-                      }`}
-                    >
-                      <div className="relative bg-white rounded-2xl border-2 border-slate-200 p-6 hover:border-blue-300 hover:shadow-lg transition-all duration-300">
-                        {/* Icon Badge */}
-                        <div className="absolute -top-3 -left-3 p-2.5 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                          <div className="w-5 h-5 text-white flex items-center justify-center">
+              <div className="space-y-8">
+                {RESUME_DATA.skills.map((category, idx) => (
+                  <div
+                    key={category.category}
+                    style={{ transitionDelay: `${idx * 100}ms` }}
+                    className={`group transition-all duration-700 transform ${
+                      skillsVisible
+                        ? 'opacity-100 translate-y-0'
+                        : 'opacity-0 translate-y-10'
+                    }`}
+                  >
+                    <div className="flex items-start gap-5">
+                      <div className="mt-1 p-2.5 rounded-xl bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300 shadow-sm">
+                        <div className="w-5 h-5 flex items-center justify-center">
                             {CATEGORY_ICONS[category.category] && React.createElement(CATEGORY_ICONS[category.category], { size: 20 })}
-                          </div>
                         </div>
-
-                        {/* Category Header with Proficiency */}
-                        <div className="mb-4 ml-8">
-                          <div className="flex items-center justify-between mb-2">
-                            <h3 className="text-base font-bold text-slate-900">{category.category}</h3>
-                            <span className="text-sm font-semibold text-blue-600">{proficiency}%</span>
-                          </div>
-                          {/* Proficiency Bar */}
-                          <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
-                            <div
-                              className="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full transition-all duration-1000 ease-out"
-                              style={{
-                                width: skillsVisible ? `${proficiency}%` : '0%',
-                                transitionDelay: `${idx * 150}ms`
-                              }}
-                            ></div>
-                          </div>
-                        </div>
-
-                        {/* Skills Tags */}
-                        <div className="flex flex-wrap gap-2">
+                      </div>
+                      <div className="flex-1 border-b border-slate-100 pb-6 group-hover:border-slate-200 transition-colors">
+                        <h3 className="text-base font-bold text-slate-900 mb-4">{category.category}</h3>
+                        <div className="flex flex-wrap gap-2.5">
                           {category.skills.map((skill) => (
-                            <span key={skill} className="px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 font-medium text-xs hover:bg-blue-50 hover:border-blue-200 hover:text-blue-700 transition-all duration-200">
+                            <span key={skill} className="px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-slate-700 font-medium text-sm hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 transition-all duration-200 shadow-sm">
                               {skill}
                             </span>
                           ))}
                         </div>
                       </div>
                     </div>
-                  );
-                })}
+                  </div>
+                ))}
               </div>
             </div>
 
@@ -836,6 +787,20 @@ const App: React.FC = () => {
 
       {/* Tech Stack Logos - Infinite Horizontal Scroll Marquee */}
       <section className="py-20 bg-gradient-to-r from-slate-50 via-white to-slate-50 overflow-hidden" aria-label="Technology Stack">
+        {/* Header */}
+        <div className="text-center mb-12 px-6">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-100 border border-slate-200 mb-4">
+            <Code2 className="w-4 h-4 text-slate-600" />
+            <span className="text-xs font-bold text-slate-700 uppercase tracking-wide">Tech Stack</span>
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-3 tracking-tight">
+            Tools & Technologies I Use
+          </h2>
+          <p className="text-slate-600 text-lg max-w-2xl mx-auto">
+            Databases, BI tools, and frameworks powering data-driven solutions
+          </p>
+        </div>
+
         {/* Outer wrapper with overflow hidden */}
         <div className="relative w-full overflow-hidden">
           {/* Inner track wrapper - pauses on hover */}
@@ -921,6 +886,10 @@ const App: React.FC = () => {
         <div className="max-w-6xl mx-auto px-6 relative">
           {/* Header */}
           <div className={`text-center mb-20 transition-all duration-700 ${experienceVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-100 border border-slate-200 mb-4">
+              <Server className="w-4 h-4 text-slate-600" />
+              <span className="text-xs font-bold text-slate-700 uppercase tracking-wide">Experience</span>
+            </div>
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-3">Professional Journey</h2>
             <p className="text-slate-500 text-lg">Following the path of data excellence</p>
           </div>
@@ -1073,6 +1042,10 @@ const App: React.FC = () => {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row items-end justify-between mb-12 gap-6">
             <div>
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-100 border border-slate-200 mb-4">
+                <Terminal className="w-4 h-4 text-slate-600" />
+                <span className="text-xs font-bold text-slate-700 uppercase tracking-wide">Portfolio</span>
+              </div>
               <h2 className="text-4xl font-bold text-slate-900 mb-2 tracking-tight">Featured Projects</h2>
               <p className="text-slate-500 font-light text-lg">Data engineering & analytics work</p>
             </div>
