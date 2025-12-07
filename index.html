@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="https://vitejs.dev/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Portfolio of Surya Prakash Manubolu - Data Analyst & Engineer specialized in ETL pipelines, Python, and Dashboarding." />
+    <title>Surya Prakash Manubolu | Data Analyst Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              mono: ['Fira Code', 'monospace'],
+            },
+            colors: {
+              slate: {
+                50: '#f8fafc',
+                100: '#f1f5f9',
+                200: '#e2e8f0',
+                300: '#cbd5e1',
+                400: '#94a3b8',
+                500: '#64748b',
+                600: '#475569',
+                700: '#334155',
+                800: '#1e293b',
+                900: '#0f172a',
+                950: '#020617',
+              },
+              primary: {
+                50: '#eff6ff',
+                100: '#dbeafe',
+                400: '#60a5fa',
+                500: '#3b82f6',
+                600: '#2563eb',
+                700: '#1d4ed8',
+                900: '#1e3a8a',
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #fafafa;
+        color: #0f172a;
+      }
+      /* Custom Scrollbar - Minimal */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #e2e8f0;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #cbd5e1;
+      }
+
+      /* Custom Animations */
+      @keyframes slideUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .animate-slide-up {
+        animation: slideUp 0.3s ease-out forwards;
+      }
+      
+      @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0px); }
+      }
+      .animate-float {
+        animation: float 6s ease-in-out infinite;
+        will-change: transform;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      .animate-fade-in {
+        animation: fadeIn 0.5s ease-out forwards;
+      }
+
+      /* ============================================
+         HERO SECTION - DATA-CENTRIC DESIGN
+         ============================================ */
+
+      /* Slow pulse for gradient border */
+      @keyframes pulseSlow {
+        0%, 100% {
+          opacity: 0.3;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.5;
+          transform: scale(1.05);
+        }
+      }
+      .animate-pulse-slow {
+        animation: pulseSlow 3s ease-in-out infinite;
+      }
+
+      /* Hero accent shape - rotates on hover */
+      .hero-accent-shape {
+        transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .group:hover .hero-accent-shape {
+        transform: rotate(405deg) scale(1.1);
+      }
+
+      /* Stat badges - subtle floating with stagger */
+      .stat-badge {
+        will-change: transform;
+      }
+
+      /* ============================================
+         INFINITE LOGO MARQUEE - BEST PRACTICES
+         ============================================ */
+
+      /* Marquee Animation - Safari compatible with translate3d */
+      @keyframes marqueeScroll {
+        0% {
+          transform: translate3d(0, 0, 0);
+        }
+        100% {
+          transform: translate3d(-50%, 0, 0);
+        }
+      }
+
+      /* Track container - flex layout with gap */
+      .logo-marquee-track {
+        display: flex;
+        width: max-content;
+        gap: 3rem; /* 48px gap between logos */
+        animation: marqueeScroll 40s linear infinite;
+        will-change: transform;
+      }
+
+      /* Pause on hover - smooth without glitching */
+      .logo-marquee-track:hover {
+        animation-play-state: paused;
+      }
+
+      /* Content wrapper for each set */
+      .logo-marquee-content {
+        display: flex;
+        gap: 3rem; /* Must match track gap */
+        flex-shrink: 0;
+      }
+
+      /* Individual logo item with extra padding for hover expansion */
+      .logo-marquee-item {
+        flex-shrink: 0;
+        padding: 1rem; /* Extra space to prevent clipping on scale */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Logo wrapper with hover effect */
+      .logo-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transform-origin: center;
+      }
+
+      /* Hover scale effect - won't clip due to padding */
+      .logo-marquee-item:hover .logo-wrapper {
+        transform: scale(1.2);
+      }
+
+      /* Logo image styling */
+      .logo-image {
+        height: 3rem; /* 48px */
+        width: auto;
+        max-width: 8rem; /* 128px max width */
+        object-fit: contain;
+        display: block;
+        filter: brightness(0.95);
+        transition: filter 0.3s ease;
+      }
+
+      /* Brighten on hover */
+      .logo-marquee-item:hover .logo-image {
+        filter: brightness(1.1);
+      }
+
+      /* Accessibility: Respect user's motion preferences */
+      @media (prefers-reduced-motion: reduce) {
+        .logo-marquee-track {
+          animation: none;
+        }
+        .logo-marquee-track:hover {
+          animation: none;
+        }
+        /* Keep hover effects but remove motion */
+        .logo-wrapper {
+          transition: none;
+        }
+      }
+
+      /* Experience Flow Animation (Bottom to Up) */
+      @keyframes beamUp {
+        0% { top: 100%; opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { top: -20%; opacity: 0; }
+      }
+      .animate-beam-up {
+        animation: beamUp 3s linear infinite;
+      }
+
+      /* Node Pulse Sync - Flashes blue when the beam passes */
+      @keyframes nodePulseSync {
+        0%, 100% { 
+          border-color: #e2e8f0; 
+          background-color: #ffffff; 
+          box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); 
+          transform: scale(1); 
+        }
+        20% { 
+          border-color: #3b82f6; 
+          background-color: #eff6ff; 
+          box-shadow: 0 0 20px 4px rgba(59, 130, 246, 0.4); 
+          transform: scale(1.3); 
+        }
+        40% { 
+          border-color: #e2e8f0; 
+          background-color: #ffffff; 
+          box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); 
+          transform: scale(1); 
+        }
+      }
+      .animate-node-pulse {
+        animation: nodePulseSync 3s infinite;
+      }
+
+      /* SVG Path Flow Animation (Bottom to Top) */
+      @keyframes dashFlow {
+        0% { stroke-dashoffset: 0; }
+        100% { stroke-dashoffset: -100; }
+      }
+
+      /* Moving dots animation (bottom to top) - seamless loop */
+      @keyframes moveDotsUp {
+        0% { stroke-dashoffset: 0; }
+        100% { stroke-dashoffset: 6; }
+      }
+    </style>
+
+<link rel="stylesheet" href="/index.css">
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "recharts": "https://aistudiocdn.com/recharts@^3.5.0"
+  }
+}
+</script>
+  <script type="module" crossorigin src="/Portfolio/assets/index-hHEGG-OH.js"></script>
+</head>
+  <body>
+    <div id="root"></div>
+</body>
+</html>
