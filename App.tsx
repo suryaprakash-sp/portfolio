@@ -18,6 +18,24 @@ const LinkedInIcon = ({ size = 20, className = "" }: { size?: number; className?
   </svg>
 );
 
+// Tech stack logos for the marquee
+const TECH_LOGOS = [
+  { src: 'mysql.png', alt: 'MySQL', name: 'MySQL' },
+  { src: 'postgresql.png', alt: 'PostgreSQL', name: 'PostgreSQL' },
+  { src: 'mongodb.png', alt: 'MongoDB', name: 'MongoDB' },
+  { src: 'python.png', alt: 'Python', name: 'Python' },
+  { src: 'tableau.png', alt: 'Tableau', name: 'Tableau' },
+  { src: 'powerbi.png', alt: 'Power BI', name: 'Power BI' },
+  { src: 'metabase.png', alt: 'Metabase', name: 'Metabase' },
+  { src: 'google_sheets.png', alt: 'Google Sheets', name: 'Google Sheets' },
+  { src: 'github.png', alt: 'GitHub', name: 'GitHub' },
+  { src: 'chartdb.png', alt: 'ChartDB', name: 'ChartDB' },
+  { src: 'claude.png', alt: 'Claude AI', name: 'Claude' },
+  { src: 'excel.png', alt: 'Microsoft Excel', name: 'Excel' },
+  { src: 'pandas.png', alt: 'Pandas', name: 'Pandas' },
+  { src: 'redash.png', alt: 'Redash', name: 'Redash' },
+];
+
 // Helper function to calculate duration in years and months
 const calculateDuration = (period: string): string => {
   const parts = period.split('–').map(p => p.trim());
@@ -540,7 +558,7 @@ const App: React.FC = () => {
                 <div className="w-full h-full rounded-full border-4 border-slate-100 relative overflow-visible">
                   {/* Photo extends upward beyond the circular frame */}
                   <img
-                    src="/surya.png"
+                    src={`${import.meta.env.BASE_URL}surya.png`}
                     alt="Surya Prakash Manubolu"
                     className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[110%] h-[130%] object-cover object-top transform transition-all duration-500 group-hover:scale-105 rounded-full"
                     style={{
@@ -807,22 +825,7 @@ const App: React.FC = () => {
           <div className="logo-marquee-track group">
             {/* First set of logos */}
             <div className="logo-marquee-content">
-              {[
-                { src: '/mysql.png', alt: 'MySQL', name: 'MySQL' },
-                { src: '/postgresql.png', alt: 'PostgreSQL', name: 'PostgreSQL' },
-                { src: '/mongodb.png', alt: 'MongoDB', name: 'MongoDB' },
-                { src: '/python.png', alt: 'Python', name: 'Python' },
-                { src: '/tableau.png', alt: 'Tableau', name: 'Tableau' },
-                { src: '/powerbi.png', alt: 'Power BI', name: 'Power BI' },
-                { src: '/metabase.png', alt: 'Metabase', name: 'Metabase' },
-                { src: '/google_sheets.png', alt: 'Google Sheets', name: 'Google Sheets' },
-                { src: '/github.png', alt: 'GitHub', name: 'GitHub' },
-                { src: '/chartdb.png', alt: 'ChartDB', name: 'ChartDB' },
-                { src: '/claude.png', alt: 'Claude AI', name: 'Claude' },
-                { src: '/excel.png', alt: 'Microsoft Excel', name: 'Excel' },
-                { src: '/pandas.png', alt: 'Pandas', name: 'Pandas' },
-                { src: '/redash.png', alt: 'Redash', name: 'Redash' },
-              ].map((logo, idx) => (
+              {TECH_LOGOS.map((logo, idx) => (
                 <div
                   key={`logo-primary-${idx}`}
                   className="logo-marquee-item"
@@ -830,7 +833,7 @@ const App: React.FC = () => {
                 >
                   <div className="logo-wrapper">
                     <img
-                      src={logo.src}
+                      src={`${import.meta.env.BASE_URL}${logo.src}`}
                       alt={logo.alt}
                       title={logo.name}
                       className="logo-image"
@@ -843,29 +846,14 @@ const App: React.FC = () => {
 
             {/* Duplicate set for seamless infinite loop - hidden from screen readers */}
             <div className="logo-marquee-content" aria-hidden="true">
-              {[
-                { src: '/mysql.png', alt: 'MySQL', name: 'MySQL' },
-                { src: '/postgresql.png', alt: 'PostgreSQL', name: 'PostgreSQL' },
-                { src: '/mongodb.png', alt: 'MongoDB', name: 'MongoDB' },
-                { src: '/python.png', alt: 'Python', name: 'Python' },
-                { src: '/tableau.png', alt: 'Tableau', name: 'Tableau' },
-                { src: '/powerbi.png', alt: 'Power BI', name: 'Power BI' },
-                { src: '/metabase.png', alt: 'Metabase', name: 'Metabase' },
-                { src: '/google_sheets.png', alt: 'Google Sheets', name: 'Google Sheets' },
-                { src: '/github.png', alt: 'GitHub', name: 'GitHub' },
-                { src: '/chartdb.png', alt: 'ChartDB', name: 'ChartDB' },
-                { src: '/claude.png', alt: 'Claude AI', name: 'Claude' },
-                { src: '/excel.png', alt: 'Microsoft Excel', name: 'Excel' },
-                { src: '/pandas.png', alt: 'Pandas', name: 'Pandas' },
-                { src: '/redash.png', alt: 'Redash', name: 'Redash' },
-              ].map((logo, idx) => (
+              {TECH_LOGOS.map((logo, idx) => (
                 <div
                   key={`logo-duplicate-${idx}`}
                   className="logo-marquee-item"
                 >
                   <div className="logo-wrapper">
                     <img
-                      src={logo.src}
+                      src={`${import.meta.env.BASE_URL}${logo.src}`}
                       alt=""
                       className="logo-image"
                       loading="lazy"
