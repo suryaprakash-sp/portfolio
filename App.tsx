@@ -1090,7 +1090,7 @@ const App: React.FC = () => {
               <p className="text-slate-300 max-w-md mb-6 leading-relaxed text-lg">
                 I'm currently accepting new opportunities for full-time roles and freelance projects.
               </p>
-              <ul className="text-slate-400 mb-8 space-y-2">
+              <ul className="text-slate-400 space-y-2">
                 <li className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-emerald-400" />
                   <span>ETL pipelines & data automation</span>
@@ -1104,6 +1104,46 @@ const App: React.FC = () => {
                   <span>Database optimization & architecture</span>
                 </li>
               </ul>
+            </div>
+
+            <div className="flex flex-col gap-8">
+              {/* Navigation and Connect Grid */}
+              <div className="grid grid-cols-2 gap-10">
+                <div>
+                  <h4 className="font-bold mb-6 text-slate-200">Navigation</h4>
+                  <ul className="space-y-4 text-slate-400">
+                    <li><a href="#about" className="hover:text-white transition-colors">About</a></li>
+                    <li><a href="#skills" className="hover:text-white transition-colors">Skills</a></li>
+                    <li><a href="#experience" className="hover:text-white transition-colors">Experience</a></li>
+                    <li><a href="#projects" className="hover:text-white transition-colors">Projects</a></li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-bold mb-6 text-slate-200">Connect</h4>
+                  <ul className="space-y-4 text-slate-400">
+                    <li>
+                      <a href={`https://${RESUME_DATA.contact.linkedin}`} target="_blank" rel="noreferrer" className="hover:text-white transition-colors flex items-center gap-2">
+                        <LinkedInIcon size={16} />
+                        LinkedIn
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://github.com/suryaprakash-sp" target="_blank" rel="noreferrer" className="hover:text-white transition-colors flex items-center gap-2">
+                        <Github className="w-4 h-4" />
+                        GitHub
+                      </a>
+                    </li>
+                    <li>
+                      <a href={`mailto:${RESUME_DATA.contact.email}`} className="hover:text-white transition-colors flex items-center gap-2">
+                        <Mail className="w-4 h-4" />
+                        Email
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
                   href={`mailto:${RESUME_DATA.contact.email}?subject=Let's discuss a data project`}
@@ -1122,41 +1162,6 @@ const App: React.FC = () => {
                   <LinkedInIcon size={16} />
                   View LinkedIn
                 </a>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-10">
-              <div>
-                <h4 className="font-bold mb-6 text-slate-200">Navigation</h4>
-                <ul className="space-y-4 text-slate-400">
-                  <li><a href="#about" className="hover:text-white transition-colors">About</a></li>
-                  <li><a href="#skills" className="hover:text-white transition-colors">Skills</a></li>
-                  <li><a href="#experience" className="hover:text-white transition-colors">Experience</a></li>
-                  <li><a href="#projects" className="hover:text-white transition-colors">Projects</a></li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-bold mb-6 text-slate-200">Connect</h4>
-                <ul className="space-y-4 text-slate-400">
-                  <li>
-                    <a href={`https://${RESUME_DATA.contact.linkedin}`} target="_blank" rel="noreferrer" className="hover:text-white transition-colors flex items-center gap-2">
-                      <LinkedInIcon size={16} />
-                      LinkedIn
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/suryaprakash-sp" target="_blank" rel="noreferrer" className="hover:text-white transition-colors flex items-center gap-2">
-                      <Github className="w-4 h-4" />
-                      GitHub
-                    </a>
-                  </li>
-                  <li>
-                    <a href={`mailto:${RESUME_DATA.contact.email}`} className="hover:text-white transition-colors flex items-center gap-2">
-                      <Mail className="w-4 h-4" />
-                      Email
-                    </a>
-                  </li>
-                </ul>
               </div>
             </div>
           </div>
