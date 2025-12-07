@@ -12,7 +12,7 @@ if (!rootElement) {
 const root = ReactDOM.createRoot(rootElement);
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/portfolio">
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/project/:projectId" element={<ProjectDetail />} />
