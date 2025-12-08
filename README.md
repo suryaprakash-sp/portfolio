@@ -18,10 +18,12 @@ This portfolio demonstrates modern web development practices while showcasing da
 ## Features
 
 - **Single-Page Portfolio**: Clean, focused portfolio showcasing all content on one page
+- **Hero Section**: Colored underlines highlighting ETL pipelines, dashboards, and automation expertise
+- **Impact Metrics Dashboard**: Key performance indicators with visual cards
 - **Infinite Logo Marquee**: Smooth, performant horizontal scroll showcasing 14+ technology stack logos with hover pause and accessibility support
+- **What Makes Me Different**: 3 differentiator cards + 4-step process visualization showcasing unique value proposition
 - **AI Chat Assistant** *(Local development only)*: Interactive chatbot powered by Google Gemini API that answers questions about professional experience
 - **Skill Visualization**: Radar chart displaying proficiency across key technical areas
-- **Interactive IDE Demo**: Animated code editor showcasing data engineering capabilities
 - **Responsive Design**: Mobile-first approach with glass-morphism effects and smooth animations
 - **Professional Timeline**: Visual representation of work experience with flowing path animation (ChartDB-inspired)
 - **Project Showcase**: Interactive slideshow cards with hover effects

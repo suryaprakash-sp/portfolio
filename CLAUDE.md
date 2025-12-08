@@ -66,20 +66,26 @@ All portfolio content is managed through the `RESUME_DATA` constant in `constant
 
 If you mess up the design or something breaks, you can restore to these verified commits:
 
-**LATEST BACKUP - Commit `06fcd48` - Security Fix + Single-Page Portfolio (CURRENT PRODUCTION)**
+**LATEST BACKUP - Commit `4e40543` - Complete Portfolio with "What Makes Me Different" Section (CURRENT PRODUCTION)**
+- Single-page portfolio with all sections fully designed
+- **"What Makes Me Different" section** between Skills and Experience:
+  - 3 differentiator cards (End-to-End Ownership, Production-First, Performance)
+  - 4-step "My Approach" process with connecting arrows (Problem → Design → Deploy → Optimize)
+  - Closing quote: "I build data systems that teams depend on, not just one-off analyses."
+- Hero section with colored underlines on ETL pipelines, dashboards, automation
+- Security incident resolved - API keys never exposed
+- Custom favicon and all 14 tech logos in public/
+- Optimized bundle size (575 KB)
+- To restore: `git checkout 4e40543 -- .`
+
+**Previous Backup - Commit `06fcd48` - Security Fix + Single-Page Portfolio**
 - Single-page portfolio (React Router removed for simplicity)
 - API key exposure fixed - AI Assistant disabled for GitHub Pages
 - Enhanced .gitignore with .env patterns and user_inputs/
 - Comprehensive security documentation in README
-- Clean favicon (favicon.png in public/)
-- Hero section with colored underlines on ETL pipelines, dashboards, automation
-- All 14 tech logos moved to public/ folder
-- GitHub Pages deployment configured and working
-- Bundle size optimized (569 KB vs previous 795 KB)
-- **Security incident resolved** - see SECURITY_INCIDENT_RESOLVED.md
 - To restore: `git checkout 06fcd48 -- .`
 
-**Previous Backup - Commit `032a761` - Unified Design System with Balanced Footer**
+**Older Backup - Commit `032a761` - Unified Design System with Balanced Footer**
 - Consistent gray pill-style section labels across all sections (Impact Metrics, Core Competencies, Tech Stack, Experience, Portfolio)
 - Clean hero section: simplified left side with identity text + CTAs, decorative right side with floating badges
 - Skills section without percentage indicators - clean list layout with hover effects
