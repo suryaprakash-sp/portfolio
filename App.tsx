@@ -923,51 +923,57 @@ const App: React.FC = () => {
           <div className="bg-white rounded-2xl p-10 border border-slate-200 mb-12">
             <h3 className="text-2xl font-bold text-slate-900 mb-8 text-center">My Approach</h3>
 
-            <div className="grid md:grid-cols-4 gap-8">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6">
               {/* Step 1: Problem */}
-              <div className="text-center">
+              <div className="text-center flex-1">
                 <div className="w-12 h-12 rounded-full bg-blue-100 border-2 border-blue-500 flex items-center justify-center mx-auto mb-4">
                   <span className="text-blue-600 font-bold text-lg">1</span>
                 </div>
-                <h4 className="font-bold text-slate-900 mb-2 flex items-center justify-center gap-2">
+                <h4 className="font-bold text-slate-900 mb-2">
                   Problem
-                  <ArrowRight className="w-4 h-4 text-slate-400 hidden md:block" />
                 </h4>
                 <p className="text-sm text-slate-600 leading-relaxed">
                   Understand the business need, not just the data request
                 </p>
               </div>
 
+              {/* Arrow 1->2 */}
+              <ArrowRight className="w-6 h-6 text-slate-400 hidden md:block flex-shrink-0 mt-[-80px]" />
+
               {/* Step 2: Design */}
-              <div className="text-center">
+              <div className="text-center flex-1">
                 <div className="w-12 h-12 rounded-full bg-purple-100 border-2 border-purple-500 flex items-center justify-center mx-auto mb-4">
                   <span className="text-purple-600 font-bold text-lg">2</span>
                 </div>
-                <h4 className="font-bold text-slate-900 mb-2 flex items-center justify-center gap-2">
+                <h4 className="font-bold text-slate-900 mb-2">
                   Design
-                  <ArrowRight className="w-4 h-4 text-slate-400 hidden md:block" />
                 </h4>
                 <p className="text-sm text-slate-600 leading-relaxed">
                   Build scalable solutions that handle edge cases
                 </p>
               </div>
 
+              {/* Arrow 2->3 */}
+              <ArrowRight className="w-6 h-6 text-slate-400 hidden md:block flex-shrink-0 mt-[-80px]" />
+
               {/* Step 3: Deploy */}
-              <div className="text-center">
+              <div className="text-center flex-1">
                 <div className="w-12 h-12 rounded-full bg-emerald-100 border-2 border-emerald-500 flex items-center justify-center mx-auto mb-4">
                   <span className="text-emerald-600 font-bold text-lg">3</span>
                 </div>
-                <h4 className="font-bold text-slate-900 mb-2 flex items-center justify-center gap-2">
+                <h4 className="font-bold text-slate-900 mb-2">
                   Deploy
-                  <ArrowRight className="w-4 h-4 text-slate-400 hidden md:block" />
                 </h4>
                 <p className="text-sm text-slate-600 leading-relaxed">
                   Ship production-ready code with error handling
                 </p>
               </div>
 
+              {/* Arrow 3->4 */}
+              <ArrowRight className="w-6 h-6 text-slate-400 hidden md:block flex-shrink-0 mt-[-80px]" />
+
               {/* Step 4: Optimize */}
-              <div className="text-center">
+              <div className="text-center flex-1">
                 <div className="w-12 h-12 rounded-full bg-orange-100 border-2 border-orange-500 flex items-center justify-center mx-auto mb-4">
                   <span className="text-orange-600 font-bold text-lg">4</span>
                 </div>
