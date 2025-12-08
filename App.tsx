@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
 import { Menu, X, Github, Mail, Play, Database, ArrowRight, CheckCircle2, Loader2, Sparkles, Code2, Terminal, Server, BarChart3, ExternalLink, Zap, LineChart, ArrowUp, ChevronDown, ChevronUp } from 'lucide-react';
 import { RESUME_DATA, NAV_ITEMS, CATEGORY_ICONS, PROJECT_ICONS } from './constants';
 import SkillChart from './components/SkillChart';
@@ -102,9 +101,8 @@ const ProjectCard = React.memo(({ project, idx }: { project: any; idx: number })
   }, [isHovered]);
 
   return (
-    <Link
-      to={`/project/${projectSlug}`}
-      className="group w-full bg-white border border-slate-200 rounded-2xl hover:rounded-[2rem] shadow-sm hover:shadow-xl hover:border-blue-200 overflow-hidden transition-all duration-300 block cursor-pointer"
+    <div
+      className="group w-full bg-white border border-slate-200 rounded-2xl hover:rounded-[2rem] shadow-sm hover:shadow-xl hover:border-blue-200 overflow-hidden transition-all duration-300 block"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -164,7 +162,7 @@ const ProjectCard = React.memo(({ project, idx }: { project: any; idx: number })
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 });
 
@@ -491,12 +489,11 @@ const App: React.FC = () => {
              <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight leading-snug">
                I build data systems that get results.
              </h2>
-             <p className="text-lg text-slate-600 leading-relaxed max-w-xl">
-               Data Analyst & Engineer with 3+ years turning complex data into actionable insights.
-               Specialized in <span className="font-semibold text-slate-900">ETL pipelines</span>, <span className="font-semibold text-slate-900">dashboards</span>, and <span className="font-semibold text-slate-900">automation</span>.
+             <p className="text-lg text-slate-500 leading-relaxed max-w-xl">
+               Data Analyst & Engineer with 3+ years turning complex data into actionable insights. Specialized in <span className="font-bold text-slate-900 underline decoration-blue-400 decoration-2 underline-offset-4">ETL pipelines</span>, <span className="font-bold text-slate-900 underline decoration-purple-400 decoration-2 underline-offset-4">dashboards</span>, and <span className="font-bold text-slate-900 underline decoration-emerald-400 decoration-2 underline-offset-4">automation</span>.
              </p>
           </div>
-          
+
           {/* Group 3: Actions */}
           <div className="flex flex-col gap-6">
              <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
