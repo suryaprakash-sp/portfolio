@@ -66,7 +66,7 @@ All portfolio content is managed through the `RESUME_DATA` constant in `constant
 
 If you mess up the design or something breaks, you can restore to these verified commits:
 
-**LATEST BACKUP - Commit `4e40543` - Complete Portfolio with "What Makes Me Different" Section (CURRENT PRODUCTION)**
+**LATEST BACKUP - Commit `42ad2df` - Complete Portfolio with Documentation (CURRENT PRODUCTION)**
 - Single-page portfolio with all sections fully designed
 - **"What Makes Me Different" section** between Skills and Experience:
   - 3 differentiator cards (End-to-End Ownership, Production-First, Performance)
@@ -76,7 +76,8 @@ If you mess up the design or something breaks, you can restore to these verified
 - Security incident resolved - API keys never exposed
 - Custom favicon and all 14 tech logos in public/
 - Optimized bundle size (575 KB)
-- To restore: `git checkout 4e40543 -- .`
+- **Documentation fully updated** - README.md and CLAUDE.md reflect all features
+- To restore: `git checkout 42ad2df -- .`
 
 **Previous Backup - Commit `06fcd48` - Security Fix + Single-Page Portfolio**
 - Single-page portfolio (React Router removed for simplicity)
