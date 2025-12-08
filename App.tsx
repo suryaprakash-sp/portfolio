@@ -863,6 +863,133 @@ const App: React.FC = () => {
         </div>
       </section>
 
+      {/* What Makes Me Different Section */}
+      <section className="scroll-mt-28 py-24 bg-gradient-to-b from-white via-slate-50 to-white relative overflow-hidden">
+        {/* Subtle Grid Background */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:48px_48px] opacity-40"></div>
+
+        <div className="max-w-6xl mx-auto px-6 relative z-10">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-100 border border-slate-200 mb-4">
+              <Sparkles className="w-4 h-4 text-slate-600" />
+              <span className="text-xs font-bold text-slate-700 uppercase tracking-wide">What Makes Me Different</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4 tracking-tight">
+              Most data analysts stop at insights.
+            </h2>
+            <p className="text-2xl text-slate-600 font-medium">
+              I go further.
+            </p>
+          </div>
+
+          {/* 3 Cards */}
+          <div className="grid md:grid-cols-3 gap-6 mb-20">
+            {/* Card 1: End-to-End Ownership */}
+            <div className="group bg-white rounded-2xl p-8 border border-slate-200 hover:border-blue-300 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+              <div className="w-12 h-12 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center mb-4 group-hover:bg-blue-100 transition-colors">
+                <Database className="w-6 h-6 text-blue-600" />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">End-to-End Ownership</h3>
+              <p className="text-slate-600 leading-relaxed">
+                From raw data extraction to dashboard deployment
+              </p>
+            </div>
+
+            {/* Card 2: Production-First Mindset */}
+            <div className="group bg-white rounded-2xl p-8 border border-slate-200 hover:border-purple-300 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+              <div className="w-12 h-12 rounded-xl bg-purple-50 border border-purple-100 flex items-center justify-center mb-4 group-hover:bg-purple-100 transition-colors">
+                <Server className="w-6 h-6 text-purple-600" />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Production-First Mindset</h3>
+              <p className="text-slate-600 leading-relaxed">
+                Code that runs in production, not just notebooks
+              </p>
+            </div>
+
+            {/* Card 3: Performance Obsessed */}
+            <div className="group bg-white rounded-2xl p-8 border border-slate-200 hover:border-emerald-300 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+              <div className="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center mb-4 group-hover:bg-emerald-100 transition-colors">
+                <Zap className="w-6 h-6 text-emerald-600" />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Performance Obsessed</h3>
+              <p className="text-slate-600 leading-relaxed">
+                80% faster queries, 50% fewer pipelines
+              </p>
+            </div>
+          </div>
+
+          {/* My Approach - 4 Steps */}
+          <div className="bg-white rounded-2xl p-10 border border-slate-200 mb-12">
+            <h3 className="text-2xl font-bold text-slate-900 mb-8 text-center">My Approach</h3>
+
+            <div className="grid md:grid-cols-4 gap-8">
+              {/* Step 1: Problem */}
+              <div className="text-center">
+                <div className="w-12 h-12 rounded-full bg-blue-100 border-2 border-blue-500 flex items-center justify-center mx-auto mb-4">
+                  <span className="text-blue-600 font-bold text-lg">1</span>
+                </div>
+                <h4 className="font-bold text-slate-900 mb-2 flex items-center justify-center gap-2">
+                  Problem
+                  <ArrowRight className="w-4 h-4 text-slate-400 hidden md:block" />
+                </h4>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  Understand the business need, not just the data request
+                </p>
+              </div>
+
+              {/* Step 2: Design */}
+              <div className="text-center">
+                <div className="w-12 h-12 rounded-full bg-purple-100 border-2 border-purple-500 flex items-center justify-center mx-auto mb-4">
+                  <span className="text-purple-600 font-bold text-lg">2</span>
+                </div>
+                <h4 className="font-bold text-slate-900 mb-2 flex items-center justify-center gap-2">
+                  Design
+                  <ArrowRight className="w-4 h-4 text-slate-400 hidden md:block" />
+                </h4>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  Build scalable solutions that handle edge cases
+                </p>
+              </div>
+
+              {/* Step 3: Deploy */}
+              <div className="text-center">
+                <div className="w-12 h-12 rounded-full bg-emerald-100 border-2 border-emerald-500 flex items-center justify-center mx-auto mb-4">
+                  <span className="text-emerald-600 font-bold text-lg">3</span>
+                </div>
+                <h4 className="font-bold text-slate-900 mb-2 flex items-center justify-center gap-2">
+                  Deploy
+                  <ArrowRight className="w-4 h-4 text-slate-400 hidden md:block" />
+                </h4>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  Ship production-ready code with error handling
+                </p>
+              </div>
+
+              {/* Step 4: Optimize */}
+              <div className="text-center">
+                <div className="w-12 h-12 rounded-full bg-orange-100 border-2 border-orange-500 flex items-center justify-center mx-auto mb-4">
+                  <span className="text-orange-600 font-bold text-lg">4</span>
+                </div>
+                <h4 className="font-bold text-slate-900 mb-2">
+                  Optimize
+                </h4>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  Continuously improve performance and efficiency
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Quote */}
+          <div className="text-center">
+            <p className="text-2xl md:text-3xl font-medium text-slate-700 italic leading-relaxed max-w-4xl mx-auto">
+              "I build data systems that teams depend on, not just one-off analyses."
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Experience Section - Flowing Path Design */}
       <section id="experience" ref={experienceRef} className="scroll-mt-28 py-24 bg-gradient-to-b from-slate-50/50 via-white to-slate-50/50 relative overflow-hidden">
         {/* Subtle Background Grid */}
