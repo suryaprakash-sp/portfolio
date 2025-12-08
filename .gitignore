@@ -12,6 +12,11 @@ dist
 dist-ssr
 *.local
 
+# Environment variables
+.env
+.env.local
+.env*.local
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -35,3 +40,6 @@ claude.md
 .playwright-mcp/
 playwright-report/
 test-results/
+
+# User inputs
+user_inputs/

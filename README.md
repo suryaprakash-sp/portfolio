@@ -17,14 +17,14 @@ This portfolio demonstrates modern web development practices while showcasing da
 
 ## Features
 
-- **Multi-Page Portfolio**: React Router-based navigation with dedicated project detail pages
+- **Single-Page Portfolio**: Clean, focused portfolio showcasing all content on one page
 - **Infinite Logo Marquee**: Smooth, performant horizontal scroll showcasing 14+ technology stack logos with hover pause and accessibility support
-- **AI Chat Assistant**: Interactive chatbot powered by Google Gemini API that answers questions about professional experience
+- **AI Chat Assistant** *(Local development only)*: Interactive chatbot powered by Google Gemini API that answers questions about professional experience
 - **Skill Visualization**: Radar chart displaying proficiency across key technical areas
 - **Interactive IDE Demo**: Animated code editor showcasing data engineering capabilities
 - **Responsive Design**: Mobile-first approach with glass-morphism effects and smooth animations
 - **Professional Timeline**: Visual representation of work experience with flowing path animation (ChartDB-inspired)
-- **Project Showcase**: Interactive slideshow cards with hover effects and detailed project pages
+- **Project Showcase**: Interactive slideshow cards with hover effects
 
 ## Tech Stack
 
@@ -32,7 +32,6 @@ This portfolio demonstrates modern web development practices while showcasing da
 - **React 19.2** - UI library
 - **TypeScript 5.8** - Type safety and developer experience
 - **Vite 6.2** - Fast build tool with HMR
-- **React Router 7** - Client-side routing for multi-page navigation
 
 ### UI & Styling
 - **Tailwind CSS** - Utility-first CSS framework (CDN)
@@ -84,6 +83,7 @@ npm run dev
 | `npm run dev` | Start development server on port 3000 |
 | `npm run build` | Build for production |
 | `npm run preview` | Preview production build locally |
+| `npm run deploy` | Build and deploy to GitHub Pages |
 
 ## Project Structure
 
@@ -91,21 +91,24 @@ npm run dev
 Portfolio/
 ├── src/
 │   └── components/          # React components
-│       └── ProjectDetail.tsx # Individual project detail page
-├── components/              # Legacy components (to be migrated)
-│   ├── AiAssistant.tsx     # Chat widget component
+│       └── ProjectDetail.tsx # Project detail component (not currently used)
+├── components/              # UI components
+│   ├── AiAssistant.tsx     # Chat widget (disabled for GitHub Pages)
 │   └── SkillChart.tsx      # Radar chart visualization
 ├── services/               # External service integrations
-│   └── gemini.ts           # Gemini API client
+│   └── gemini.ts           # Gemini API client (local dev only)
 ├── public/                 # Static assets
-│   └── *.png              # Logo images and profile photo
-├── App.tsx                 # Main application component (homepage)
+│   ├── *.png              # Logo images (14 tech stack logos)
+│   ├── favicon.png        # Custom favicon
+│   └── surya.png          # Profile photo
+├── App.tsx                 # Main single-page application component
 ├── constants.ts            # Resume data and configuration
 ├── types.ts                # TypeScript type definitions
-├── index.tsx               # React Router setup and entry point
+├── index.tsx               # Application entry point
 ├── index.html              # HTML template with Tailwind config
-├── vite.config.ts          # Vite configuration
+├── vite.config.ts          # Vite configuration (no secret injection)
 ├── tsconfig.json           # TypeScript configuration
+├── .gitignore              # Git ignore (includes .env files)
 └── package.json            # Project dependencies
 ```
 
@@ -115,8 +118,9 @@ Portfolio/
 
 The project uses Vite with React plugin and custom configuration:
 - Dev server on port 3000
+- Base path `/portfolio/` for GitHub Pages
 - Path alias `@` pointing to project root
-- Environment variable handling for `GEMINI_API_KEY`
+- **No API keys in build** - Secrets are never injected into client bundles for security
 
 ### TypeScript Configuration
 
@@ -196,31 +200,61 @@ Modify the system prompt in `components/AiAssistant.tsx` to customize the AI ass
 
 ## Deployment
 
-### Build for Production
+### GitHub Pages (Current Deployment)
+
+This portfolio is deployed to GitHub Pages at: **https://suryaprakash-sp.github.io/portfolio/**
+
+To deploy:
 
 ```bash
-npm run build
+npm run deploy
 ```
 
-The build output will be in the `dist/` directory.
+This command:
+1. Builds the project with base path `/portfolio/`
+2. Deploys the `dist/` folder to the `gh-pages` branch
+3. GitHub Pages automatically serves the content
 
-### Deploy to AI Studio
-
-This project is configured for deployment to Google AI Studio. See the [AI Studio documentation](https://ai.studio/docs) for deployment instructions.
+**Note**: The AI chat assistant is disabled for GitHub Pages to prevent API key exposure.
 
 ### Other Platforms
 
-The production build can be deployed to:
-- Vercel
-- Netlify
-- GitHub Pages
+The production build can also be deployed to:
+- **Vercel** - Supports serverless functions for secure API proxying
+- **Netlify** - Supports Netlify Functions for backend logic
 - Any static hosting service
 
 ## Environment Variables
 
 | Variable | Description | Required |
 |----------|-------------|----------|
-| `GEMINI_API_KEY` | Google Gemini API key for chat assistant | Yes |
+| `GEMINI_API_KEY` | Google Gemini API key for chat assistant (local dev only) | Optional |
+
+**⚠️ Important**: The AI chat assistant is **disabled for GitHub Pages deployment** because API keys cannot be securely stored in client-side code for static sites. To use the AI assistant in production, you would need to set up a backend proxy (e.g., Vercel/Netlify Functions).
+
+## Security Best Practices
+
+### API Keys and Secrets
+
+**Never commit API keys to version control!** This project follows these security practices:
+
+1. **Environment Variables**: All sensitive data goes in `.env.local` (git-ignored)
+2. **No Client-Side Secrets**: For static deployments (GitHub Pages), API keys are not included in builds
+3. **AI Assistant Disabled**: The chat feature is commented out for static deployments to prevent API key exposure
+
+### If You Accidentally Committed a Secret
+
+1. **Immediately revoke the exposed key** in Google Cloud Console
+2. **Remove from git history** using git-filter-repo or BFG Repo-Cleaner
+3. **Generate a new key** and add it only to `.env.local`
+4. **Never use `define` in vite.config.ts** to inject secrets for static deployments
+
+### Example .env.local
+
+```bash
+# Local development only - NEVER commit this file
+GEMINI_API_KEY=your_actual_api_key_here
+```
 
 ## License
 

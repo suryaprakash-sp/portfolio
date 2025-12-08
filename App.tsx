@@ -1179,8 +1179,9 @@ const App: React.FC = () => {
       </footer>
 
       {/* Floating Utilities */}
-      <AiAssistant />
-      
+      {/* AI Assistant disabled for GitHub Pages - requires backend proxy for secure API key handling */}
+      {/* <AiAssistant /> */}
+
       {/* Scroll To Top Button */}
       <button
         onClick={scrollToTop}
