@@ -4,37 +4,43 @@ This document provides context for Claude Code when working on this portfolio pr
 
 ## Project Overview
 
-This is a personal portfolio website for Surya Prakash Manubolu, a Data Analyst and Engineer. The portfolio showcases professional experience, skills, projects, and education through a multi-page application with React Router.
+This is a personal portfolio website for Surya Prakash Manubolu, a Data Analyst and Engineer. The portfolio showcases professional experience, skills, projects, and education through a single-page application deployed to GitHub Pages.
+
+**Live URL**: https://suryaprakash-sp.github.io/portfolio/
 
 ## Tech Stack Summary
 
 - **Frontend**: React 19.2 + TypeScript 5.8
-- **Routing**: React Router DOM 7 (multi-page navigation)
 - **Build Tool**: Vite 6.2
+- **Deployment**: GitHub Pages (gh-pages branch)
 - **Styling**: Tailwind CSS (CDN)
 - **Icons**: Lucide React
 - **Charts**: Recharts
-- **AI**: Google Generative AI (Gemini 2.5 Flash)
+- **AI**: Google Generative AI (Gemini 2.5 Flash) - **Local development only, disabled for production**
 
 ## Key Architecture Decisions
 
-1. **Multi-Page Application**: React Router for homepage and individual project detail pages
-2. **CDN-Based Loading**: React, Recharts, and other libraries loaded via CDN to reduce bundle size
-3. **Component Structure**: Modular components in `/components` and `/src/components` directories
-4. **Centralized Data**: All resume/portfolio data in `constants.ts` for easy updates
-5. **Type Safety**: Comprehensive TypeScript interfaces in `types.ts`
-6. **Performance First**: Memoized components, lazy loading, GPU-accelerated animations
+1. **Single-Page Application**: All content on one page, React Router removed for simplicity
+2. **Security First**: API keys never exposed in client-side code for static deployments
+3. **CDN-Based Loading**: React, Recharts, and other libraries loaded via CDN to reduce bundle size
+4. **Component Structure**: Modular components in `/components` and `/src/components` directories
+5. **Centralized Data**: All resume/portfolio data in `constants.ts` for easy updates
+6. **Type Safety**: Comprehensive TypeScript interfaces in `types.ts`
+7. **Performance First**: Memoized components, lazy loading, GPU-accelerated animations
+8. **AI Assistant Disabled**: For GitHub Pages deployment to prevent API key exposure
 
 ## File Organization
 
-- `App.tsx` - Main application component (homepage with all sections)
-- `index.tsx` - React Router setup with BrowserRouter
-- `src/components/ProjectDetail.tsx` - Individual project detail pages
-- `components/AiAssistant.tsx` - Chat widget with Gemini integration
+- `App.tsx` - Main single-page application component with all sections
+- `index.tsx` - Application entry point (React Router removed)
+- `src/components/ProjectDetail.tsx` - Project detail component (not currently used)
+- `components/AiAssistant.tsx` - Chat widget (disabled for production, local dev only)
 - `components/SkillChart.tsx` - Radar chart for skill visualization
-- `services/gemini.ts` - API client for Google Gemini
+- `services/gemini.ts` - API client for Google Gemini (local dev only)
 - `constants.ts` - Resume data and configuration
 - `types.ts` - TypeScript type definitions
+- `public/` - Static assets (14 tech logos, favicon, profile photo)
+- `vite.config.ts` - Vite config with GitHub Pages base path (no API key injection)
 
 ## Data Structure
 
@@ -60,7 +66,20 @@ All portfolio content is managed through the `RESUME_DATA` constant in `constant
 
 If you mess up the design or something breaks, you can restore to these verified commits:
 
-**LATEST BACKUP - Commit `032a761` - Unified Design System with Balanced Footer (CURRENT RECOMMENDED)**
+**LATEST BACKUP - Commit `06fcd48` - Security Fix + Single-Page Portfolio (CURRENT PRODUCTION)**
+- Single-page portfolio (React Router removed for simplicity)
+- API key exposure fixed - AI Assistant disabled for GitHub Pages
+- Enhanced .gitignore with .env patterns and user_inputs/
+- Comprehensive security documentation in README
+- Clean favicon (favicon.png in public/)
+- Hero section with colored underlines on ETL pipelines, dashboards, automation
+- All 14 tech logos moved to public/ folder
+- GitHub Pages deployment configured and working
+- Bundle size optimized (569 KB vs previous 795 KB)
+- **Security incident resolved** - see SECURITY_INCIDENT_RESOLVED.md
+- To restore: `git checkout 06fcd48 -- .`
+
+**Previous Backup - Commit `032a761` - Unified Design System with Balanced Footer**
 - Consistent gray pill-style section labels across all sections (Impact Metrics, Core Competencies, Tech Stack, Experience, Portfolio)
 - Clean hero section: simplified left side with identity text + CTAs, decorative right side with floating badges
 - Skills section without percentage indicators - clean list layout with hover effects
@@ -88,10 +107,25 @@ If you mess up the design or something breaks, you can restore to these verified
 - Clean, minimal, professional design
 - To restore: `git checkout 853a3ae -- App.tsx index.html`
 
-### Environment Variables
-- `GEMINI_API_KEY` must be set in `.env.local`
-- The app will run without it, but AI assistant will show a warning message
-- Never commit the actual API key to version control
+### Environment Variables & Security
+- `GEMINI_API_KEY` can be set in `.env.local` for **local development only**
+- **CRITICAL**: AI Assistant is disabled for GitHub Pages deployment (see security section below)
+- `.env.local` is git-ignored - never commit API keys to version control
+- `vite.config.ts` does NOT inject API keys into the build for static deployments
+- For production API features, use a backend proxy (Vercel/Netlify Functions)
+
+### Security Incident - December 8, 2025 (RESOLVED)
+**Issue**: Google API Key was exposed in GitHub repository due to insecure vite.config.ts setup
+**Resolution**:
+- Removed API key injection from vite.config.ts
+- Disabled AI Assistant for GitHub Pages (static deployment)
+- Enhanced .gitignore with .env patterns
+- Deployed clean build without API keys
+- Full details in `SECURITY_INCIDENT_RESOLVED.md`
+
+**User Action Required**: Revoke the exposed API key in Google Cloud Console
+
+**Prevention**: Never use `define` in vite.config.ts to inject secrets for static sites
 
 ### Styling Approach
 - Tailwind CSS configuration is inline in `index.html`
