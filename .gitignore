@@ -43,3 +43,6 @@ test-results/
 
 # User inputs
 user_inputs/
+
+# HR data (sensitive salary info, personal details)
+hr-data/
