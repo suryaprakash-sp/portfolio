@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Menu, X, Github, Mail, Play, Database, ArrowRight, CheckCircle2, Loader2, Sparkles, Code2, Terminal, Server, BarChart3, ExternalLink, Zap, LineChart, ArrowUp, ChevronDown, ChevronUp } from 'lucide-react';
-import { RESUME_DATA, NAV_ITEMS, CATEGORY_ICONS, PROJECT_ICONS } from './constants';
+import { Menu, X, Github, Mail, Play, Database, ArrowRight, CheckCircle2, Loader2, Sparkles, Code2, Terminal, Server, BarChart3, ExternalLink, Zap, LineChart, ArrowUp, ChevronDown, ChevronUp, Calendar, Rocket, Bot, Gift, Check, Users } from 'lucide-react';
+import { RESUME_DATA, NAV_ITEMS, CATEGORY_ICONS, PROJECT_ICONS, CURRENCIES } from './constants';
+import type { Currency, CurrencyCode, Service } from './types';
 import SkillChart from './components/SkillChart';
 import AiAssistant from './components/AiAssistant';
 
@@ -222,6 +223,120 @@ const BentoProjectCard = ({ project }: { project: any }) => {
   );
 };
 
+// Convert a base USD price to the selected currency and format it nicely.
+const formatPrice = (usdAmount: number, currency: Currency): string => {
+  if (usdAmount === 0) return 'Free';
+  const converted = usdAmount * currency.rate;
+  let rounded: number;
+  if (currency.code === 'INR') {
+    rounded = Math.round(converted / 100) * 100; // nearest ₹100
+  } else if (converted >= 100) {
+    rounded = Math.round(converted / 10) * 10;   // nearest 10 unit
+  } else {
+    rounded = Math.round(converted);
+  }
+  try {
+    return new Intl.NumberFormat(currency.locale, {
+      style: 'currency',
+      currency: currency.code,
+      maximumFractionDigits: 0,
+    }).format(rounded);
+  } catch {
+    return `${currency.symbol}${rounded.toLocaleString()}`;
+  }
+};
+
+// Service tier pricing card with featured highlight
+const ServiceCard: React.FC<{ service: Service; currency: Currency }> = ({ service, currency }) => {
+  const Icon = PROJECT_ICONS[service.icon] || Rocket;
+  const isFeatured = !!service.featured;
+  const isFree = service.tier === 'free';
+
+  const priceDisplay = service.priceUSD === null
+    ? 'Custom'
+    : formatPrice(service.priceUSD, currency);
+  const recurringDisplay = service.recurringUSD
+    ? formatPrice(service.recurringUSD, currency)
+    : null;
+
+  return (
+    <div className={`group relative bg-white rounded-2xl p-8 border-2 transition-all duration-300 flex flex-col ${
+      isFeatured
+        ? 'border-blue-500 shadow-2xl shadow-blue-500/20 hover:-translate-y-2 md:scale-[1.02]'
+        : 'border-slate-200 hover:border-blue-300 hover:shadow-xl hover:-translate-y-1'
+    }`}>
+      {isFeatured && (
+        <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-blue-500 to-blue-600 text-white text-[10px] font-bold uppercase tracking-wider rounded-full shadow-lg whitespace-nowrap">
+          Most Popular
+        </div>
+      )}
+
+      {/* Icon */}
+      <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 ${
+        isFeatured
+          ? 'bg-gradient-to-br from-blue-500 to-blue-600 text-white shadow-lg'
+          : 'bg-blue-50 text-blue-600 border border-blue-100 group-hover:bg-blue-100 transition-colors'
+      }`}>
+        <Icon className="w-7 h-7" />
+      </div>
+
+      {/* Title + tagline */}
+      <h3 className="text-xl font-bold text-slate-900 mb-2 leading-tight">{service.title}</h3>
+      <p className="text-sm text-slate-600 leading-relaxed mb-6">{service.tagline}</p>
+
+      {/* Price block */}
+      <div className="mb-6 pb-6 border-b border-slate-100">
+        {service.pricePrefix && (
+          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">{service.pricePrefix}</span>
+        )}
+        <div className="flex items-baseline gap-2 flex-wrap">
+          <span className={`text-4xl font-bold ${isFree ? 'text-emerald-600' : 'text-slate-900'}`}>
+            {priceDisplay}
+          </span>
+          {service.priceSuffix && !isFree && (
+            <span className="text-sm text-slate-500">{service.priceSuffix}</span>
+          )}
+        </div>
+        {recurringDisplay && (
+          <p className="text-sm text-slate-500 mt-1.5">
+            + <span className="font-semibold text-slate-700">{recurringDisplay}</span> / month maintenance
+          </p>
+        )}
+      </div>
+
+      {/* Deliverables */}
+      <ul className="space-y-3 mb-6 flex-grow">
+        {service.deliverables.map((item, i) => (
+          <li key={i} className="flex items-start gap-2.5 text-sm text-slate-700 leading-relaxed">
+            <Check className={`w-4 h-4 mt-0.5 flex-shrink-0 ${isFeatured ? 'text-blue-500' : 'text-emerald-500'}`} />
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+
+      {/* Best for */}
+      <p className="text-xs text-slate-500 italic mb-5 leading-relaxed border-t border-slate-100 pt-4">
+        <span className="font-semibold text-slate-600 not-italic">Best for:</span> {service.bestFor}
+      </p>
+
+      {/* CTA */}
+      <a
+        href={RESUME_DATA.contact.calendly}
+        target="_blank"
+        rel="noreferrer"
+        className={`w-full text-center px-5 py-3 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center gap-2 ${
+          isFeatured
+            ? 'bg-slate-900 hover:bg-black text-white shadow-lg hover:shadow-xl hover:scale-[1.02]'
+            : 'bg-slate-100 hover:bg-slate-900 hover:text-white text-slate-900 border border-slate-200'
+        }`}
+      >
+        <Calendar className="w-4 h-4" />
+        {service.ctaLabel}
+      </a>
+    </div>
+  );
+};
+
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState('about');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -252,6 +367,10 @@ const App: React.FC = () => {
 
   // Scroll To Top State
   const [showScrollTop, setShowScrollTop] = useState(false);
+
+  // Currency switcher state for Services pricing
+  const [selectedCurrencyCode, setSelectedCurrencyCode] = useState<CurrencyCode>('USD');
+  const selectedCurrency = CURRENCIES.find(c => c.code === selectedCurrencyCode) || CURRENCIES[0];
 
   // Update Navbar Indicator Position on activeSection change or Resize
   useEffect(() => {
@@ -487,10 +606,10 @@ const App: React.FC = () => {
                <span className="block text-blue-500 mt-2">Surya.</span>
              </h1>
              <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight leading-snug">
-               I build data systems that get results.
+               I help teams save 20+ hours a week with <span className="text-blue-500">AI automation</span>.
              </h2>
              <p className="text-lg text-slate-500 leading-relaxed max-w-xl">
-               Data Analyst & Engineer with 3+ years turning complex data into actionable insights. Specialized in <span className="font-bold text-slate-900 underline decoration-blue-400 decoration-2 underline-offset-4">ETL pipelines</span>, <span className="font-bold text-slate-900 underline decoration-purple-400 decoration-2 underline-offset-4">dashboards</span>, and <span className="font-bold text-slate-900 underline decoration-emerald-400 decoration-2 underline-offset-4">automation</span>.
+               Data & AI Automation Consultant with 4+ years building production systems in EdTech. I combine analyst judgment with AI-native delivery — <span className="font-bold text-slate-900 underline decoration-blue-400 decoration-2 underline-offset-4">ETL pipelines</span>, <span className="font-bold text-slate-900 underline decoration-purple-400 decoration-2 underline-offset-4">dashboards</span>, and <span className="font-bold text-slate-900 underline decoration-emerald-400 decoration-2 underline-offset-4">autonomous agents</span>.
              </p>
           </div>
 
@@ -498,29 +617,30 @@ const App: React.FC = () => {
           <div className="flex flex-col gap-6">
              <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
                 <a
-                  href={`mailto:${RESUME_DATA.contact.email}?subject=Let's discuss a data project`}
-                  className="group w-full sm:w-auto min-w-[180px] justify-center px-8 py-4 bg-slate-900 hover:bg-black text-white rounded-xl font-semibold transition-all duration-300 shadow-lg shadow-slate-900/20 hover:shadow-xl hover:shadow-slate-900/30 hover:scale-105 hover:-translate-y-0.5 flex items-center gap-2"
-                >
-                  <Mail className="w-4 h-4 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" />
-                  Schedule a Call
-                </a>
-                <a
-                  href={`https://${RESUME_DATA.contact.linkedin}`}
+                  href={RESUME_DATA.contact.calendly}
                   target="_blank"
                   rel="noreferrer"
+                  className="group w-full sm:w-auto min-w-[180px] justify-center px-8 py-4 bg-slate-900 hover:bg-black text-white rounded-xl font-semibold transition-all duration-300 shadow-lg shadow-slate-900/20 hover:shadow-xl hover:shadow-slate-900/30 hover:scale-105 hover:-translate-y-0.5 flex items-center gap-2"
+                >
+                  <Calendar className="w-4 h-4 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" />
+                  Book a Free Audit
+                </a>
+                <a
+                  href="#services"
+                  onClick={(e) => scrollToSection(e, '#services')}
                   className="group w-full sm:w-auto min-w-[180px] justify-center px-8 py-4 bg-white hover:bg-slate-50 text-slate-900 border-2 border-slate-200 hover:border-blue-300 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 hover:shadow-md flex items-center gap-2"
                 >
-                  <LinkedInIcon size={16} className="group-hover:scale-110 transition-all duration-300" />
-                  View Profile
+                  <Rocket className="w-4 h-4 group-hover:scale-110 transition-all duration-300" />
+                  See Services
                 </a>
              </div>
 
-             {/* Open to Opportunities Badge - More compelling */}
+             {/* Availability Badge */}
              <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-gradient-to-r from-emerald-50 to-blue-50 border-2 border-emerald-200 self-start hover:border-emerald-300 transition-all duration-300 cursor-default shadow-sm">
                 <span className="relative w-2.5 h-2.5 rounded-full bg-emerald-500">
                   <span className="absolute inset-0 rounded-full bg-emerald-500 animate-ping opacity-75"></span>
                 </span>
-                <span className="text-xs font-bold text-slate-900 tracking-wide uppercase">Open to Full-Time & Freelance</span>
+                <span className="text-xs font-bold text-slate-900 tracking-wide uppercase">Available for Freelance · Remote · Global</span>
              </div>
           </div>
 
@@ -578,43 +698,41 @@ const App: React.FC = () => {
               <div className="backdrop-blur-xl bg-white/80 border border-slate-200/50 rounded-2xl px-5 py-3 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-default">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-md">
-                    <span className="text-white font-bold text-sm">3+</span>
+                    <span className="text-white font-bold text-sm">4+</span>
                   </div>
                   <div>
                     <p className="text-xs text-slate-500 font-medium">Years</p>
-                    <p className="text-sm font-bold text-slate-900">Experience</p>
+                    <p className="text-sm font-bold text-slate-900">in EdTech Data</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Badge 2: Top Right - Projects Delivered */}
+            {/* Badge 2: Top Right - Students served */}
             <div className="stat-badge absolute top-16 -right-8 md:-right-12 animate-float" style={{ animationDelay: '1s' }}>
               <div className="backdrop-blur-xl bg-white/80 border border-slate-200/50 rounded-2xl px-5 py-3 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-default">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center shadow-md">
-                    <span className="text-white font-bold text-sm">15+</span>
+                    <span className="text-white font-bold text-[11px]">25K+</span>
                   </div>
                   <div>
-                    <p className="text-xs text-slate-500 font-medium">Projects</p>
-                    <p className="text-sm font-bold text-slate-900">Delivered</p>
+                    <p className="text-xs text-slate-500 font-medium">Students</p>
+                    <p className="text-sm font-bold text-slate-900">Served</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Badge 3: Bottom Left - Tech Stack */}
+            {/* Badge 3: Bottom Left - Hours saved */}
             <div className="stat-badge absolute bottom-12 -left-8 md:-left-12 animate-float" style={{ animationDelay: '2s' }}>
               <div className="backdrop-blur-xl bg-white/80 border border-slate-200/50 rounded-2xl px-5 py-3 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-default">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-md">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
+                    <span className="text-white font-bold text-[11px]">20h</span>
                   </div>
                   <div>
-                    <p className="text-xs text-slate-500 font-medium">Python</p>
-                    <p className="text-sm font-bold text-slate-900">SQL Expert</p>
+                    <p className="text-xs text-slate-500 font-medium">/week saved</p>
+                    <p className="text-sm font-bold text-slate-900">via automation</p>
                   </div>
                 </div>
               </div>
@@ -661,16 +779,16 @@ const App: React.FC = () => {
               </div>
             </div>
 
-            {/* Metric 2: Data Volume */}
+            {/* Metric 2: Exam candidates synced */}
             <div className="group relative bg-white rounded-2xl border-2 border-slate-200 p-6 hover:border-purple-300 hover:shadow-xl transition-all duration-300">
               <div className="absolute -top-3 -right-3 w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl rotate-12 group-hover:rotate-45 transition-transform duration-500 flex items-center justify-center shadow-lg">
                 <Database className="w-6 h-6 text-white" />
               </div>
               <div className="space-y-2">
-                <h3 className="text-5xl font-bold text-purple-600">50M+</h3>
-                <p className="text-slate-900 font-semibold text-lg">Daily Records</p>
+                <h3 className="text-5xl font-bold text-purple-600">58K+</h3>
+                <p className="text-slate-900 font-semibold text-lg">Candidates Tracked</p>
                 <p className="text-slate-600 text-sm leading-relaxed">
-                  Automated ETL pipelines processing millions of records daily across PostgreSQL and MongoDB databases
+                  Think Exam platform data synced into PostgreSQL with crash-safe pagination for IACE coaching institute
                 </p>
               </div>
             </div>
@@ -689,16 +807,16 @@ const App: React.FC = () => {
               </div>
             </div>
 
-            {/* Metric 4: Cost Reduction */}
+            {/* Metric 4: Hours saved */}
             <div className="group relative bg-white rounded-2xl border-2 border-slate-200 p-6 hover:border-orange-300 hover:shadow-xl transition-all duration-300">
               <div className="absolute -top-3 -right-3 w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl rotate-12 group-hover:rotate-45 transition-transform duration-500 flex items-center justify-center shadow-lg">
                 <LineChart className="w-6 h-6 text-white" />
               </div>
               <div className="space-y-2">
-                <h3 className="text-5xl font-bold text-orange-600">30%</h3>
-                <p className="text-slate-900 font-semibold text-lg">Cost Savings</p>
+                <h3 className="text-5xl font-bold text-orange-600">20h</h3>
+                <p className="text-slate-900 font-semibold text-lg">Saved Per Week</p>
                 <p className="text-slate-600 text-sm leading-relaxed">
-                  Reduced cloud infrastructure costs through efficient data storage and processing strategies
+                  Eliminated 20+ hours/week of manual reporting via Google Docs/Gmail API automation at Masai School
                 </p>
               </div>
             </div>
@@ -717,16 +835,16 @@ const App: React.FC = () => {
               </div>
             </div>
 
-            {/* Metric 6: Projects Delivered */}
+            {/* Metric 6: Students served */}
             <div className="group relative bg-white rounded-2xl border-2 border-slate-200 p-6 hover:border-pink-300 hover:shadow-xl transition-all duration-300">
               <div className="absolute -top-3 -right-3 w-12 h-12 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl rotate-12 group-hover:rotate-45 transition-transform duration-500 flex items-center justify-center shadow-lg">
-                <CheckCircle2 className="w-6 h-6 text-white" />
+                <Users className="w-6 h-6 text-white" />
               </div>
               <div className="space-y-2">
-                <h3 className="text-5xl font-bold text-pink-600">15+</h3>
-                <p className="text-slate-900 font-semibold text-lg">Projects Delivered</p>
+                <h3 className="text-5xl font-bold text-pink-600">25K+</h3>
+                <p className="text-slate-900 font-semibold text-lg">Students Served</p>
                 <p className="text-slate-600 text-sm leading-relaxed">
-                  Successfully delivered analytics dashboards, ETL pipelines, and data visualization projects
+                  Data infrastructure I built powers operations for 25,000+ active students across 50+ courses at Masai
                 </p>
               </div>
             </div>
@@ -996,6 +1114,84 @@ const App: React.FC = () => {
         </div>
       </section>
 
+      {/* Services Section - Freelance Productized Offers */}
+      <section id="services" className="scroll-mt-28 py-24 bg-white border-t border-slate-100 relative overflow-hidden">
+        {/* Subtle background */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:48px_48px] opacity-40"></div>
+        <div className="absolute top-40 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="absolute bottom-40 right-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          {/* Header */}
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-100 border border-slate-200 mb-4">
+              <Rocket className="w-4 h-4 text-slate-600" />
+              <span className="text-xs font-bold text-slate-700 uppercase tracking-wide">Services</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4 tracking-tight">
+              Productized offers that pay for themselves
+            </h2>
+            <p className="text-slate-500 text-lg max-w-2xl mx-auto">
+              Clear scope. Fixed pricing. Built and tested by me, accelerated by Claude Code.
+            </p>
+          </div>
+
+          {/* Currency Switcher */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-12">
+            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Show prices in</span>
+            <div className="inline-flex items-center bg-white border border-slate-200 rounded-full p-1 shadow-sm">
+              {CURRENCIES.map((currency) => {
+                const active = selectedCurrencyCode === currency.code;
+                return (
+                  <button
+                    key={currency.code}
+                    onClick={() => setSelectedCurrencyCode(currency.code)}
+                    className={`px-4 py-1.5 text-xs font-semibold rounded-full transition-all duration-300 ${
+                      active
+                        ? 'bg-slate-900 text-white shadow-md'
+                        : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                    }`}
+                    aria-pressed={active}
+                    title={currency.name}
+                  >
+                    {currency.symbol} {currency.code}
+                  </button>
+                );
+              })}
+            </div>
+            <span className="text-[11px] text-slate-400 italic">Approximate conversion · final quote in USD</span>
+          </div>
+
+          {/* Service Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 items-stretch">
+            {RESUME_DATA.services.map((service) => (
+              <ServiceCard
+                key={service.id}
+                service={service}
+                currency={selectedCurrency}
+              />
+            ))}
+          </div>
+
+          {/* Bottom trust strip */}
+          <div className="mt-16 text-center">
+            <p className="text-slate-600 mb-5 text-base">
+              Not sure which one fits? Start with the <span className="font-semibold text-slate-900">free 30-min audit</span> — I'll point you at the right one.
+            </p>
+            <a
+              href={RESUME_DATA.contact.calendly}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-slate-900 hover:bg-black text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+            >
+              <Calendar className="w-4 h-4" />
+              Book your free audit
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Experience Section - Flowing Path Design */}
       <section id="experience" ref={experienceRef} className="scroll-mt-28 py-24 bg-gradient-to-b from-slate-50/50 via-white to-slate-50/50 relative overflow-hidden">
         {/* Subtle Background Grid */}
@@ -1165,7 +1361,7 @@ const App: React.FC = () => {
                 <span className="text-xs font-bold text-slate-700 uppercase tracking-wide">Portfolio</span>
               </div>
               <h2 className="text-4xl font-bold text-slate-900 mb-2 tracking-tight">Featured Projects</h2>
-              <p className="text-slate-500 font-light text-lg">Data engineering & analytics work</p>
+              <p className="text-slate-500 font-light text-lg">Real production systems serving real users</p>
             </div>
 
             {/* Filter Buttons */}
@@ -1203,23 +1399,23 @@ const App: React.FC = () => {
           <div className="grid md:grid-cols-2 gap-16 mb-16">
             <div>
               <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-6 leading-tight">
-                Ready to turn your data into <span className="text-blue-400">growth?</span>
+                Let's reclaim <span className="text-blue-400">20 hours</span> of your team's week.
               </h2>
               <p className="text-slate-300 max-w-md mb-6 leading-relaxed text-lg">
-                I'm currently accepting new opportunities for full-time roles and freelance projects.
+                I'm taking on a limited number of freelance projects for EdTech companies, coaching institutes, and SMBs who want to stop drowning in manual work.
               </p>
               <ul className="text-slate-400 space-y-2">
                 <li className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                  <span>ETL pipelines & data automation</span>
+                  <span>Automated reporting &amp; AI-powered dashboards</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                  <span>Interactive dashboards & BI solutions</span>
+                  <span>ETL pipelines connecting your scattered data</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                  <span>Database optimization & architecture</span>
+                  <span>Autonomous agents for repetitive workflows</span>
                 </li>
               </ul>
             </div>
@@ -1264,21 +1460,21 @@ const App: React.FC = () => {
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
-                  href={`mailto:${RESUME_DATA.contact.email}?subject=Let's discuss a data project`}
+                  href={RESUME_DATA.contact.calendly}
+                  target="_blank"
+                  rel="noreferrer"
                   className="group inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-500 hover:bg-blue-400 text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 hover:scale-105"
                 >
-                  <Mail className="w-4 h-4 group-hover:rotate-12 transition-transform" />
-                  Start a Conversation
+                  <Calendar className="w-4 h-4 group-hover:rotate-12 transition-transform" />
+                  Book a Free Audit
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </a>
                 <a
-                  href={`https://${RESUME_DATA.contact.linkedin}`}
-                  target="_blank"
-                  rel="noreferrer"
+                  href={`mailto:${RESUME_DATA.contact.email}?subject=Let's discuss a freelance project`}
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-xl font-semibold transition-all duration-300 hover:scale-105"
                 >
-                  <LinkedInIcon size={16} />
-                  View LinkedIn
+                  <Mail className="w-4 h-4" />
+                  Send Email
                 </a>
               </div>
             </div>
