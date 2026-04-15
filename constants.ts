@@ -55,16 +55,29 @@ export const RESUME_DATA: ResumeData = {
   ],
   experience: [
     {
+      role: "Senior Data Analyst",
+      company: "IACE",
+      location: "Hyderabad",
+      period: "Feb 2026 – Present",
+      achievements: [
+        "Own end-to-end data infrastructure, analytics, and automation for a large coaching institute serving 58,000+ exam candidates.",
+        "Built a production result-generation engine (FastAPI + React + Supabase + WeasyPrint) that turns raw mock-test Excel uploads into district-segmented PDF result sheets for thousands of students per exam cycle.",
+        "Unified scattered data sources (Zoho CRM, Google Workspace, Think Exam platform, scanned PDFs) into a single PostgreSQL warehouse powering daily operations, with crash-safe pagination, retry logic, and batch writes.",
+        "Shipped a real-time student leaderboard portal (React + TypeScript + FastAPI + AWS RDS) with a 5-tier ranking system, branch-level filtering, and self-service rank lookup.",
+        "Built 7 branch-level sales pipelines, autonomous fee validators, and daily Real Intensive Program (RIP) performance reports feeding operational dashboards."
+      ]
+    },
+    {
       role: "Data Analyst",
       company: "Masai School",
       location: "Bangalore",
-      period: "Oct 2024 – Present",
+      period: "Oct 2024 – Jan 2026",
       achievements: [
-        "Manage end-to-end data infrastructure supporting 25,000+ active students across 50+ courses.",
-        "Engineered comprehensive student lifecycle dashboard and 30+ Metabase dashboards using Python, improving load times by 80%.",
-        "Streamlined reporting using Google Docs API/Gmail API, eliminating 20 hours of manual work weekly.",
-        "Redesigned analytics-ready database schema, reducing ETL pipeline count from 40+ to 20 (50% reduction).",
-        "Developed 20 production ETL pipelines in Python processing millions of rows daily from MySQL/MongoDB to PostgreSQL."
+        "Managed end-to-end data infrastructure supporting 25,000+ active students across 50+ courses.",
+        "Engineered a comprehensive student lifecycle dashboard plus 30+ Metabase dashboards in Python, improving load times by 80%.",
+        "Streamlined reporting via Google Docs and Gmail APIs, eliminating 20 hours of manual work weekly.",
+        "Redesigned the analytics schema, consolidating 40+ fragile ETL pipelines into 20 production jobs (50% reduction).",
+        "Developed 20 production ETL pipelines in Python processing millions of rows daily from MySQL/MongoDB into PostgreSQL."
       ]
     },
     {
@@ -73,10 +86,10 @@ export const RESUME_DATA: ResumeData = {
       location: "Hyderabad",
       period: "Jan 2022 – Mar 2024",
       achievements: [
-        "Migrated admissions tracking system to Google Sheets/Python, managing data for 10,000+ students.",
-        "Created automated WhatsApp messaging system using WATI API for instant student engagement.",
-        "Processed millions of rows of campaign data, implementing QR code systems for multi-source collection.",
-        "Led cross-functional team of 7 to publish 300+ blogs, increasing website traffic by 30%."
+        "Migrated the admissions tracking system to a Google Sheets + Python workflow, managing data for 10,000+ students.",
+        "Built an automated WhatsApp messaging system on the WATI API for instant student engagement.",
+        "Processed millions of rows of campaign data and designed a QR code system for multi-source attribution without link breakage.",
+        "Led a cross-functional team of 7 to publish 300+ blogs, growing site traffic 30%."
       ]
     }
   ],
@@ -84,7 +97,7 @@ export const RESUME_DATA: ResumeData = {
     {
       title: "Production Result-Generation Engine — IACE",
       tech: ["FastAPI", "React", "Supabase", "WeasyPrint", "Vercel", "Railway"],
-      year: "2025",
+      year: "2026",
       category: "AI Automation",
       icon: "FileText",
       size: "large",
@@ -97,13 +110,13 @@ export const RESUME_DATA: ResumeData = {
       ],
       description: [
         "Built end-to-end web app that turns raw mock-test Excel uploads into district-segmented PDF result sheets, distributed to thousands of students after every exam cycle.",
-        "Auto-computes rankings, district-wise toppers, and category breakdowns. Live in production at results-generator.iace.co.in."
+        "Auto-computes rankings, district-wise toppers, and category breakdowns. Running in production through real exam cycles."
       ]
     },
     {
       title: "Multi-Source Data Hub & ETL Automation — IACE",
       tech: ["Python", "PostgreSQL", "Zoho CRM API", "Google Workspace", "Playwright", "OCR"],
-      year: "2025",
+      year: "2026",
       category: "Data Engineering",
       icon: "Database",
       size: "large",
@@ -122,7 +135,7 @@ export const RESUME_DATA: ResumeData = {
     {
       title: "Real-Time Student Leaderboard Portal — IACE",
       tech: ["React", "TypeScript", "Tailwind", "FastAPI", "AWS RDS", "Alembic"],
-      year: "2025",
+      year: "2026",
       category: "Web App",
       icon: "Users",
       size: "normal",

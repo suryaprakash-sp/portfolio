@@ -1267,42 +1267,15 @@ const App: React.FC = () => {
           {/* Journey Path Container - Overflow to extend beyond section */}
           <div className="relative max-w-5xl mx-auto overflow-visible">
 
-            {/* Flowing SVG Path - Desktop - Full width with beautiful S-curve */}
-            <svg className="hidden md:block absolute pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none" style={{ zIndex: 0, top: '-20%', left: 0, width: '100%', height: '140%' }}>
-              <defs>
-                {/* Gradient for fading path at top and bottom - fade earlier at top to stay below subtitle */}
-                <linearGradient id="pathFade" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#93c5fd" stopOpacity="0" />
-                  <stop offset="32%" stopColor="#93c5fd" stopOpacity="1" />
-                  <stop offset="85%" stopColor="#93c5fd" stopOpacity="1" />
-                  <stop offset="100%" stopColor="#93c5fd" stopOpacity="0" />
-                </linearGradient>
-              </defs>
-
-              {/* Extended Blue Path with Smooth S-Curve */}
-              <path
-                d="M 50 0 C 50 20, 60 30, 55 50 C 50 70, 45 80, 50 100"
-                stroke="url(#pathFade)"
-                strokeWidth="1.2"
-                fill="none"
-                strokeLinecap="round"
-                className={`transition-all duration-1000 ${experienceVisible ? 'opacity-100' : 'opacity-0'}`}
-              />
-
-              {/* White Dotted Line Moving Inside - Bottom to Top */}
-              <path
-                d="M 50 0 C 50 20, 60 30, 55 50 C 50 70, 45 80, 50 100"
-                stroke="#ffffff"
-                strokeWidth="0.25"
-                fill="none"
-                strokeLinecap="round"
-                strokeDasharray="2 4"
-                className={`transition-all duration-1000 ${experienceVisible ? 'opacity-100' : 'opacity-0'}`}
-                style={{
-                  animation: experienceVisible ? 'moveDotsUp 1.8s linear infinite' : 'none'
-                }}
-              />
-            </svg>
+            {/* Vertical timeline line — desktop, sits behind the centered cards */}
+            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 -translate-x-1/2 pointer-events-none" style={{ zIndex: 0 }}>
+              <div className="relative w-[3px] h-full">
+                {/* Base line with gradient fade at top and bottom */}
+                <div className={`absolute inset-0 rounded-full bg-gradient-to-b from-transparent via-blue-300 to-transparent transition-opacity duration-1000 ${experienceVisible ? 'opacity-100' : 'opacity-0'}`}></div>
+                {/* Animated traveling beam */}
+                <div className={`absolute inset-x-0 h-[30%] rounded-full bg-gradient-to-t from-transparent via-blue-500 to-transparent ${experienceVisible ? 'animate-beam-up' : ''}`}></div>
+              </div>
+            </div>
 
             {/* Mobile Line */}
             <div className="md:hidden absolute left-6 top-0 bottom-0 w-[3px] bg-gradient-to-b from-blue-200 via-blue-400 to-blue-200 rounded-full overflow-hidden">
@@ -1310,98 +1283,96 @@ const App: React.FC = () => {
               <div className={`absolute inset-0 bg-gradient-to-t from-transparent via-blue-500 to-transparent h-[40%] ${experienceVisible ? 'animate-beam-up' : ''}`}></div>
             </div>
 
-            {/* Experience Items */}
-            <div className="space-y-0 relative" style={{ zIndex: 1 }}>
-              {RESUME_DATA.experience.map((job, idx) => {
-                const isEven = idx % 2 === 0;
-
-                return (
-                  <div
-                    key={idx}
-                    style={{ transitionDelay: `${idx * 200}ms` }}
-                    className={`relative pb-16 last:pb-0 transition-all duration-700 ${experienceVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-                  >
-                    {/* Desktop Layout - Alternating */}
-                    <div className={`hidden md:grid grid-cols-2 gap-12 items-center`}>
-
-                      {/* Content Card */}
-                      <div className={`${isEven ? 'text-left' : 'text-left col-start-2 ml-8'}`}>
-                        {/* Period Badge */}
-                        <div className={`inline-flex items-center gap-2 px-4 py-1.5 mb-4 rounded-full bg-blue-50 border border-blue-100`}>
-                          <div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
-                          <span className="text-xs font-semibold text-blue-700 tracking-wide">{job.period}</span>
-                        </div>
-
-                        {/* Card */}
-                        <div className="group bg-white rounded-2xl border border-slate-200 p-6 shadow-md hover:shadow-2xl hover:border-blue-300 transition-all duration-300 relative">
-                          {/* Connecting Line to Path */}
-                          <div className={`hidden md:block absolute top-1/2 -translate-y-1/2 ${isEven ? '-right-12 left-full' : '-left-12 right-full'} w-12 h-[2px] bg-gradient-to-r ${isEven ? 'from-slate-200 to-transparent' : 'from-transparent to-slate-200'}`}></div>
-
-                          <div className="mb-4">
-                            <h3 className="text-xl font-bold text-slate-900 mb-1 group-hover:text-blue-600 transition-colors">
-                              {job.role}
-                            </h3>
-                            <div className="flex items-center gap-2 text-slate-600 text-sm">
-                              <span className="font-medium">{job.company}</span>
-                              <span className="text-slate-400">•</span>
-                              <span className="text-slate-500">{job.location}</span>
-                            </div>
-                            <div className="mt-1 text-xs text-slate-500">
-                              {idx === 0 ? '1 year 2 months' : '2 years 3 months'}
-                            </div>
-                          </div>
-
-                          <ul className="space-y-2.5">
-                            {job.achievements.slice(0, 3).map((achievement, i) => (
-                              <li key={i} className="flex items-start gap-2.5 text-slate-700 text-sm leading-relaxed">
-                                <div className="mt-2 w-1 h-1 rounded-full bg-blue-400 shrink-0"></div>
-                                <span>{achievement}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
+            {/* Experience Items — centered single-column stack, works for any N entries */}
+            <div className="space-y-12 md:space-y-16 relative" style={{ zIndex: 1 }}>
+              {RESUME_DATA.experience.map((job, idx) => (
+                <div
+                  key={idx}
+                  style={{ transitionDelay: `${idx * 150}ms` }}
+                  className={`relative transition-all duration-700 ${experienceVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                >
+                  {/* Desktop Layout — Centered card with node on the timeline */}
+                  <div className="hidden md:block max-w-2xl mx-auto relative">
+                    {/* Timeline node — sits on the vertical line, at the top of the card */}
+                    <div className="absolute left-1/2 -top-4 -translate-x-1/2 z-10">
+                      <div className="w-8 h-8 rounded-full bg-white border-2 border-blue-400 shadow-md flex items-center justify-center">
+                        <div className="w-3 h-3 rounded-full bg-gradient-to-br from-blue-400 to-blue-600"></div>
                       </div>
-
                     </div>
 
-                    {/* Mobile Layout */}
-                    <div className="md:hidden flex gap-6">
-                      <div className="relative flex flex-col items-center shrink-0">
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 shadow-lg flex items-center justify-center z-10">
-                          <div className="w-2 h-2 rounded-full bg-white"></div>
+                    {/* Period Badge */}
+                    <div className="flex justify-center mb-5">
+                      <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100">
+                        <div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+                        <span className="text-xs font-semibold text-blue-700 tracking-wide">{job.period}</span>
+                        <span className="text-blue-300">·</span>
+                        <span className="text-xs text-blue-600/80">{calculateDuration(job.period)}</span>
+                      </div>
+                    </div>
+
+                    {/* Card */}
+                    <div className="group bg-white rounded-2xl border border-slate-200 p-7 shadow-md hover:shadow-2xl hover:border-blue-300 transition-all duration-300">
+                      <div className="mb-5 pb-5 border-b border-slate-100">
+                        <h3 className="text-2xl font-bold text-slate-900 mb-1 group-hover:text-blue-600 transition-colors">
+                          {job.role}
+                        </h3>
+                        <div className="flex items-center gap-2 text-slate-600 text-sm flex-wrap">
+                          <span className="font-semibold text-slate-700">{job.company}</span>
+                          <span className="text-slate-400">·</span>
+                          <span className="text-slate-500">{job.location}</span>
                         </div>
                       </div>
 
-                      <div className="flex-1 pb-2">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 mb-3 rounded-full bg-blue-50 border border-blue-100">
-                          <div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
-                          <span className="text-xs font-semibold text-blue-700">{job.period}</span>
-                        </div>
+                      <ul className="space-y-3">
+                        {job.achievements.map((achievement, i) => (
+                          <li key={i} className="flex items-start gap-3 text-slate-700 text-sm leading-relaxed">
+                            <div className="mt-[0.55rem] w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0"></div>
+                            <span>{achievement}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
 
-                        <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-sm hover:shadow-lg transition-shadow">
-                          <div className="mb-3">
-                            <h3 className="text-lg font-bold text-slate-900 mb-1">{job.role}</h3>
-                            <div className="text-slate-600 text-sm">
-                              <span className="font-medium">{job.company}</span>
-                              <span className="text-slate-400 mx-1">•</span>
-                              <span className="text-slate-500">{job.location}</span>
-                            </div>
+                  {/* Mobile Layout — dot on left, full card on right */}
+                  <div className="md:hidden flex gap-6">
+                    <div className="relative flex flex-col items-center shrink-0">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 shadow-lg flex items-center justify-center z-10">
+                        <div className="w-2 h-2 rounded-full bg-white"></div>
+                      </div>
+                    </div>
+
+                    <div className="flex-1 pb-2 min-w-0">
+                      <div className="inline-flex items-center gap-2 px-3 py-1 mb-3 rounded-full bg-blue-50 border border-blue-100">
+                        <div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+                        <span className="text-xs font-semibold text-blue-700">{job.period}</span>
+                      </div>
+
+                      <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-sm hover:shadow-lg transition-shadow">
+                        <div className="mb-4 pb-4 border-b border-slate-100">
+                          <h3 className="text-lg font-bold text-slate-900 mb-1">{job.role}</h3>
+                          <div className="text-slate-600 text-sm">
+                            <span className="font-medium">{job.company}</span>
+                            <span className="text-slate-400 mx-1">·</span>
+                            <span className="text-slate-500">{job.location}</span>
+                            <span className="text-slate-400 mx-1">·</span>
+                            <span className="text-slate-500">{calculateDuration(job.period)}</span>
                           </div>
-
-                          <ul className="space-y-2">
-                            {job.achievements.slice(0, 3).map((achievement, i) => (
-                              <li key={i} className="flex items-start gap-2 text-slate-700 text-sm leading-relaxed">
-                                <div className="mt-2 w-1 h-1 rounded-full bg-blue-400 shrink-0"></div>
-                                <span>{achievement}</span>
-                              </li>
-                            ))}
-                          </ul>
                         </div>
+
+                        <ul className="space-y-2.5">
+                          {job.achievements.map((achievement, i) => (
+                            <li key={i} className="flex items-start gap-2 text-slate-700 text-sm leading-relaxed">
+                              <div className="mt-2 w-1 h-1 rounded-full bg-blue-400 shrink-0"></div>
+                              <span>{achievement}</span>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
                     </div>
                   </div>
-                );
-              })}
+                </div>
+              ))}
             </div>
           </div>
         </div>
