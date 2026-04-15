@@ -141,9 +141,10 @@
       .logo-marquee-track {
         display: flex;
         width: max-content;
-        gap: 3rem; /* 48px gap between logos */
+        gap: 2.5rem; /* 40px gap between logos */
         animation: marqueeScroll 40s linear infinite;
         will-change: transform;
+        padding: 1.5rem 0; /* vertical breathing room so hover-scale never clips */
       }
 
       /* Pause on hover - smooth without glitching */
@@ -154,14 +155,16 @@
       /* Content wrapper for each set */
       .logo-marquee-content {
         display: flex;
-        gap: 3rem; /* Must match track gap */
+        gap: 2.5rem; /* Must match track gap */
         flex-shrink: 0;
+        align-items: center;
       }
 
-      /* Individual logo item with extra padding for hover expansion */
+      /* Individual logo cell — fixed size so every logo sits in a uniform box */
       .logo-marquee-item {
         flex-shrink: 0;
-        padding: 1rem; /* Extra space to prevent clipping on scale */
+        width: 7rem;     /* 112px — uniform cell width */
+        height: 4rem;    /* 64px — uniform cell height */
         display: flex;
         align-items: center;
         justify-content: center;
@@ -172,20 +175,23 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        width: 100%;
+        height: 100%;
         transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         transform-origin: center;
       }
 
-      /* Hover scale effect - won't clip due to padding */
+      /* Hover scale effect - contained by the vertical track padding */
       .logo-marquee-item:hover .logo-wrapper {
-        transform: scale(1.2);
+        transform: scale(1.15);
       }
 
-      /* Logo image styling */
+      /* Logo image — fits inside the 7rem x 4rem cell regardless of natural aspect */
       .logo-image {
-        height: 3rem; /* 48px */
+        max-height: 2.75rem; /* 44px — stays under cell height with breathing room */
+        max-width: 6rem;     /* 96px — never wider than its cell */
         width: auto;
-        max-width: 8rem; /* 128px max width */
+        height: auto;
         object-fit: contain;
         display: block;
         filter: brightness(0.95);

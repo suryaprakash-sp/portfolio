@@ -35,7 +35,8 @@ export interface Education {
 // Freelance Service Offering
 export interface Service {
   id: string;
-  icon: string;                // lucide icon name key
+  icon: string;                // fallback lucide icon name key
+  iconImage?: string;          // optional 3D icon image path (takes precedence over icon)
   tier: 'starter' | 'growth' | 'custom' | 'free';
   title: string;
   tagline: string;

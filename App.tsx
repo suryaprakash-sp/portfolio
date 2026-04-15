@@ -18,22 +18,54 @@ const LinkedInIcon = ({ size = 20, className = "" }: { size?: number; className?
   </svg>
 );
 
-// Tech stack logos for the marquee
+// Tech stack logos for the marquee — interleaved across categories (language, db, AI, web, cloud, BI, tools)
+// so the scrolling strip never shows 3 of the same kind in a row.
 const TECH_LOGOS = [
-  { src: 'mysql.png', alt: 'MySQL', name: 'MySQL' },
-  { src: 'postgresql.png', alt: 'PostgreSQL', name: 'PostgreSQL' },
-  { src: 'mongodb.png', alt: 'MongoDB', name: 'MongoDB' },
-  { src: 'python.png', alt: 'Python', name: 'Python' },
-  { src: 'tableau.png', alt: 'Tableau', name: 'Tableau' },
-  { src: 'powerbi.png', alt: 'Power BI', name: 'Power BI' },
-  { src: 'metabase.png', alt: 'Metabase', name: 'Metabase' },
+  // Row 1 — Languages & core stack
+  { src: 'python.png',      alt: 'Python',          name: 'Python' },
+  { src: 'typescript.svg',  alt: 'TypeScript',      name: 'TypeScript' },
+  { src: 'javascript.svg',  alt: 'JavaScript',      name: 'JavaScript' },
+
+  // Databases
+  { src: 'postgresql.png',  alt: 'PostgreSQL',      name: 'PostgreSQL' },
+  { src: 'mysql.png',       alt: 'MySQL',           name: 'MySQL' },
+  { src: 'mongodb.png',     alt: 'MongoDB',         name: 'MongoDB' },
+  { src: 'supabase.svg',    alt: 'Supabase',        name: 'Supabase' },
+  { src: 'chartdb.png',     alt: 'ChartDB',         name: 'ChartDB' },
+
+  // AI & LLM providers
+  { src: 'claude.png',      alt: 'Claude AI',       name: 'Claude' },
+  { src: 'openai.svg',      alt: 'OpenAI',          name: 'OpenAI' },
+  { src: 'gemini.svg',      alt: 'Google Gemini',   name: 'Google Gemini' },
+
+  // Web & backend
+  { src: 'react.svg',       alt: 'React',           name: 'React' },
+  { src: 'fastapi.svg',     alt: 'FastAPI',         name: 'FastAPI' },
+  { src: 'vite.svg',        alt: 'Vite',            name: 'Vite' },
+  { src: 'tailwind.svg',    alt: 'Tailwind CSS',    name: 'Tailwind CSS' },
+
+  // Cloud & hosting
+  { src: 'vercel.svg',      alt: 'Vercel',          name: 'Vercel' },
+  { src: 'railway.svg',     alt: 'Railway',         name: 'Railway' },
+  { src: 'aws.svg',         alt: 'Amazon Web Services', name: 'AWS' },
+
+  // Data Engineering tooling
+  { src: 'sqlalchemy.svg',  alt: 'SQLAlchemy',      name: 'SQLAlchemy' },
+  { src: 'pandas.png',      alt: 'Pandas',          name: 'Pandas' },
+  { src: 'playwright.svg',  alt: 'Playwright',      name: 'Playwright' },
+  { src: 'selenium.svg',    alt: 'Selenium',        name: 'Selenium' },
+
+  // BI & reporting
+  { src: 'metabase.png',    alt: 'Metabase',        name: 'Metabase' },
+  { src: 'powerbi.png',     alt: 'Power BI',        name: 'Power BI' },
+  { src: 'redash.png',      alt: 'Redash',          name: 'Redash' },
   { src: 'google_sheets.png', alt: 'Google Sheets', name: 'Google Sheets' },
-  { src: 'github.png', alt: 'GitHub', name: 'GitHub' },
-  { src: 'chartdb.png', alt: 'ChartDB', name: 'ChartDB' },
-  { src: 'claude.png', alt: 'Claude AI', name: 'Claude' },
-  { src: 'excel.png', alt: 'Microsoft Excel', name: 'Excel' },
-  { src: 'pandas.png', alt: 'Pandas', name: 'Pandas' },
-  { src: 'redash.png', alt: 'Redash', name: 'Redash' },
+  { src: 'excel.png',       alt: 'Microsoft Excel', name: 'Excel' },
+
+  // APIs & integrations
+  { src: 'wati.svg',        alt: 'WATI',            name: 'WATI' },
+  { src: 'zoho_crm.svg',    alt: 'Zoho CRM',        name: 'Zoho CRM' },
+  { src: 'github.png',      alt: 'GitHub',          name: 'GitHub' },
 ];
 
 // Helper function to calculate duration in years and months
@@ -271,14 +303,25 @@ const ServiceCard: React.FC<{ service: Service; currency: Currency }> = ({ servi
         </div>
       )}
 
-      {/* Icon */}
-      <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 ${
-        isFeatured
-          ? 'bg-gradient-to-br from-blue-500 to-blue-600 text-white shadow-lg'
-          : 'bg-blue-50 text-blue-600 border border-blue-100 group-hover:bg-blue-100 transition-colors'
-      }`}>
-        <Icon className="w-7 h-7" />
-      </div>
+      {/* Icon — prefer 3D image, fall back to Lucide */}
+      {service.iconImage ? (
+        <div className="w-20 h-20 flex items-center justify-center mb-5 -mt-2 drop-shadow-md">
+          <img
+            src={`${import.meta.env.BASE_URL}${service.iconImage}`}
+            alt={service.title}
+            loading="lazy"
+            className="w-full h-full object-contain transform group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500"
+          />
+        </div>
+      ) : (
+        <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 ${
+          isFeatured
+            ? 'bg-gradient-to-br from-blue-500 to-blue-600 text-white shadow-lg'
+            : 'bg-blue-50 text-blue-600 border border-blue-100 group-hover:bg-blue-100 transition-colors'
+        }`}>
+          <Icon className="w-7 h-7" />
+        </div>
+      )}
 
       {/* Title + tagline */}
       <h3 className="text-xl font-bold text-slate-900 mb-2 leading-tight">{service.title}</h3>
@@ -606,10 +649,10 @@ const App: React.FC = () => {
                <span className="block text-blue-500 mt-2">Surya.</span>
              </h1>
              <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight leading-snug">
-               I help teams save 20+ hours a week with <span className="text-blue-500">AI automation</span>.
+               I turn manual data & ops work into <span className="text-blue-500">autonomous AI workflows</span>.
              </h2>
              <p className="text-lg text-slate-500 leading-relaxed max-w-xl">
-               Data & AI Automation Consultant with 4+ years building production systems in EdTech. I combine analyst judgment with AI-native delivery — <span className="font-bold text-slate-900 underline decoration-blue-400 decoration-2 underline-offset-4">ETL pipelines</span>, <span className="font-bold text-slate-900 underline decoration-purple-400 decoration-2 underline-offset-4">dashboards</span>, and <span className="font-bold text-slate-900 underline decoration-emerald-400 decoration-2 underline-offset-4">autonomous agents</span>.
+               Data & AI Automation Consultant with 4+ years shipping production systems in EdTech. I combine analyst judgment with AI-native delivery — <span className="font-bold text-slate-900 underline decoration-blue-400 decoration-2 underline-offset-4">ETL pipelines</span>, <span className="font-bold text-slate-900 underline decoration-purple-400 decoration-2 underline-offset-4">dashboards</span>, and <span className="font-bold text-slate-900 underline decoration-emerald-400 decoration-2 underline-offset-4">autonomous agents</span>.
              </p>
           </div>
 
@@ -635,12 +678,17 @@ const App: React.FC = () => {
                 </a>
              </div>
 
-             {/* Availability Badge */}
-             <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-gradient-to-r from-emerald-50 to-blue-50 border-2 border-emerald-200 self-start hover:border-emerald-300 transition-all duration-300 cursor-default shadow-sm">
-                <span className="relative w-2.5 h-2.5 rounded-full bg-emerald-500">
-                  <span className="absolute inset-0 rounded-full bg-emerald-500 animate-ping opacity-75"></span>
-                </span>
-                <span className="text-xs font-bold text-slate-900 tracking-wide uppercase">Available for Freelance · Remote · Global</span>
+             {/* Availability Badge + Work style subtitle */}
+             <div className="flex flex-col gap-2 self-start">
+                <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-gradient-to-r from-emerald-50 to-blue-50 border-2 border-emerald-200 hover:border-emerald-300 transition-all duration-300 cursor-default shadow-sm">
+                   <span className="relative w-2.5 h-2.5 rounded-full bg-emerald-500">
+                     <span className="absolute inset-0 rounded-full bg-emerald-500 animate-ping opacity-75"></span>
+                   </span>
+                   <span className="text-xs font-bold text-slate-900 tracking-wide uppercase">Available for Freelance Projects</span>
+                </div>
+                <p className="text-xs text-slate-500 font-medium pl-1 tracking-wide">
+                   Remote-first · Any timezone · Clients worldwide
+                </p>
              </div>
           </div>
 
@@ -708,31 +756,31 @@ const App: React.FC = () => {
               </div>
             </div>
 
-            {/* Badge 2: Top Right - Students served */}
+            {/* Badge 2: Top Right - Projects delivered */}
             <div className="stat-badge absolute top-16 -right-8 md:-right-12 animate-float" style={{ animationDelay: '1s' }}>
               <div className="backdrop-blur-xl bg-white/80 border border-slate-200/50 rounded-2xl px-5 py-3 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-default">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center shadow-md">
-                    <span className="text-white font-bold text-[11px]">25K+</span>
+                    <span className="text-white font-bold text-[11px]">35+</span>
                   </div>
                   <div>
-                    <p className="text-xs text-slate-500 font-medium">Students</p>
-                    <p className="text-sm font-bold text-slate-900">Served</p>
+                    <p className="text-xs text-slate-500 font-medium">Projects</p>
+                    <p className="text-sm font-bold text-slate-900">Delivered</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Badge 3: Bottom Left - Hours saved */}
+            {/* Badge 3: Bottom Left - Data scale */}
             <div className="stat-badge absolute bottom-12 -left-8 md:-left-12 animate-float" style={{ animationDelay: '2s' }}>
               <div className="backdrop-blur-xl bg-white/80 border border-slate-200/50 rounded-2xl px-5 py-3 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-default">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-md">
-                    <span className="text-white font-bold text-[11px]">20h</span>
+                    <span className="text-white font-bold text-[11px]">5M+</span>
                   </div>
                   <div>
-                    <p className="text-xs text-slate-500 font-medium">/week saved</p>
-                    <p className="text-sm font-bold text-slate-900">via automation</p>
+                    <p className="text-xs text-slate-500 font-medium">Rows Processed</p>
+                    <p className="text-sm font-bold text-slate-900">daily</p>
                   </div>
                 </div>
               </div>
@@ -774,7 +822,7 @@ const App: React.FC = () => {
                 <h3 className="text-5xl font-bold text-blue-600">80%</h3>
                 <p className="text-slate-900 font-semibold text-lg">Faster Dashboards</p>
                 <p className="text-slate-600 text-sm leading-relaxed">
-                  Improved Metabase dashboard load times by 80% through Python optimization at Masai School
+                  Improved Metabase dashboard load times by 80% through Python optimization and schema redesign
                 </p>
               </div>
             </div>
@@ -788,7 +836,7 @@ const App: React.FC = () => {
                 <h3 className="text-5xl font-bold text-purple-600">58K+</h3>
                 <p className="text-slate-900 font-semibold text-lg">Candidates Tracked</p>
                 <p className="text-slate-600 text-sm leading-relaxed">
-                  Think Exam platform data synced into PostgreSQL with crash-safe pagination for IACE coaching institute
+                  Exam candidate data synced into PostgreSQL with crash-safe pagination, retry logic, and batched writes
                 </p>
               </div>
             </div>
@@ -802,7 +850,7 @@ const App: React.FC = () => {
                 <h3 className="text-5xl font-bold text-emerald-600">20+</h3>
                 <p className="text-slate-900 font-semibold text-lg">Production Pipelines</p>
                 <p className="text-slate-600 text-sm leading-relaxed">
-                  Built and deployed ETL workflows across 2 companies, handling critical business data flows
+                  Built and deployed resilient ETL workflows handling millions of rows of critical business data daily
                 </p>
               </div>
             </div>
@@ -816,7 +864,7 @@ const App: React.FC = () => {
                 <h3 className="text-5xl font-bold text-orange-600">20h</h3>
                 <p className="text-slate-900 font-semibold text-lg">Saved Per Week</p>
                 <p className="text-slate-600 text-sm leading-relaxed">
-                  Eliminated 20+ hours/week of manual reporting via Google Docs/Gmail API automation at Masai School
+                  Eliminated 20+ hours/week of manual reporting via Google Docs and Gmail API automation
                 </p>
               </div>
             </div>
@@ -844,7 +892,7 @@ const App: React.FC = () => {
                 <h3 className="text-5xl font-bold text-pink-600">25K+</h3>
                 <p className="text-slate-900 font-semibold text-lg">Students Served</p>
                 <p className="text-slate-600 text-sm leading-relaxed">
-                  Data infrastructure I built powers operations for 25,000+ active students across 50+ courses at Masai
+                  Data infrastructure powering operations for 25,000+ active students across 50+ programs
                 </p>
               </div>
             </div>
@@ -854,14 +902,17 @@ const App: React.FC = () => {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" ref={skillsRef} className="scroll-mt-28 py-24 bg-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-        
+      <section id="skills" ref={skillsRef} className="scroll-mt-28 py-24 bg-white relative">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
+
         <div className="max-w-6xl mx-auto px-6 relative z-10">
-          <div className="flex flex-col md:flex-row gap-20 items-center">
-            
+          {/* NOTE: no items-start / items-center here — default stretch makes both flex children
+               equal height, which gives the right-side sticky chart enough scroll runway
+               to stay pinned while the left-side skills list scrolls past it. */}
+          <div className="flex flex-col md:flex-row gap-20">
+
             {/* Skills List */}
-            <div className="flex-1 w-full space-y-12">
+            <div className="flex-1 min-w-0 w-full space-y-12">
               <div className={`transition-all duration-700 ${skillsVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
                 <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-100 border border-slate-200 mb-4">
                   <Sparkles className="w-4 h-4 text-slate-600" />
@@ -885,16 +936,16 @@ const App: React.FC = () => {
                     }`}
                   >
                     <div className="flex items-start gap-5">
-                      <div className="mt-1 p-2.5 rounded-xl bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300 shadow-sm">
+                      <div className="mt-1 p-2.5 rounded-xl bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300 shadow-sm flex-shrink-0">
                         <div className="w-5 h-5 flex items-center justify-center">
                             {CATEGORY_ICONS[category.category] && React.createElement(CATEGORY_ICONS[category.category], { size: 20 })}
                         </div>
                       </div>
-                      <div className="flex-1 border-b border-slate-100 pb-6 group-hover:border-slate-200 transition-colors">
+                      <div className="flex-1 min-w-0 border-b border-slate-100 pb-6 group-hover:border-slate-200 transition-colors">
                         <h3 className="text-base font-bold text-slate-900 mb-4">{category.category}</h3>
-                        <div className="flex flex-wrap gap-2.5">
+                        <div className="flex flex-wrap gap-2">
                           {category.skills.map((skill) => (
-                            <span key={skill} className="px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-slate-700 font-medium text-sm hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 transition-all duration-200 shadow-sm">
+                            <span key={skill} className="px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-slate-700 font-medium text-xs whitespace-nowrap hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 transition-all duration-200 shadow-sm">
                               {skill}
                             </span>
                           ))}
@@ -906,12 +957,17 @@ const App: React.FC = () => {
               </div>
             </div>
 
-            {/* Radar Chart */}
-            <div className={`flex-1 w-full flex justify-center items-center transition-all duration-1000 delay-300 ${
-               skillsVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-            }`}>
-               <div className="relative p-8 bg-white/40 backdrop-blur-md rounded-3xl border border-slate-100 shadow-xl w-full max-w-[500px]">
-                 <SkillChart />
+            {/* Radar Chart — sticky on desktop so it stays pinned while skills scroll.
+                 IMPORTANT: no CSS transform on any ancestor of the sticky div,
+                 because a transformed ancestor creates a new containing block and breaks sticky.
+                 The scale/opacity animation lives on the innermost chart card instead. */}
+            <div className="flex-1 w-full">
+               <div className="md:sticky md:top-28 flex justify-center">
+                 <div className={`relative p-8 bg-white/40 backdrop-blur-md rounded-3xl border border-slate-100 shadow-xl w-full max-w-[500px] transition-all duration-1000 delay-300 ${
+                    skillsVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+                 }`}>
+                   <SkillChart />
+                 </div>
                </div>
             </div>
           </div>
@@ -1428,6 +1484,7 @@ const App: React.FC = () => {
                   <ul className="space-y-4 text-slate-400">
                     <li><a href="#about" className="hover:text-white transition-colors">About</a></li>
                     <li><a href="#skills" className="hover:text-white transition-colors">Skills</a></li>
+                    <li><a href="#services" className="hover:text-white transition-colors">Services</a></li>
                     <li><a href="#experience" className="hover:text-white transition-colors">Experience</a></li>
                     <li><a href="#projects" className="hover:text-white transition-colors">Projects</a></li>
                   </ul>

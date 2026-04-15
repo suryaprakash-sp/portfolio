@@ -15,7 +15,7 @@ export const RESUME_DATA: ResumeData = {
     linkedin: "linkedin.com/in/manubolusuryaprakash",
     calendly: "https://calendly.com/suryaprakash-sp987/30min"
   },
-  summary: "I'm a Data Analyst with 4+ years building production systems in EdTech — and now I freelance too. I've scaled data infrastructure for 25,000+ students at Masai School, built end-to-end PDF result engines and ETL automation at IACE that handle 58,000+ exam candidates, and shipped automation that's eliminated 20+ hours of weekly manual work for the teams I've worked with. What makes me different: I combine deep analyst judgment with AI-native delivery (Claude Code, Claude API, autonomous agents) — so I ship in days what used to take weeks, without the typical AI-freelancer pitfalls of hallucinated metrics or broken pipelines. I work best with EdTech companies, coaching institutes, and SMBs who have data scattered across tools and ops teams burning out on repetitive work.",
+  summary: "I'm a Data Analyst with 4+ years building production systems in EdTech — and now I freelance too. I've scaled data infrastructure for 25,000+ active users, built end-to-end PDF result engines and ETL automation handling 58,000+ exam candidates, and shipped automation that eliminated 20+ hours of weekly manual work for the teams I've worked with. What makes me different: I combine deep analyst judgment with AI-native delivery (Claude Code, Claude API, autonomous agents) — so I ship in days what used to take weeks, without the typical AI-freelancer pitfalls of hallucinated metrics or broken pipelines. I work best with EdTech companies, coaching institutes, and SMBs who have data scattered across tools and ops teams burning out on repetitive work.",
   skills: [
     {
       category: "Languages",
@@ -197,6 +197,7 @@ export const RESUME_DATA: ResumeData = {
     {
       id: "reporting-autopilot",
       icon: "Rocket",
+      iconImage: "icon-rocket-3d.png",
       tier: "growth",
       title: "The Reporting Autopilot",
       tagline: "Replace 15+ hours/week of manual reporting with automated weekly briefings delivered to your inbox or Slack.",
@@ -216,6 +217,7 @@ export const RESUME_DATA: ResumeData = {
     {
       id: "data-foundation",
       icon: "Database",
+      iconImage: "icon-brick-3d.png",
       tier: "starter",
       title: "The Data Foundation Setup",
       tagline: "End-to-end ETL pipelines connecting your LMS, CRM, payment processor, and marketing tools into one source of truth.",
@@ -226,13 +228,14 @@ export const RESUME_DATA: ResumeData = {
         "Unified PostgreSQL / Supabase data warehouse",
         "Production-grade Python ETL jobs with retry & crash-safety",
         "Schema design + documentation your team can read",
-        "Same architecture that powers 25K+ students at Masai and 58K+ candidates at IACE"
+        "Battle-tested architecture powering 25K+ users and 58K+ exam candidates in production"
       ],
       ctaLabel: "Book a call"
     },
     {
       id: "ai-workflow",
       icon: "Bot",
+      iconImage: "icon-robot-3d.png",
       tier: "custom",
       title: "AI Workflow Automation",
       tagline: "Autonomous agents for result generation, document parsing, support triage, lead enrichment, WhatsApp/email automation.",
@@ -251,6 +254,7 @@ export const RESUME_DATA: ResumeData = {
     {
       id: "free-audit",
       icon: "Gift",
+      iconImage: "icon-gift-3d.png",
       tier: "free",
       title: "Free 30-min Ops Audit",
       tagline: "I'll review your current data/ops stack and identify 3 workflows you can automate this month. No pitch, no hard sell.",
