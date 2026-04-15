@@ -1,0 +1,8 @@
+# https://suryaprakash-sp.github.io/portfolio/
+User-agent: *
+Allow: /
+
+# Crawl-delay is a suggestion; most modern bots ignore it
+Crawl-delay: 1
+
+Sitemap: https://suryaprakash-sp.github.io/portfolio/sitemap.xml
