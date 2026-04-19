@@ -91,9 +91,6 @@ npm run dev
 
 ```
 Portfolio/
-├── src/
-│   └── components/          # React components
-│       └── ProjectDetail.tsx # Project detail component (not currently used)
 ├── components/              # UI components
 │   ├── AiAssistant.tsx     # Chat widget (disabled for GitHub Pages)
 │   └── SkillChart.tsx      # Radar chart visualization

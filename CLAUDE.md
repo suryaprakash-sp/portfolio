@@ -33,7 +33,6 @@ This is a personal portfolio website for Surya Prakash Manubolu, a Data Analyst 
 
 - `App.tsx` - Main single-page application component with all sections
 - `index.tsx` - Application entry point (React Router removed)
-- `src/components/ProjectDetail.tsx` - Project detail component (not currently used)
 - `components/AiAssistant.tsx` - Chat widget (disabled for production, local dev only)
 - `components/SkillChart.tsx` - Radar chart for skill visualization
 - `services/gemini.ts` - API client for Google Gemini (local dev only)
