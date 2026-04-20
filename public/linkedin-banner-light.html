@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>LinkedIn Banner — Light & Simple</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      margin: 0; padding: 0;
+      width: 1584px; height: 396px;
+      overflow: hidden;
+      font-family: 'Inter', -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      color: #0f172a;
+      background: #ffffff;
+    }
+    .banner {
+      position: relative;
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 60%, #eff6ff 100%);
+      box-sizing: border-box;
+      padding: 72px 110px 72px 360px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .accent-bar {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 4px;
+      background: linear-gradient(180deg, #3b82f6 0%, #6366f1 100%);
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #059669;
+      padding: 6px 14px;
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      border-radius: 999px;
+      width: fit-content;
+    }
+    .pill .dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #10b981;
+    }
+    h1 {
+      font-size: 46px;
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -1px;
+      margin: 22px 0 28px;
+      color: #0f172a;
+      max-width: 1050px;
+    }
+    .accent {
+      color: #3b82f6;
+    }
+    .footer {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40px;
+    }
+    .name {
+      font-size: 19px;
+      font-weight: 700;
+      color: #1e293b;
+      letter-spacing: -0.2px;
+    }
+    .role {
+      font-size: 13px;
+      font-weight: 500;
+      color: #64748b;
+      margin-top: 4px;
+    }
+    .url {
+      font-size: 13px;
+      font-weight: 600;
+      color: #3b82f6;
+      padding: 8px 16px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 999px;
+    }
+  </style>
+</head>
+<body>
+  <div class="banner">
+    <div class="accent-bar"></div>
+
+    <div class="pill">
+      <span class="dot"></span>
+      Available for Freelance
+    </div>
+
+    <h1>I turn manual data &amp; ops work into<br><span class="accent">autonomous AI workflows.</span></h1>
+
+    <div class="footer">
+      <div>
+        <div class="name">Surya Prakash Manubolu</div>
+        <div class="role">Data &amp; AI Automation Consultant · Claude Code · Remote-first</div>
+      </div>
+      <div class="url">suryaprakash-sp.github.io/portfolio</div>
+    </div>
+  </div>
+</body>
+</html>
