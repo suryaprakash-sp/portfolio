@@ -65,18 +65,13 @@ All portfolio content is managed through the `RESUME_DATA` constant in `constant
 
 If you mess up the design or something breaks, you can restore to these verified commits:
 
-**LATEST BACKUP - Commit `42ad2df` - Complete Portfolio with Documentation (CURRENT PRODUCTION)**
-- Single-page portfolio with all sections fully designed
-- **"What Makes Me Different" section** between Skills and Experience:
-  - 3 differentiator cards (End-to-End Ownership, Production-First, Performance)
-  - 4-step "My Approach" process with connecting arrows (Problem → Design → Deploy → Optimize)
-  - Closing quote: "I build data systems that teams depend on, not just one-off analyses."
-- Hero section with colored underlines on ETL pipelines, dashboards, automation
-- Security incident resolved - API keys never exposed
-- Custom favicon and all 14 tech logos in public/
-- Optimized bundle size (575 KB)
-- **Documentation fully updated** - README.md and CLAUDE.md reflect all features
-- To restore: `git checkout 42ad2df -- .`
+**LATEST BACKUP - Commit `e88d4b9` - Light LinkedIn banner + freelance repositioning (CURRENT PRODUCTION)**
+- Repositioned as **Data & AI Automation Consultant** (commit `5427124`) — 4 productized services in `constants.ts` (Reporting Autopilot, Data Foundation, AI Workflow, Free 30-min Audit) with multi-currency pricing
+- SEO pass (`6eace32`) — meta tags, structured data, sitemap, robots.txt, OG image
+- Sticky skills radar chart + 3D service icons + SVG tech stack (`8121006`)
+- HR Interview Prep Agent in `hr-agent/` (`20366ca`) — internal tooling, not shipped
+- Light LinkedIn banner (`e88d4b9`) at `public/linkedin-banner.png`, template at `public/linkedin-banner-light.html`
+- To restore: `git checkout e88d4b9 -- .`
 
 **Previous Backup - Commit `06fcd48` - Security Fix + Single-Page Portfolio**
 - Single-page portfolio (React Router removed for simplicity)
@@ -236,9 +231,11 @@ The horizontal scrolling logo section uses best practices from 6+ industry sourc
 
 ## Deployment
 
-Currently deployed to Google AI Studio:
-- URL: https://ai.studio/apps/drive/1cM3INqXbUXvvtk0Iblx2kWOdVDrjszx5
-- Can also deploy to Vercel, Netlify, or any static host
+Deployed to GitHub Pages (live):
+- URL: https://suryaprakash-sp.github.io/portfolio/
+- Deploy command: `npm run deploy` (runs `vite build && gh-pages -d dist`)
+- Branch: `gh-pages` (auto-managed by the `gh-pages` npm package)
+- Source branch: `master` — all source commits land here first, then deploy pushes built assets to `gh-pages`
 
 ## Future Enhancement Ideas
 

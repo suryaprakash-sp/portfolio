@@ -15,7 +15,7 @@ export const RESUME_DATA: ResumeData = {
     linkedin: "linkedin.com/in/manubolusuryaprakash",
     calendly: "https://calendly.com/suryaprakash-sp987/30min"
   },
-  summary: "I'm a Data Analyst with 4+ years building production systems in EdTech — and now I freelance too. I've scaled data infrastructure for 25,000+ active users, built end-to-end PDF result engines and ETL automation handling 58,000+ exam candidates, and shipped automation that eliminated 20+ hours of weekly manual work for the teams I've worked with. What makes me different: I combine deep analyst judgment with AI-native delivery (Claude Code, Claude API, autonomous agents) — so I ship in days what used to take weeks, without the typical AI-freelancer pitfalls of hallucinated metrics or broken pipelines. I work best with EdTech companies, coaching institutes, and SMBs who have data scattered across tools and ops teams burning out on repetitive work.",
+  summary: "I'm a Data Analyst with 4+ years building production systems in EdTech — and now I freelance too. I've scaled data infrastructure serving 83,000+ students across bootcamps and coaching institutes, shipped end-to-end PDF result engines and ETL automation, and built workflows that eliminated 20+ hours of weekly manual work for the teams I've worked with. What makes me different: I combine deep analyst judgment with AI-native delivery (Claude Code, Claude API, autonomous agents) — so I ship in days what used to take weeks, without the typical AI-freelancer pitfalls of hallucinated metrics or broken pipelines. I work best with EdTech companies, coaching institutes, and SMBs who have data scattered across tools and ops teams burning out on repetitive work.",
   skills: [
     {
       category: "Languages",
@@ -241,7 +241,7 @@ export const RESUME_DATA: ResumeData = {
         "Unified PostgreSQL / Supabase data warehouse",
         "Production-grade Python ETL jobs with retry & crash-safety",
         "Schema design + documentation your team can read",
-        "Battle-tested architecture powering 25K+ users and 58K+ exam candidates in production"
+        "Battle-tested architecture powering 83K+ students in production"
       ],
       ctaLabel: "Book a call"
     },

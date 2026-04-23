@@ -827,16 +827,16 @@ const App: React.FC = () => {
               </div>
             </div>
 
-            {/* Metric 2: Exam candidates synced */}
+            {/* Metric 2: Students served (combined across EdTech + coaching) */}
             <div className="group relative bg-white rounded-2xl border-2 border-slate-200 p-6 hover:border-purple-300 hover:shadow-xl transition-all duration-300">
               <div className="absolute -top-3 -right-3 w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl rotate-12 group-hover:rotate-45 transition-transform duration-500 flex items-center justify-center shadow-lg">
                 <Database className="w-6 h-6 text-white" />
               </div>
               <div className="space-y-2">
-                <h3 className="text-5xl font-bold text-purple-600">58K+</h3>
-                <p className="text-slate-900 font-semibold text-lg">Candidates Tracked</p>
+                <h3 className="text-5xl font-bold text-purple-600">83K+</h3>
+                <p className="text-slate-900 font-semibold text-lg">Students Served</p>
                 <p className="text-slate-600 text-sm leading-relaxed">
-                  Exam candidate data synced into PostgreSQL with crash-safe pagination, retry logic, and batched writes
+                  Data infrastructure serving 83,000+ students across EdTech bootcamps and coaching institutes — with crash-safe pagination and retry logic
                 </p>
               </div>
             </div>
@@ -883,16 +883,16 @@ const App: React.FC = () => {
               </div>
             </div>
 
-            {/* Metric 6: Students served */}
+            {/* Metric 6: Stakeholders (decision-makers depending on delivered analytics) */}
             <div className="group relative bg-white rounded-2xl border-2 border-slate-200 p-6 hover:border-pink-300 hover:shadow-xl transition-all duration-300">
               <div className="absolute -top-3 -right-3 w-12 h-12 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl rotate-12 group-hover:rotate-45 transition-transform duration-500 flex items-center justify-center shadow-lg">
                 <Users className="w-6 h-6 text-white" />
               </div>
               <div className="space-y-2">
-                <h3 className="text-5xl font-bold text-pink-600">25K+</h3>
-                <p className="text-slate-900 font-semibold text-lg">Students Served</p>
+                <h3 className="text-5xl font-bold text-pink-600">40+</h3>
+                <p className="text-slate-900 font-semibold text-lg">Stakeholders</p>
                 <p className="text-slate-600 text-sm leading-relaxed">
-                  Data infrastructure powering operations for 25,000+ active students across 50+ programs
+                  Business decision-makers relying on the dashboards and weekly reports I build for day-to-day operations
                 </p>
               </div>
             </div>
