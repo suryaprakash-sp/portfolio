@@ -20,7 +20,7 @@ You can use this as a checklist of what's automatable in your own stack.
 
 ## 1. Raw mock-test Excel → district-segmented PDF result sheets
 
-**Where:** IACE (coaching institute, 58,000+ exam candidates)
+**Where:** Large offline coaching institute (60,000+ exam candidates)
 
 **Before:** After every exam cycle, the ops team manually cut Excel dumps by district, formatted ranks in Word, and emailed PDFs branch-by-branch. One cycle = ~2 days of work for 2 people.
 
@@ -32,7 +32,7 @@ You can use this as a checklist of what's automatable in your own stack.
 
 ## 2. Static result emails → real-time leaderboard portal
 
-**Where:** IACE
+**Where:** Large offline coaching institute
 
 **Before:** Students waited for a PDF email after every exam. Parents called the office asking "what was my child's rank?" — because the email had landed in spam.
 
@@ -44,7 +44,7 @@ You can use this as a checklist of what's automatable in your own stack.
 
 ## 3. Scattered data sources → single PostgreSQL warehouse
 
-**Where:** IACE
+**Where:** Large offline coaching institute
 
 **Before:** Data lived in Zoho CRM, Google Sheets, the Think Exam platform, and scanned PDFs. Any question that touched two of them required a human spreadsheet session.
 
@@ -56,7 +56,7 @@ You can use this as a checklist of what's automatable in your own stack.
 
 ## 4. Manual fee reconciliation → autonomous fee validators
 
-**Where:** IACE
+**Where:** Large offline coaching institute
 
 **Before:** Finance team cross-referenced Razorpay statements vs CRM vs spreadsheets at every month-end, hunting down mismatches row by row.
 
@@ -68,7 +68,7 @@ You can use this as a checklist of what's automatable in your own stack.
 
 ## 5. Manual branch performance reports → daily automated briefings
 
-**Where:** IACE
+**Where:** Large offline coaching institute
 
 **Before:** Branch managers got WhatsApped spreadsheets at erratic times. Consistency varied by whoever was on duty.
 
@@ -80,7 +80,7 @@ You can use this as a checklist of what's automatable in your own stack.
 
 ## 6. 40 fragile ETL pipelines → 20 clean production jobs
 
-**Where:** Masai School (25,000+ students)
+**Where:** Online EdTech bootcamp (25,000+ active students)
 
 **Before:** 40+ ETL jobs had accumulated over years. Half were duplicates, a third were fragile (a schema change upstream = Sunday incident). Onboarding a new analyst took weeks.
 
@@ -92,7 +92,7 @@ You can use this as a checklist of what's automatable in your own stack.
 
 ## 7. Slow Metabase dashboards → 80% faster load times
 
-**Where:** Masai School
+**Where:** Online EdTech bootcamp
 
 **Before:** Key dashboards took 10+ seconds to load. Stakeholders stopped using them because waiting killed their flow.
 
@@ -104,7 +104,7 @@ You can use this as a checklist of what's automatable in your own stack.
 
 ## 8. 20 hours/week of manual reporting → automated narrative briefs
 
-**Where:** Masai School
+**Where:** Online EdTech bootcamp
 
 **Before:** Weekly exec reports required someone to pull numbers from dashboards, paste into Google Docs, type a narrative, email it.
 
@@ -116,7 +116,7 @@ You can use this as a checklist of what's automatable in your own stack.
 
 ## 9. Manual WhatsApp outreach → one-click WATI campaign system
 
-**Where:** Gamify EduTech
+**Where:** EdTech admissions platform
 
 **Before:** Admissions team sent WhatsApp messages one by one for every campaign touchpoint. High drop-off between cohorts because follow-ups slipped.
 
@@ -128,7 +128,7 @@ You can use this as a checklist of what's automatable in your own stack.
 
 ## 10. Broken link attribution → QR-code multi-source tracking
 
-**Where:** Gamify EduTech
+**Where:** EdTech admissions platform
 
 **Before:** Offline and radio campaigns used long trackable URLs that students mistyped or ignored. Attribution was guesswork.
 

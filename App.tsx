@@ -836,10 +836,10 @@ const App: React.FC = () => {
                 <Database className="w-6 h-6 text-white" />
               </div>
               <div className="space-y-2">
-                <h3 className="text-5xl font-bold text-purple-600">83K+</h3>
+                <h3 className="text-5xl font-bold text-purple-600">85K+</h3>
                 <p className="text-slate-900 font-semibold text-lg">Students Served</p>
                 <p className="text-slate-600 text-sm leading-relaxed">
-                  Data infrastructure serving 83,000+ students across EdTech bootcamps and coaching institutes — with crash-safe pagination and retry logic
+                  Data infrastructure serving 85,000+ students across online EdTech bootcamps and offline coaching institutes — with crash-safe pagination and retry logic
                 </p>
               </div>
             </div>

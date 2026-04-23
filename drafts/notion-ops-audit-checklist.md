@@ -2,7 +2,7 @@
 
 _A self-scoring audit you can run in 30 minutes to find the workflows in your business that are ready to automate._
 
-Built from 4+ years and 83,000+ students' worth of production data work across EdTech and SMB teams.
+Built from 4+ years and 85,000+ students' worth of production data work across online + offline EdTech and SMB teams.
 
 ---
 
