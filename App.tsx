@@ -4,6 +4,7 @@ import { RESUME_DATA, NAV_ITEMS, CATEGORY_ICONS, PROJECT_ICONS, CURRENCIES } fro
 import type { Currency, CurrencyCode, Service } from './types';
 import SkillChart from './components/SkillChart';
 import AiAssistant from './components/AiAssistant';
+import { trackCalendlyClick } from './analytics';
 
 // Custom LinkedIn Icon with latest design
 const LinkedInIcon = ({ size = 20, className = "" }: { size?: number; className?: string }) => (
@@ -367,6 +368,7 @@ const ServiceCard: React.FC<{ service: Service; currency: Currency }> = ({ servi
         href={RESUME_DATA.contact.calendly}
         target="_blank"
         rel="noreferrer"
+        onClick={() => trackCalendlyClick('service-card')}
         className={`w-full text-center px-5 py-3 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center gap-2 ${
           isFeatured
             ? 'bg-slate-900 hover:bg-black text-white shadow-lg hover:shadow-xl hover:scale-[1.02]'
@@ -663,6 +665,7 @@ const App: React.FC = () => {
                   href={RESUME_DATA.contact.calendly}
                   target="_blank"
                   rel="noreferrer"
+                  onClick={() => trackCalendlyClick('hero')}
                   className="group w-full sm:w-auto min-w-[180px] justify-center px-8 py-4 bg-slate-900 hover:bg-black text-white rounded-xl font-semibold transition-all duration-300 shadow-lg shadow-slate-900/20 hover:shadow-xl hover:shadow-slate-900/30 hover:scale-105 hover:-translate-y-0.5 flex items-center gap-2"
                 >
                   <Calendar className="w-4 h-4 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" />
@@ -1238,6 +1241,7 @@ const App: React.FC = () => {
               href={RESUME_DATA.contact.calendly}
               target="_blank"
               rel="noreferrer"
+              onClick={() => trackCalendlyClick('final-cta')}
               className="inline-flex items-center gap-2 px-8 py-4 bg-slate-900 hover:bg-black text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
             >
               <Calendar className="w-4 h-4" />
@@ -1491,6 +1495,7 @@ const App: React.FC = () => {
                   href={RESUME_DATA.contact.calendly}
                   target="_blank"
                   rel="noreferrer"
+                  onClick={() => trackCalendlyClick('footer')}
                   className="group inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-500 hover:bg-blue-400 text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 hover:scale-105"
                 >
                   <Calendar className="w-4 h-4 group-hover:rotate-12 transition-transform" />
