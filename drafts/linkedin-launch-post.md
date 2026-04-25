@@ -2,14 +2,18 @@
 
 _Three variants with different tones. Pick the one that feels most like your voice — or mash pieces together. Each is engineered for the mobile truncation rules below, uses no company names in the body (positioning you as having worked with both **online and offline EdTechs** so readers from either side self-identify), and leads with the combined 85K+ / 60K+ / 25K+ numbers._
 
-## Pre-flight checklist
+## Pre-flight checklist (status as of 2026-04-25 evening)
 
-- [ ] **Change your headline first** to something freelance-friendly (currently "Senior Data Analyst @ IACE") — suggested: "Data & AI Automation Consultant | Freelance | 4+ yrs EdTech | Python, Claude Code". LinkedIn shows the headline next to the post in the feed.
-- [ ] **Banner is updated** ✅ (but check the mobile-crop finding below before posting).
-- [ ] **OG preview is clean** ✅ (Post Inspector shows correct title + description + freelance framing; one small issue flagged below).
+- [x] **Headline updated** to freelance-positioning (LinkedIn profile "freelance-repositioned" per knowledge doc). Verify it reads `Data & AI Automation Consultant | Freelance | 4+ yrs EdTech | Python, Claude Code` or similar before posting.
+- [x] **Banner is updated** — initial WhatsApp/mobile name-clipping issue identified by Surya was fixed in commits `8117b06` (banner mobile crop clearance) and `d864881` (OG image bottom-crop for WhatsApp). Re-shareable.
+- [x] **OG preview is clean** — Post Inspector verified post-fix; title + description + freelance framing all correct.
+- [x] **GA4 + `calendly_cta_click` event** wired (commit `e2a8553`) — launch traffic will be measurable.
+- [x] **Fiverr 3 gigs LIVE** (2026-04-25 evening) — gives the launch post a "I'm taking on 3 clients this quarter" claim that's backed by visible Fiverr storefront. Public URLs available for first-comment if needed.
+- [x] **LinkedIn Services page LIVE** (8 services + $50/hr starting + Open Profile messaging).
+- [x] **Lead-magnet PDF + Notion checklist drafted** — markdown content ready in `drafts/lead-magnet-pdf.md` + `drafts/notion-ops-audit-checklist.md`. Pending: render to PDF + host + publish Notion page (can be slotted into launch-week follow-up posts).
 - [ ] **Portfolio link goes in the first comment, NOT the post body** — LinkedIn's algorithm throttles reach on posts with external links.
 - [ ] **Attach an image to the post** — either the new banner PNG (`public/linkedin-banner.png`) or a fresh 1200×630 post graphic. Posts with images get ~2x the reach of text-only.
-- [ ] **Post at 7–9am IST on a Tuesday or Wednesday** — peak engagement window for professional networks in South Asia / US East overlap.
+- [ ] **Post at 9am IST on Tuesday 2026-04-28** — peak engagement window for South Asia / US East overlap. (Locked.)
 - [ ] **Reply to every comment in the first 2 hours** — comments in the first hour disproportionately decide whether your post gets pushed to second-degree connections.
 
 ## Mobile truncation rule

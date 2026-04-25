@@ -17,6 +17,7 @@ This is a personal portfolio website for Surya Prakash Manubolu, a Data Analyst 
 - **Icons**: Lucide React
 - **Charts**: Recharts
 - **AI**: Google Generative AI (Gemini 2.5 Flash) - **Local development only, disabled for production**
+- **Analytics**: Google Analytics 4 (Measurement ID `G-2475SDXL3T`) with `calendly_cta_click` conversion event
 
 ## Key Architecture Decisions
 
@@ -65,13 +66,17 @@ All portfolio content is managed through the `RESUME_DATA` constant in `constant
 
 If you mess up the design or something breaks, you can restore to these verified commits:
 
-**LATEST BACKUP - Commit `e88d4b9` - Light LinkedIn banner + freelance repositioning (CURRENT PRODUCTION)**
-- Repositioned as **Data & AI Automation Consultant** (commit `5427124`) — 4 productized services in `constants.ts` (Reporting Autopilot, Data Foundation, AI Workflow, Free 30-min Audit) with multi-currency pricing
-- SEO pass (`6eace32`) — meta tags, structured data, sitemap, robots.txt, OG image
-- Sticky skills radar chart + 3D service icons + SVG tech stack (`8121006`)
-- HR Interview Prep Agent in `hr-agent/` (`20366ca`) — internal tooling, not shipped
+**LATEST BACKUP - Commit `d864881` - WhatsApp OG bottom-crop fix (CURRENT PRODUCTION)**
+- WhatsApp link-preview crop fix (`d864881`) — OG image bottom-crop regenerated for square WhatsApp previews
+- Banner mobile-crop clearance (`8117b06`) — Surya's name no longer clipped on mobile shares; OG image regenerated
+- 60K+ / 85K+ count rebrand around online + offline EdTech framing (`6a760ba`)
+- Launch-prep drafts added (`517206f`) — `drafts/lead-magnet-pdf.md`, `drafts/notion-ops-audit-checklist.md`, `drafts/linkedin-launch-post.md` (Variant A locked for Tue 2026-04-28)
+- GA4 wired with `calendly_cta_click` conversion event (`e2a8553`) — Measurement ID `G-2475SDXL3T`
+- Banner cleanup + unified student count (`c855b7a`) — stale templates removed, count normalized
 - Light LinkedIn banner (`e88d4b9`) at `public/linkedin-banner.png`, template at `public/linkedin-banner-light.html`
-- To restore: `git checkout e88d4b9 -- .`
+- Repositioned as **Data & AI Automation Consultant** (`5427124`) — 4 productized services in `constants.ts` with multi-currency pricing
+- SEO pass (`6eace32`) — meta tags, structured data, sitemap, robots.txt, OG image
+- To restore: `git checkout d864881 -- .`
 
 **Previous Backup - Commit `06fcd48` - Security Fix + Single-Page Portfolio**
 - Single-page portfolio (React Router removed for simplicity)
@@ -244,7 +249,6 @@ Deployed to GitHub Pages (live):
 - Add animations on scroll for project cards
 - Include resume download button
 - Add contact form with backend
-- Integrate analytics (Google Analytics, Plausible)
 - Add more interactive data visualizations
 - Include certifications section
 

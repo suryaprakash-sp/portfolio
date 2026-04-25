@@ -46,3 +46,14 @@ user_inputs/
 
 # HR data (sensitive salary info, personal details)
 hr-data/
+
+# Private freelance strategy / personal docs (NEVER push)
+drafts/freelance-knowledge.md
+drafts/freelance-launch-plan.md
+drafts/braintrust-screening-prep.md
+drafts/braintrust-task.md
+drafts/toptal-task.md
+drafts/upwork-task.md
+drafts/contra-task.md
+drafts/fiverr-task.md
+drafts/linkedin-services-task.md
