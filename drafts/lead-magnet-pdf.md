@@ -46,7 +46,7 @@ You can use this as a checklist of what's automatable in your own stack.
 
 **Where:** Large offline coaching institute
 
-**Before:** Data lived in Zoho CRM, Google Sheets, the Think Exam platform, and scanned PDFs. Any question that touched two of them required a human spreadsheet session.
+**Before:** Data lived in Zoho CRM, Google Sheets, the exam platform / LMS, and scanned PDFs. Any question that touched two of them required a human spreadsheet session.
 
 **After:** Production ETL with crash-safe pagination, retry logic, and batch writes, landing everything in a single PostgreSQL warehouse powering daily ops dashboards.
 
@@ -72,7 +72,7 @@ You can use this as a checklist of what's automatable in your own stack.
 
 **Before:** Branch managers got WhatsApped spreadsheets at erratic times. Consistency varied by whoever was on duty.
 
-**After:** Daily "Real Intensive Program" performance reports auto-generated in the morning, pushing top-level branch metrics into ops dashboards and summarized in Slack.
+**After:** Daily program reports auto-generated in the morning, pushing top-level branch metrics into ops dashboards and summarized in Slack.
 
 **Saved:** Consistent 8am-sharp reports. 7 branches, zero manual touch.
 
@@ -106,11 +106,11 @@ You can use this as a checklist of what's automatable in your own stack.
 
 **Where:** Online EdTech bootcamp
 
-**Before:** Weekly exec reports required someone to pull numbers from dashboards, paste into Google Docs, type a narrative, email it.
+**Before:** Weekly exec reports required someone to pull numbers from dashboards, paste into Google Docs, write the narrative from scratch, email it. ~3–4 hours per brief, every week.
 
-**After:** Google Docs and Gmail API automation that pulls the numbers, drops them into a templated narrative ("retention dropped 4% this week because…"), and emails the brief on schedule.
+**After:** Google Docs + Gmail API automation that pulls the numbers, fills in the week-over-week deltas, and drops them into a templated brief with a clear placeholder for the analyst's commentary ("retention dropped 4% this week — _analyst note: …_"). The senior analyst now spends 5 minutes adding the "why" instead of an afternoon assembling the whole thing.
 
-**Saved:** 20 hours/week of senior analyst time. That's 1,000 hours/year reclaimed.
+**Saved:** 20 hours/week of senior analyst time. That's 1,000 hours/year reclaimed — without the AI ever pretending to know causation it doesn't.
 
 ---
 
@@ -126,15 +126,15 @@ You can use this as a checklist of what's automatable in your own stack.
 
 ---
 
-## 10. Broken link attribution → QR-code multi-source tracking
+## 10. Offline campaign attribution → QR-code source tracking
 
 **Where:** EdTech admissions platform
 
-**Before:** Offline and radio campaigns used long trackable URLs that students mistyped or ignored. Attribution was guesswork.
+**Before:** Marketing ran offline campaigns — radio spots, hoardings, print, events — but had no way to know which campaign actually drove a student to sign up. Long trackable URLs got mistyped or ignored, so the attribution column in the CRM was mostly blank or "Direct." Marketing was effectively spending budget blind.
 
-**After:** QR-code system tied to a Python attribution backend that tracks the source without relying on the user typing a URL. Deployed across 30+ offline campaigns.
+**After:** Each campaign got its own unique QR code, tied to a Python attribution backend that logs every scan with the campaign ID, channel, timestamp, and any downstream signup. Deployed across 30+ offline campaigns.
 
-**Saved:** Clean attribution data. Marketing finally knew which campaigns actually worked.
+**Saved:** Marketing finally has clean attribution data — they can see which radio station, which hoarding, which event brought in real enrollments, and reallocate spend accordingly.
 
 ---
 
