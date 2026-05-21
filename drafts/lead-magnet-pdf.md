@@ -132,7 +132,7 @@ You can use this as a checklist of what's automatable in your own stack.
 
 **Before:** Marketing ran offline campaigns — radio spots, hoardings, print, events — but had no way to know which campaign actually drove a student to sign up. Long trackable URLs got mistyped or ignored, so the attribution column in the CRM was mostly blank or "Direct." Marketing was effectively spending budget blind.
 
-**After:** Each campaign got its own unique QR code, tied to a Python attribution backend that logs every scan with the campaign ID, channel, timestamp, and any downstream signup. Deployed across 30+ offline campaigns.
+**After:** Each campaign got a unique tagged short link, with a printable QR code as the offline-friendly face. A small Python redirect tagged the campaign source on the way through, so the CRM signup row carried the right campaign ID. Deployed across 30+ offline campaigns.
 
 **Saved:** Marketing finally has clean attribution data — they can see which radio station, which hoarding, which event brought in real enrollments, and reallocate spend accordingly.
 
